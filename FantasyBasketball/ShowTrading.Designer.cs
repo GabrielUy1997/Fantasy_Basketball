@@ -35,10 +35,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.CPUteamLabel = new System.Windows.Forms.Label();
             this.PlayersPlayerBox = new System.Windows.Forms.CheckedListBox();
             this.CPUPlayerBox = new System.Windows.Forms.CheckedListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.TradeButton = new System.Windows.Forms.Button();
+            this.resetTradeBox = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -109,7 +111,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.CPUPlayerBox);
-            this.splitContainer1.Panel2.Controls.Add(this.label2);
+            this.splitContainer1.Panel2.Controls.Add(this.CPUteamLabel);
             this.splitContainer1.Size = new System.Drawing.Size(420, 387);
             this.splitContainer1.SplitterDistance = 210;
             this.splitContainer1.TabIndex = 7;
@@ -124,42 +126,69 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Your team:";
             // 
-            // label2
+            // CPUteamLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 4);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(112, 20);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "CPU\'s Team:";
+            this.CPUteamLabel.AutoSize = true;
+            this.CPUteamLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CPUteamLabel.Location = new System.Drawing.Point(3, 4);
+            this.CPUteamLabel.Name = "CPUteamLabel";
+            this.CPUteamLabel.Size = new System.Drawing.Size(112, 20);
+            this.CPUteamLabel.TabIndex = 1;
+            this.CPUteamLabel.Text = "CPU\'s Team:";
             // 
             // PlayersPlayerBox
             // 
+            this.PlayersPlayerBox.CheckOnClick = true;
             this.PlayersPlayerBox.FormattingEnabled = true;
             this.PlayersPlayerBox.Location = new System.Drawing.Point(8, 28);
             this.PlayersPlayerBox.Name = "PlayersPlayerBox";
             this.PlayersPlayerBox.Size = new System.Drawing.Size(193, 349);
             this.PlayersPlayerBox.TabIndex = 1;
+            this.PlayersPlayerBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.PlayersPlayerBox_ItemCheck);
             // 
             // CPUPlayerBox
             // 
+            this.CPUPlayerBox.CheckOnClick = true;
             this.CPUPlayerBox.FormattingEnabled = true;
             this.CPUPlayerBox.Location = new System.Drawing.Point(7, 28);
             this.CPUPlayerBox.Name = "CPUPlayerBox";
             this.CPUPlayerBox.Size = new System.Drawing.Size(191, 349);
             this.CPUPlayerBox.TabIndex = 2;
+            this.CPUPlayerBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.CPUPlayerBox_ItemCheck);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.resetTradeBox);
+            this.groupBox2.Controls.Add(this.TradeButton);
             this.groupBox2.Controls.Add(this.splitContainer1);
             this.groupBox2.Controls.Add(this.groupBox1);
             this.groupBox2.Location = new System.Drawing.Point(86, 54);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(770, 464);
+            this.groupBox2.Size = new System.Drawing.Size(825, 464);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Trading Menu";
+            // 
+            // TradeButton
+            // 
+            this.TradeButton.Enabled = false;
+            this.TradeButton.Location = new System.Drawing.Point(681, 163);
+            this.TradeButton.Name = "TradeButton";
+            this.TradeButton.Size = new System.Drawing.Size(122, 53);
+            this.TradeButton.TabIndex = 8;
+            this.TradeButton.Text = "Propose Trade";
+            this.TradeButton.UseVisualStyleBackColor = true;
+            this.TradeButton.Click += new System.EventHandler(this.TradeButton_Click);
+            // 
+            // resetTradeBox
+            // 
+            this.resetTradeBox.Location = new System.Drawing.Point(698, 222);
+            this.resetTradeBox.Name = "resetTradeBox";
+            this.resetTradeBox.Size = new System.Drawing.Size(85, 44);
+            this.resetTradeBox.TabIndex = 9;
+            this.resetTradeBox.Text = "Reset";
+            this.resetTradeBox.UseVisualStyleBackColor = true;
+            this.resetTradeBox.Click += new System.EventHandler(this.resetTradeBox_Click);
             // 
             // ShowTrading
             // 
@@ -192,9 +221,11 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label CPUteamLabel;
         private System.Windows.Forms.CheckedListBox PlayersPlayerBox;
         private System.Windows.Forms.CheckedListBox CPUPlayerBox;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button TradeButton;
+        private System.Windows.Forms.Button resetTradeBox;
     }
 }

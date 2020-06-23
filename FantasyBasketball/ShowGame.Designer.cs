@@ -38,11 +38,14 @@
             this.Winners = new System.Windows.Forms.ListBox();
             this.FreeAgentButton = new System.Windows.Forms.Button();
             this.TradingButton = new System.Windows.Forms.Button();
+            this.MainMenuGroup = new System.Windows.Forms.GroupBox();
+            this.SeasonLabel = new System.Windows.Forms.Label();
+            this.MainMenuGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // ShowPlayerTeam
             // 
-            this.ShowPlayerTeam.Location = new System.Drawing.Point(58, 35);
+            this.ShowPlayerTeam.Location = new System.Drawing.Point(19, 29);
             this.ShowPlayerTeam.Name = "ShowPlayerTeam";
             this.ShowPlayerTeam.Size = new System.Drawing.Size(115, 23);
             this.ShowPlayerTeam.TabIndex = 0;
@@ -53,14 +56,14 @@
             // ScheduleBox
             // 
             this.ScheduleBox.FormattingEnabled = true;
-            this.ScheduleBox.Location = new System.Drawing.Point(715, 35);
+            this.ScheduleBox.Location = new System.Drawing.Point(166, 241);
             this.ScheduleBox.Name = "ScheduleBox";
-            this.ScheduleBox.Size = new System.Drawing.Size(222, 290);
+            this.ScheduleBox.Size = new System.Drawing.Size(241, 251);
             this.ScheduleBox.TabIndex = 1;
             // 
             // AdvanceWeekButton
             // 
-            this.AdvanceWeekButton.Location = new System.Drawing.Point(58, 122);
+            this.AdvanceWeekButton.Location = new System.Drawing.Point(19, 116);
             this.AdvanceWeekButton.Name = "AdvanceWeekButton";
             this.AdvanceWeekButton.Size = new System.Drawing.Size(115, 23);
             this.AdvanceWeekButton.TabIndex = 2;
@@ -71,15 +74,15 @@
             // ThisWeeksStats
             // 
             this.ThisWeeksStats.FormattingEnabled = true;
-            this.ThisWeeksStats.Location = new System.Drawing.Point(551, 35);
+            this.ThisWeeksStats.Location = new System.Drawing.Point(560, 48);
             this.ThisWeeksStats.Name = "ThisWeeksStats";
-            this.ThisWeeksStats.Size = new System.Drawing.Size(158, 43);
+            this.ThisWeeksStats.Size = new System.Drawing.Size(340, 69);
             this.ThisWeeksStats.TabIndex = 3;
             // 
             // cWeek
             // 
             this.cWeek.AutoSize = true;
-            this.cWeek.Location = new System.Drawing.Point(548, 19);
+            this.cWeek.Location = new System.Drawing.Point(557, 32);
             this.cWeek.Name = "cWeek";
             this.cWeek.Size = new System.Drawing.Size(35, 13);
             this.cWeek.TabIndex = 4;
@@ -88,15 +91,15 @@
             // MatchUpBox
             // 
             this.MatchUpBox.FormattingEnabled = true;
-            this.MatchUpBox.Location = new System.Drawing.Point(205, 35);
+            this.MatchUpBox.Location = new System.Drawing.Point(166, 48);
             this.MatchUpBox.Name = "MatchUpBox";
-            this.MatchUpBox.Size = new System.Drawing.Size(340, 290);
+            this.MatchUpBox.Size = new System.Drawing.Size(340, 173);
             this.MatchUpBox.TabIndex = 5;
             // 
             // MatchUpLabel
             // 
             this.MatchUpLabel.AutoSize = true;
-            this.MatchUpLabel.Location = new System.Drawing.Point(202, 19);
+            this.MatchUpLabel.Location = new System.Drawing.Point(163, 29);
             this.MatchUpLabel.Name = "MatchUpLabel";
             this.MatchUpLabel.Size = new System.Drawing.Size(113, 13);
             this.MatchUpLabel.TabIndex = 6;
@@ -105,14 +108,14 @@
             // Winners
             // 
             this.Winners.FormattingEnabled = true;
-            this.Winners.Location = new System.Drawing.Point(715, 332);
+            this.Winners.Location = new System.Drawing.Point(560, 136);
             this.Winners.Name = "Winners";
-            this.Winners.Size = new System.Drawing.Size(222, 225);
+            this.Winners.Size = new System.Drawing.Size(340, 368);
             this.Winners.TabIndex = 7;
             // 
             // FreeAgentButton
             // 
-            this.FreeAgentButton.Location = new System.Drawing.Point(58, 64);
+            this.FreeAgentButton.Location = new System.Drawing.Point(19, 58);
             this.FreeAgentButton.Name = "FreeAgentButton";
             this.FreeAgentButton.Size = new System.Drawing.Size(115, 23);
             this.FreeAgentButton.TabIndex = 8;
@@ -122,7 +125,7 @@
             // 
             // TradingButton
             // 
-            this.TradingButton.Location = new System.Drawing.Point(58, 93);
+            this.TradingButton.Location = new System.Drawing.Point(19, 87);
             this.TradingButton.Name = "TradingButton";
             this.TradingButton.Size = new System.Drawing.Size(115, 23);
             this.TradingButton.TabIndex = 9;
@@ -130,26 +133,47 @@
             this.TradingButton.UseVisualStyleBackColor = true;
             this.TradingButton.Click += new System.EventHandler(this.TradingButton_Click);
             // 
+            // MainMenuGroup
+            // 
+            this.MainMenuGroup.Controls.Add(this.SeasonLabel);
+            this.MainMenuGroup.Controls.Add(this.MatchUpBox);
+            this.MainMenuGroup.Controls.Add(this.TradingButton);
+            this.MainMenuGroup.Controls.Add(this.ShowPlayerTeam);
+            this.MainMenuGroup.Controls.Add(this.FreeAgentButton);
+            this.MainMenuGroup.Controls.Add(this.ScheduleBox);
+            this.MainMenuGroup.Controls.Add(this.Winners);
+            this.MainMenuGroup.Controls.Add(this.AdvanceWeekButton);
+            this.MainMenuGroup.Controls.Add(this.MatchUpLabel);
+            this.MainMenuGroup.Controls.Add(this.ThisWeeksStats);
+            this.MainMenuGroup.Controls.Add(this.cWeek);
+            this.MainMenuGroup.Location = new System.Drawing.Point(12, 12);
+            this.MainMenuGroup.Name = "MainMenuGroup";
+            this.MainMenuGroup.Size = new System.Drawing.Size(960, 523);
+            this.MainMenuGroup.TabIndex = 10;
+            this.MainMenuGroup.TabStop = false;
+            this.MainMenuGroup.Text = "Home";
+            // 
+            // SeasonLabel
+            // 
+            this.SeasonLabel.AutoSize = true;
+            this.SeasonLabel.Location = new System.Drawing.Point(166, 228);
+            this.SeasonLabel.Name = "SeasonLabel";
+            this.SeasonLabel.Size = new System.Drawing.Size(91, 13);
+            this.SeasonLabel.TabIndex = 10;
+            this.SeasonLabel.Text = "Season Schedule";
+            // 
             // ShowGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);
-            this.Controls.Add(this.TradingButton);
-            this.Controls.Add(this.FreeAgentButton);
-            this.Controls.Add(this.Winners);
-            this.Controls.Add(this.MatchUpLabel);
-            this.Controls.Add(this.MatchUpBox);
-            this.Controls.Add(this.cWeek);
-            this.Controls.Add(this.ThisWeeksStats);
-            this.Controls.Add(this.AdvanceWeekButton);
-            this.Controls.Add(this.ScheduleBox);
-            this.Controls.Add(this.ShowPlayerTeam);
+            this.Controls.Add(this.MainMenuGroup);
             this.Name = "ShowGame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
+            this.MainMenuGroup.ResumeLayout(false);
+            this.MainMenuGroup.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -165,5 +189,7 @@
         private System.Windows.Forms.ListBox Winners;
         private System.Windows.Forms.Button FreeAgentButton;
         private System.Windows.Forms.Button TradingButton;
+        private System.Windows.Forms.GroupBox MainMenuGroup;
+        private System.Windows.Forms.Label SeasonLabel;
     }
 }

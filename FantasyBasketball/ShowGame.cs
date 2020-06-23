@@ -96,7 +96,9 @@ namespace FantasyBasketball
             _winners = _game.SetUpWeekMatchup(_player1, _cpu1, _cpu2, _cpu3);
             MatchUpBox.Items.Clear();
             ThisWeeksStats.Items.Clear();
-            ThisWeeksStats.Items.Add(_game.Teams[0].GetName() + "vs." + _game.Teams[1].GetName() + " " + _game.Teams[2].GetName() + " vs. " + _game.Teams[3].GetName());
+            ThisWeeksStats.Items.Add(_game.Teams[0].GetName() + " vs. " + _game.Teams[1].GetName() + " || " + _game.Teams[2].GetName() + " vs. " + _game.Teams[3].GetName());
+            ThisWeeksStats.Items.Add(_game.Teams[0].GetName() + ": " + _game.Teams[0].WeekScore + " vs. " + _game.Teams[1].GetName() + ": " + _game.Teams[1].WeekScore);
+            ThisWeeksStats.Items.Add(_game.Teams[2].GetName() + ": " + _game.Teams[2].WeekScore + " vs. " + _game.Teams[3].GetName() + ": " + _game.Teams[3].WeekScore);
             string[] twoWinners = _winners.ElementAt(_game.CurrentWeek).Split(' ');
             ThisWeeksStats.Items.Add(twoWinners[0] + " wins with " + _game.Teams.ElementAt(_game.Teams.FindIndex(x => x.GetName() == twoWinners[0])).WeekScore + " points");
             ThisWeeksStats.Items.Add(twoWinners[1] + " wins with " + _game.Teams.ElementAt(_game.Teams.FindIndex(x => x.GetName() == twoWinners[1])).WeekScore + " points");
