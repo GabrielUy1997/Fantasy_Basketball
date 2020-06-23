@@ -168,18 +168,21 @@ namespace FantasyBasketball
 
         private void ShowPlayerTeam_Click(object sender, EventArgs e)
         {
+            Hide();
             ShowTeamRoster team = new ShowTeamRoster(_game, _player1, this);
             team.Show();
         }
 
         private void FreeAgentButton_Click(object sender, EventArgs e)
         {
+            Hide();
             ShowFreeAgents ShowFA = new ShowFreeAgents(_game, this);
             ShowFA.Show();
         }
 
         private void TradingButton_Click(object sender, EventArgs e)
         {
+            Hide();
             ShowTrading ShowTrade = new ShowTrading(_game, _player1, _cpu1, _cpu2, _cpu3, this);
             ShowTrade.Show();
         }

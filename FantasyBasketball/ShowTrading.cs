@@ -37,5 +37,20 @@ namespace FantasyBasketball
             Hide();
             _showGame.Show();
         }
+
+        private void Team1Button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Team2Button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Team3Button_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
