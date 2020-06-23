@@ -10,24 +10,18 @@ using System.Windows.Forms;
 
 namespace FantasyBasketball
 {
-    public partial class TeamRoster : Form
+    public partial class ShowFreeAgents : Form
     {
         Game _game;
-        LeaugeTeam _player1;
         ShowGame _showGame;
-        public TeamRoster(Game g, LeaugeTeam p1, ShowGame sg)
+        public ShowFreeAgents(Game g, ShowGame sg)
         {
             InitializeComponent();
-            _player1 = p1;
             _game = g;
             _showGame = sg;
-            foreach (int player in _player1.team)
-            {
-                TeamList.Items.Add((_player1.team.IndexOf(player) + 1 )+ ". "  + _game.GetPlayerName(player));
-            }
         }
 
-        private void BackFromTeamRoster_Click(object sender, EventArgs e)
+        private void BackFromFreeAgents_Click(object sender, EventArgs e)
         {
             Hide();
             _showGame.Show();

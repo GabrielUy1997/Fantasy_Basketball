@@ -1,6 +1,6 @@
 ﻿namespace FantasyBasketball
 {
-    partial class TeamRoster
+    partial class ShowTeamRoster
     {
         /// <summary>
         /// Required designer variable.

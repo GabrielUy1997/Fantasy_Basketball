@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ShowFreeAgents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowFreeAgents.Designer.cs">
+      <DependentUpon>ShowFreeAgents.cs</DependentUpon>
+    </Compile>
     <Compile Include="SeasonSelect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,11 +74,17 @@
     <Compile Include="ShowGame.Designer.cs">
       <DependentUpon>ShowGame.cs</DependentUpon>
     </Compile>
-    <Compile Include="TeamRoster.cs">
+    <Compile Include="ShowTrading.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TeamRoster.Designer.cs">
-      <DependentUpon>TeamRoster.cs</DependentUpon>
+    <Compile Include="ShowTrading.Designer.cs">
+      <DependentUpon>ShowTrading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShowTeamRoster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowTeamRoster.Designer.cs">
+      <DependentUpon>ShowTeamRoster.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="SeasonSelect.resx">
       <DependentUpon>SeasonSelect.cs</DependentUpon>
@@ -89,11 +101,17 @@
     <EmbeddedResource Include="ShowDrafting.resx">
       <DependentUpon>ShowDrafting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ShowFreeAgents.resx">
+      <DependentUpon>ShowFreeAgents.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ShowGame.resx">
       <DependentUpon>ShowGame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TeamRoster.resx">
-      <DependentUpon>TeamRoster.cs</DependentUpon>
+    <EmbeddedResource Include="ShowTeamRoster.resx">
+      <DependentUpon>ShowTeamRoster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowTrading.resx">
+      <DependentUpon>ShowTrading.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
