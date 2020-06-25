@@ -52,10 +52,9 @@ namespace FantasyBasketball
             {
                 pID = _game.AddPlayersToDraftList();
                 DraftCheckList.Items.Add(_game.GetPlayerName(pID));
+                PlayerPos.Items.Add(_game.GetPlayerPos(pID));
             }
           
-
-            //_game.Drafting();
         }
 
         public void PlayerSelect()
@@ -67,6 +66,7 @@ namespace FantasyBasketball
                 if(_game.Teams.IndexOf(team) < playerindex && team.team.Count <= 5)
                 {
                     pID = _game.ComputerTeamDraft(team, team.GetName());
+                    PlayerPos.Items.RemoveAt(DraftCheckList.FindStringExact(_game.GetPlayerName(pID)));
                     DraftCheckList.Items.Remove(_game.GetPlayerName(pID));
                     DraftedList.Items.Add(_game.GetPlayerName(pID) + " Drafted by " + team.GetName() + " with the #" + SelectionNumber + " over all pick");
                     SelectionNumber++;
@@ -113,6 +113,7 @@ namespace FantasyBasketball
                         {
                             player1.AddCenters();
                         }
+                        PlayerPos.Items.RemoveAt(DraftCheckList.FindStringExact(_game.GetPlayerName(pID)));
                         DraftCheckList.Items.RemoveAt(checkd);
                         DraftedList.Items.Add(_game.GetPlayerName(pID) + " Drafted by " + player1.GetName() + " with the #" + SelectionNumber + " over all pick");
                         SelectionNumber++;
@@ -137,6 +138,7 @@ namespace FantasyBasketball
                         if (_game.Teams.IndexOf(team) > playerindex && team.team.Count < 6)
                         {
                             pID = _game.ComputerTeamDraft(team, team.GetName());
+                            PlayerPos.Items.RemoveAt(DraftCheckList.FindStringExact(_game.GetPlayerName(pID)));
                             DraftCheckList.Items.Remove(_game.GetPlayerName(pID));
                             DraftedList.Items.Add(_game.GetPlayerName(pID) + " Drafted by " + team.GetName() + " with the #" + SelectionNumber + " over all pick");
                             SelectionNumber++;
@@ -169,6 +171,7 @@ namespace FantasyBasketball
                         if (_game.Teams.IndexOf(team) > playerindex && team.team.Count < 6)
                         {
                             pID = _game.ComputerTeamDraft(team, team.GetName());
+                            PlayerPos.Items.RemoveAt(DraftCheckList.FindStringExact(_game.GetPlayerName(pID)));
                             DraftCheckList.Items.Remove(_game.GetPlayerName(pID));
                             DraftedList.Items.Add(_game.GetPlayerName(pID) + " Drafted by " + team.GetName() + " with the #" + SelectionNumber + " over all pick");
                             SelectionNumber++;

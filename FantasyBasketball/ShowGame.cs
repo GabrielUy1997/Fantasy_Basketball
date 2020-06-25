@@ -17,7 +17,7 @@ namespace FantasyBasketball
         LeaugeTeam _cpu1;
         LeaugeTeam _cpu2;
         LeaugeTeam _cpu3;
-        string __season;
+        public string __season;
         List<string> _winners;
         public ShowGame(Game g, LeaugeTeam p1, LeaugeTeam c1, LeaugeTeam c2, LeaugeTeam c3, string seas)
         {

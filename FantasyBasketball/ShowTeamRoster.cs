@@ -25,12 +25,18 @@ namespace FantasyBasketball
             {
                 TeamList.Items.Add((__player1.team.IndexOf(player) + 1 )+ ". "  + __game.GetPlayerName(player));
             }
+           
         }
 
         private void BackFromTeamRoster_Click(object sender, EventArgs e)
         {
             Hide();
             _showGame.Show();
+        }
+
+        private void TeamList_Click(object sender, EventArgs e)
+        {
+            HistoricalStatsBox.Items.Add(TeamList.SelectedItems.ToString());
         }
     }
 }
