@@ -23,6 +23,7 @@ namespace FantasyBasketball
         int playerindex;
         bool hasFlipped = false;
         bool stop = false;
+        int SelectionNumber = 1;
         public ShowDrafting(string season)
         {
             InitializeComponent();
@@ -67,7 +68,8 @@ namespace FantasyBasketball
                 {
                     pID = _game.ComputerTeamDraft(team, team.GetName());
                     DraftCheckList.Items.Remove(_game.GetPlayerName(pID));
-                    DraftedList.Items.Add(_game.GetPlayerName(pID) + " Drafted by " + team.GetName());
+                    DraftedList.Items.Add(_game.GetPlayerName(pID) + " Drafted by " + team.GetName() + " with the #" + SelectionNumber + " over all pick");
+                    SelectionNumber++;
                     string test = _game.GetPlayerName(pID);
                 }
             }
@@ -112,7 +114,9 @@ namespace FantasyBasketball
                             player1.AddCenters();
                         }
                         DraftCheckList.Items.RemoveAt(checkd);
-                        DraftedList.Items.Add(_game.GetPlayerName(pID) + " Drafted by " + player1.GetName());
+                        DraftedList.Items.Add(_game.GetPlayerName(pID) + " Drafted by " + player1.GetName() + " with the #" + SelectionNumber + " over all pick");
+                        SelectionNumber++;
+                        PlayerSelectionsBox.Items.Add(_game.GetPlayerName(pID) + " " + _game.GetPlayerPos(pID));
                         invalidSelect = false;
                     }
                 }
@@ -134,7 +138,8 @@ namespace FantasyBasketball
                         {
                             pID = _game.ComputerTeamDraft(team, team.GetName());
                             DraftCheckList.Items.Remove(_game.GetPlayerName(pID));
-                            DraftedList.Items.Add(_game.GetPlayerName(pID) + " Drafted by " + team.GetName());
+                            DraftedList.Items.Add(_game.GetPlayerName(pID) + " Drafted by " + team.GetName() + " with the #" + SelectionNumber + " over all pick");
+                            SelectionNumber++;
                             string test = _game.GetPlayerName(pID);
                         }
                     }
@@ -165,7 +170,8 @@ namespace FantasyBasketball
                         {
                             pID = _game.ComputerTeamDraft(team, team.GetName());
                             DraftCheckList.Items.Remove(_game.GetPlayerName(pID));
-                            DraftedList.Items.Add(_game.GetPlayerName(pID) + " Drafted by " + team.GetName());
+                            DraftedList.Items.Add(_game.GetPlayerName(pID) + " Drafted by " + team.GetName() + " with the #" + SelectionNumber + " over all pick");
+                            SelectionNumber++;
                             string test = _game.GetPlayerName(pID);
                         }
                     }
