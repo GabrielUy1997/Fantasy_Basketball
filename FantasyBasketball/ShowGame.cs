@@ -178,7 +178,7 @@ namespace FantasyBasketball
         private void FreeAgentButton_Click(object sender, EventArgs e)
         {
             Hide();
-            ShowFreeAgents ShowFA = new ShowFreeAgents(_game, this);
+            ShowFreeAgents ShowFA = new ShowFreeAgents(_game, this, _player1);
             ShowFA.Show();
         }
 

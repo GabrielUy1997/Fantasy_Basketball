@@ -164,9 +164,9 @@
             this.groupBox2.Controls.Add(this.TradeButton);
             this.groupBox2.Controls.Add(this.splitContainer1);
             this.groupBox2.Controls.Add(this.groupBox1);
-            this.groupBox2.Location = new System.Drawing.Point(39, 73);
+            this.groupBox2.Location = new System.Drawing.Point(32, 66);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(899, 435);
+            this.groupBox2.Size = new System.Drawing.Size(900, 440);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Trading Menu";

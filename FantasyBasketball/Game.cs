@@ -51,7 +51,7 @@ namespace FantasyBasketball
         public static Random RandomGen;
         public int CurrentWeek = 0;
         public int indexX = 0;
-        List<int> TopTenFree;
+        public List<int> TopTenFree;
 
         public Game()
         {
@@ -60,7 +60,7 @@ namespace FantasyBasketball
             winners = new List<string>(19);
             Teams = new List<LeaugeTeam>(4);
             Week = new List<int>(20);
-            TopTenFree = new List<int>(10);
+            TopTenFree = new List<int>(15);
             matchup = 0;
             Week.Add(1);
             Week.Add(2);
@@ -343,16 +343,17 @@ namespace FantasyBasketball
                 }
             }
         }
-        public void ShowFreeAgents(LeaugeTeam a_player)
+        public List<int> ShowFreeAgentList(LeaugeTeam a_player, string _position)
         {
             int BestPick = 0;
             int MostPoints = 0;
             int index = 0;
             int totalPoints;
             string input;
+            TopTenFree.Clear();
             Console.WriteLine("What Positon? (all,G,F,C)");
-            input = Console.ReadLine();
-            for (int i = 0; i < 10; i++)
+            input = _position;
+            for (int i = 0; i < 15; i++)
             {
                 foreach (string player in PlayerPoints.Skip(1))
                 {
@@ -391,35 +392,42 @@ namespace FantasyBasketball
                 PrintPlayer(player);
                 index++;
             }
-            Console.WriteLine("Would you like to add/drop a player? (y/n)");
-            input = Console.ReadLine();
-            if (input == "y")
-            {
-                AddDrop(a_player);
-            }
-            TopTenFree.Clear();
+            return TopTenFree;
         }
 
-        public void AddDrop(LeaugeTeam a_player)
+        public bool AddDropFreeAgents(LeaugeTeam a_player, int _PlayerIndex, int _FAIndex)
         {
             int playerAdding;
             int playerDropping;
             string input;
-            do
-            {
-                Console.WriteLine("Who would you like to add?");
-                input = Console.ReadLine();
-                playerAdding = Int32.Parse(input);
-                a_player.ShowTeam(PlayerName);
-                Console.WriteLine("Who would you like to drop?");
-                input = Console.ReadLine();
-                playerDropping = Int32.Parse(input);
-            } while (PlayerPos[TopTenFree[playerAdding]] != PlayerPos[TopTenFree[playerDropping]] && a_player.CanDraftPosition(PlayerPos, TopTenFree[playerAdding]) == false);
+            Console.WriteLine("Who would you like to add?");
+            input = Console.ReadLine();
+            playerAdding = _FAIndex;
+            Console.WriteLine("Who would you like to drop?");
+            input = Console.ReadLine();
+            playerDropping = _PlayerIndex;
             Console.WriteLine("{0} for {1}", PlayerName[TopTenFree[playerAdding]], PlayerName[a_player.team[playerDropping]]);
-            a_player.AddingPlayer(TopTenFree[playerAdding]);
-            AddTakenPlayer(TopTenFree[playerAdding]);
-            drafted.RemoveAt(drafted.IndexOf(a_player.team[playerDropping]));
-            a_player.DroppingPlayer(playerDropping);
+            if (a_player.CanDraftPosition(_Playerpos, a_player.team.ElementAt(playerDropping)) == true)
+            {
+                a_player.AddingPlayer(TopTenFree[playerAdding]);
+                AddTakenPlayer(TopTenFree[playerAdding]);
+                drafted.RemoveAt(drafted.IndexOf(a_player.team[playerDropping]));
+                a_player.DroppingPlayer(playerDropping);
+                return true;
+            }
+            else if(GetPlayerPos(a_player.team.ElementAt(playerDropping)) == GetPlayerPos(TopTenFree[playerAdding]) || 
+                GetPlayerPos(a_player.team.ElementAt(playerDropping)).Substring(1,1) == GetPlayerPos(TopTenFree[playerAdding]).Substring(1, 1))
+            {
+                a_player.AddingPlayer(TopTenFree[playerAdding]);
+                AddTakenPlayer(TopTenFree[playerAdding]);
+                drafted.RemoveAt(drafted.IndexOf(a_player.team[playerDropping]));
+                a_player.DroppingPlayer(playerDropping);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 
         }
 
@@ -432,21 +440,7 @@ namespace FantasyBasketball
             }
             Console.WriteLine("Who would you like to trade with?");
             string input = Console.ReadLine();
-            //switch (input)
-            //{
-            //    case "CPU1":
-            //        Trade(a_player, a_CPU);
-            //        break;
-            //    case "CPU2":
-            //        Trade(a_player, a_CPU2);
-            //        break;
-            //    case "CPU3":
-            //        Trade(a_player, a_CPU3);
-            //        break;
-            //    default:
-            //        Console.WriteLine("invalid");
-            //        break;
-            //}
+           
 
         }
 
@@ -626,6 +620,7 @@ namespace FantasyBasketball
         {
             get { return Champion; }
         }
+
 
         public string GetPlayerID(int a_player)
         {
