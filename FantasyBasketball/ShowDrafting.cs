@@ -99,6 +99,18 @@ namespace FantasyBasketball
                     {
                         _game.AddTakenPlayer(pID);
                         player1.AddingPlayer(pID);
+                        if(_game._Playerpos[pID].Contains("G") == true)
+                        {
+                            player1.AddGuard();
+                        }
+                        else if (_game._Playerpos[pID].Contains("F") == true)
+                        {
+                            player1.AddForward();
+                        }
+                        else if (_game._Playerpos[pID].Contains("C") == true)
+                        {
+                            player1.AddCenters();
+                        }
                         DraftCheckList.Items.RemoveAt(checkd);
                         DraftedList.Items.Add(_game.GetPlayerName(pID) + " Drafted by " + player1.GetName());
                         invalidSelect = false;

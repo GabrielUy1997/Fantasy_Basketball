@@ -106,19 +106,34 @@ namespace FantasyBasketball
         {
             return 1;
         }
-        public virtual void AddGuard()
+        public void AddGuard()
         {
             Guards++;
         }
 
-        public virtual void AddForward()
+        public void AddForward()
         {
             Forwards++;
         }
 
-        public virtual void AddCenters()
+        public void AddCenters()
         {
             Center++;
+        }
+
+        public void RemoveGuard()
+        {
+            Guards--;
+        }
+
+        public void RemoveForward()
+        {
+            Forwards--;
+        }
+
+        public void RemoveCenter()
+        {
+            Center--;
         }
     }
     class Human : LeaugeTeam
@@ -184,17 +199,17 @@ namespace FantasyBasketball
             string Position = a_PlayerPos[a_pID];
             if (Position.Contains('G') == true && Guards < 2)
             {
-                Guards++;
+                
                 return true;
             }
             else if (Position.Contains('F') == true && Forwards < 2)
             {
-                Forwards++;
+               
                 return true;
             }
             else if (Position.Contains('C') == true && Center < 2)
             {
-                Center++;
+               
                 return true;
             }
             else
@@ -212,20 +227,6 @@ namespace FantasyBasketball
             IsHuman = false;
         }
 
-        public override void AddGuard()
-        {
-            Guards++;
-        }
-
-        public override void AddForward()
-        {
-            Forwards++;
-        }
-
-        public override void AddCenters()
-        {
-            Center++;
-        }
 
         public override bool CanDraft()
         {

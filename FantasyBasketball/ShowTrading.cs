@@ -46,6 +46,7 @@ namespace FantasyBasketball
             Hide();
             _showGame.Show();
             TradeButton.Enabled = false;
+            TradeResultBox.Items.Clear();
         }
 
         private void Team1Button_Click(object sender, EventArgs e)
@@ -86,7 +87,32 @@ namespace FantasyBasketball
 
         private void TradeButton_Click(object sender, EventArgs e)
         {
-            __game.Trade(__player1, __game.Teams[(__game.Teams.FindIndex(x => x.GetName() == tradingTeam))]);
+            int pPlayer = PlayersPlayerBox.SelectedIndex;
+            int cPlayer = CPUPlayerBox.SelectedIndex;
+            string pTradedName = __game._PlayerName[__player1.team[pPlayer]];
+            string cTradedName = __game._PlayerName[__game.Teams[(__game.Teams.FindIndex(x => x.GetName() == tradingTeam))].team[cPlayer]];
+            if (__game.Trade(__player1, __game.Teams[(__game.Teams.FindIndex(x => x.GetName() == tradingTeam))], pPlayer, cPlayer) == false)
+            {
+                TradeResultBox.Items.Clear();
+                TradeResultBox.Items.Add("The trade was Denied");
+            }
+            else
+            {
+                TradeResultBox.Items.Clear();
+                TradeResultBox.Items.Add("The trade was accepted:");
+                TradeResultBox.Items.Add("You traded " + pTradedName + " for " + cTradedName);
+                PlayersPlayerBox.Items.Clear();
+                CPUPlayerBox.Items.Clear();
+                foreach (int player in __player1.team)
+                {
+                    PlayersPlayerBox.Items.Add(__game._PlayerName[player]);
+                }
+                foreach(int player in __game.Teams[(__game.Teams.FindIndex(x => x.GetName() == tradingTeam))].team)
+                {
+                    CPUPlayerBox.Items.Add(__game._PlayerName[player]);
+                }
+
+            }
             computerSelected = false;
             playerSelected = false;
         }

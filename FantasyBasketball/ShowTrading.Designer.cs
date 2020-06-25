@@ -34,13 +34,14 @@
             this.Team3Button = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.label1 = new System.Windows.Forms.Label();
-            this.CPUteamLabel = new System.Windows.Forms.Label();
             this.PlayersPlayerBox = new System.Windows.Forms.CheckedListBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.CPUPlayerBox = new System.Windows.Forms.CheckedListBox();
+            this.CPUteamLabel = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.TradeButton = new System.Windows.Forms.Button();
+            this.TradeResultBox = new System.Windows.Forms.ListBox();
             this.resetTradeBox = new System.Windows.Forms.Button();
+            this.TradeButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -91,7 +92,7 @@
             this.groupBox1.Controls.Add(this.Team1Button);
             this.groupBox1.Controls.Add(this.Team3Button);
             this.groupBox1.Controls.Add(this.Team2Button);
-            this.groupBox1.Location = new System.Drawing.Point(63, 87);
+            this.groupBox1.Location = new System.Drawing.Point(31, 71);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(167, 243);
             this.groupBox1.TabIndex = 6;
@@ -100,7 +101,7 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Location = new System.Drawing.Point(236, 35);
+            this.splitContainer1.Location = new System.Drawing.Point(204, 19);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -116,26 +117,6 @@
             this.splitContainer1.SplitterDistance = 210;
             this.splitContainer1.TabIndex = 7;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(4, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Your team:";
-            // 
-            // CPUteamLabel
-            // 
-            this.CPUteamLabel.AutoSize = true;
-            this.CPUteamLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CPUteamLabel.Location = new System.Drawing.Point(3, 4);
-            this.CPUteamLabel.Name = "CPUteamLabel";
-            this.CPUteamLabel.Size = new System.Drawing.Size(112, 20);
-            this.CPUteamLabel.TabIndex = 1;
-            this.CPUteamLabel.Text = "CPU\'s Team:";
-            // 
             // PlayersPlayerBox
             // 
             this.PlayersPlayerBox.CheckOnClick = true;
@@ -145,6 +126,16 @@
             this.PlayersPlayerBox.Size = new System.Drawing.Size(193, 349);
             this.PlayersPlayerBox.TabIndex = 1;
             this.PlayersPlayerBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.PlayersPlayerBox_ItemCheck);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(4, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Your team:";
             // 
             // CPUPlayerBox
             // 
@@ -156,39 +147,59 @@
             this.CPUPlayerBox.TabIndex = 2;
             this.CPUPlayerBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.CPUPlayerBox_ItemCheck);
             // 
+            // CPUteamLabel
+            // 
+            this.CPUteamLabel.AutoSize = true;
+            this.CPUteamLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CPUteamLabel.Location = new System.Drawing.Point(3, 4);
+            this.CPUteamLabel.Name = "CPUteamLabel";
+            this.CPUteamLabel.Size = new System.Drawing.Size(112, 20);
+            this.CPUteamLabel.TabIndex = 1;
+            this.CPUteamLabel.Text = "CPU\'s Team:";
+            // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.TradeResultBox);
             this.groupBox2.Controls.Add(this.resetTradeBox);
             this.groupBox2.Controls.Add(this.TradeButton);
             this.groupBox2.Controls.Add(this.splitContainer1);
             this.groupBox2.Controls.Add(this.groupBox1);
-            this.groupBox2.Location = new System.Drawing.Point(86, 54);
+            this.groupBox2.Location = new System.Drawing.Point(39, 73);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(825, 464);
+            this.groupBox2.Size = new System.Drawing.Size(899, 435);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Trading Menu";
             // 
-            // TradeButton
+            // TradeResultBox
             // 
-            this.TradeButton.Enabled = false;
-            this.TradeButton.Location = new System.Drawing.Point(681, 163);
-            this.TradeButton.Name = "TradeButton";
-            this.TradeButton.Size = new System.Drawing.Size(122, 53);
-            this.TradeButton.TabIndex = 8;
-            this.TradeButton.Text = "Propose Trade";
-            this.TradeButton.UseVisualStyleBackColor = true;
-            this.TradeButton.Click += new System.EventHandler(this.TradeButton_Click);
+            this.TradeResultBox.FormattingEnabled = true;
+            this.TradeResultBox.Location = new System.Drawing.Point(630, 219);
+            this.TradeResultBox.Name = "TradeResultBox";
+            this.TradeResultBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.TradeResultBox.Size = new System.Drawing.Size(244, 95);
+            this.TradeResultBox.TabIndex = 10;
             // 
             // resetTradeBox
             // 
-            this.resetTradeBox.Location = new System.Drawing.Point(698, 222);
+            this.resetTradeBox.Location = new System.Drawing.Point(703, 149);
             this.resetTradeBox.Name = "resetTradeBox";
             this.resetTradeBox.Size = new System.Drawing.Size(85, 44);
             this.resetTradeBox.TabIndex = 9;
             this.resetTradeBox.Text = "Reset";
             this.resetTradeBox.UseVisualStyleBackColor = true;
             this.resetTradeBox.Click += new System.EventHandler(this.resetTradeBox_Click);
+            // 
+            // TradeButton
+            // 
+            this.TradeButton.Enabled = false;
+            this.TradeButton.Location = new System.Drawing.Point(685, 90);
+            this.TradeButton.Name = "TradeButton";
+            this.TradeButton.Size = new System.Drawing.Size(122, 53);
+            this.TradeButton.TabIndex = 8;
+            this.TradeButton.Text = "Propose Trade";
+            this.TradeButton.UseVisualStyleBackColor = true;
+            this.TradeButton.Click += new System.EventHandler(this.TradeButton_Click);
             // 
             // ShowTrading
             // 
@@ -227,5 +238,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button TradeButton;
         private System.Windows.Forms.Button resetTradeBox;
+        private System.Windows.Forms.ListBox TradeResultBox;
     }
 }

@@ -432,37 +432,37 @@ namespace FantasyBasketball
             }
             Console.WriteLine("Who would you like to trade with?");
             string input = Console.ReadLine();
-            switch (input)
-            {
-                case "CPU1":
-                    Trade(a_player, a_CPU);
-                    break;
-                case "CPU2":
-                    Trade(a_player, a_CPU2);
-                    break;
-                case "CPU3":
-                    Trade(a_player, a_CPU3);
-                    break;
-                default:
-                    Console.WriteLine("invalid");
-                    break;
-            }
+            //switch (input)
+            //{
+            //    case "CPU1":
+            //        Trade(a_player, a_CPU);
+            //        break;
+            //    case "CPU2":
+            //        Trade(a_player, a_CPU2);
+            //        break;
+            //    case "CPU3":
+            //        Trade(a_player, a_CPU3);
+            //        break;
+            //    default:
+            //        Console.WriteLine("invalid");
+            //        break;
+            //}
 
         }
 
-        public void Trade(LeaugeTeam a_player, LeaugeTeam a_CPU)
+        public bool Trade(LeaugeTeam a_player, LeaugeTeam a_CPU, int a_pPlayer, int a_cPlayer)
         {
             int playerPlayer;
             int cpuPlayer;
-            bool tradeApprove;
+            bool tradeApprove = false;
             a_player.ShowTeam(PlayerName);
             a_CPU.ShowTeam(PlayerName);
             Console.WriteLine("Who would you like to offer?");
             string input = Console.ReadLine();
-            playerPlayer = Int32.Parse(input);
+            playerPlayer = a_pPlayer;
             Console.WriteLine("Who would you like to get?");
             input = Console.ReadLine();
-            cpuPlayer = Int32.Parse(input);
+            cpuPlayer = a_cPlayer;
             if (a_player.CanDraftPosition(PlayerPos, a_CPU.team[cpuPlayer]) == true && a_CPU.CanDraftPosition(PlayerPos, a_player.team[playerPlayer]) == true)
             {
                 tradeApprove = true;
@@ -471,11 +471,11 @@ namespace FantasyBasketball
             {
                 tradeApprove = true;
             }
-            else if (PlayerPos[a_player.team[playerPlayer]].Substring(1, 1) == "G" && PlayerPos[a_CPU.team[cpuPlayer]].Substring(1, 1) == "G")
+            else if (PlayerPos[a_player.team[playerPlayer]].Contains("G") == true && PlayerPos[a_CPU.team[cpuPlayer]].Contains("G") == true)
             {
                 tradeApprove = true;
             }
-            else if (PlayerPos[a_player.team[playerPlayer]].Substring(1, 1) == "F" && PlayerPos[a_CPU.team[cpuPlayer]].Substring(1, 1) == "F")
+            else if (PlayerPos[a_player.team[playerPlayer]].Contains("F") == true && PlayerPos[a_CPU.team[cpuPlayer]].Contains("F") == true)
             {
                 tradeApprove = true;
             }
@@ -490,7 +490,66 @@ namespace FantasyBasketball
                 a_CPU.AddingPlayer(a_player.team[playerPlayer]);
                 a_player.DroppingPlayer(playerPlayer);
                 a_CPU.DroppingPlayer(cpuPlayer);
+                UpdatePosCount(a_player,a_CPU,playerPlayer,cpuPlayer);
+            }
+            else
+            {
+                tradeApprove = false;
+            }
+            return tradeApprove;
+        }
 
+        public void UpdatePosCount(LeaugeTeam a_player, LeaugeTeam a_CPU, int a_pPlayer, int a_cPlayer)
+        {
+            if(PlayerPos[a_player.team[a_pPlayer]] == "C")
+            {
+                a_CPU.AddCenters();
+            }
+            else if (PlayerPos[a_player.team[a_pPlayer]].Contains("G") == true)
+            {
+                a_CPU.AddGuard();
+            }
+            else if (PlayerPos[a_player.team[a_pPlayer]].Contains("F") == true)
+            {
+                a_CPU.AddForward();
+            }
+
+            if (PlayerPos[a_CPU.team[a_cPlayer]] == "C")
+            {
+                a_player.AddCenters();
+            }
+            else if (PlayerPos[a_CPU.team[a_cPlayer]].Contains("G") == true)
+            {
+                a_player.AddGuard();
+            }
+            else if (PlayerPos[a_CPU.team[a_cPlayer]].Contains("F") == true)
+            {
+                a_player.AddForward();
+            }
+
+            if (PlayerPos[a_player.team[a_pPlayer]] == "C")
+            {
+                a_CPU.RemoveCenter();
+            }
+            else if (PlayerPos[a_player.team[a_pPlayer]].Contains("G") == true)
+            {
+                a_CPU.RemoveGuard();
+            }
+            else if (PlayerPos[a_player.team[a_pPlayer]].Contains("F") == true)
+            {
+                a_CPU.RemoveForward();
+            }
+            if (PlayerPos[a_CPU.team[a_cPlayer]] == "C")
+            {
+                a_player.RemoveCenter();
+            }
+            else if (PlayerPos[a_CPU.team[a_cPlayer]].Contains("G") == true)
+            {
+                a_player.RemoveGuard();
+            }
+            else if (PlayerPos[a_CPU.team[a_cPlayer]].Contains("F") == true)
+            {
+                a_player.RemoveForward();
             }
         }
 
