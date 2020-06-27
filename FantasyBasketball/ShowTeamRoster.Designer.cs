@@ -39,12 +39,12 @@
             // 
             // TeamList
             // 
-            this.TeamList.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TeamList.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TeamList.FormattingEnabled = true;
-            this.TeamList.ItemHeight = 31;
+            this.TeamList.ItemHeight = 29;
             this.TeamList.Location = new System.Drawing.Point(33, 34);
             this.TeamList.Name = "TeamList";
-            this.TeamList.Size = new System.Drawing.Size(342, 252);
+            this.TeamList.Size = new System.Drawing.Size(342, 236);
             this.TeamList.TabIndex = 0;
             this.TeamList.Click += new System.EventHandler(this.TeamList_Click);
             // 
@@ -73,7 +73,7 @@
             this.HistoricalStats.Controls.Add(this.HistoricalStatsBox);
             this.HistoricalStats.Location = new System.Drawing.Point(440, 53);
             this.HistoricalStats.Name = "HistoricalStats";
-            this.HistoricalStats.Size = new System.Drawing.Size(379, 376);
+            this.HistoricalStats.Size = new System.Drawing.Size(517, 376);
             this.HistoricalStats.TabIndex = 3;
             this.HistoricalStats.TabStop = false;
             this.HistoricalStats.Text = "Historical Stats";
@@ -84,7 +84,7 @@
             this.HistoricalStatsBox.Location = new System.Drawing.Point(16, 34);
             this.HistoricalStatsBox.Name = "HistoricalStatsBox";
             this.HistoricalStatsBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.HistoricalStatsBox.Size = new System.Drawing.Size(344, 329);
+            this.HistoricalStatsBox.Size = new System.Drawing.Size(481, 329);
             this.HistoricalStatsBox.TabIndex = 0;
             // 
             // ShowTeamRoster
