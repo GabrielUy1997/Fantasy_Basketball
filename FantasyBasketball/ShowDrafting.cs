@@ -212,6 +212,7 @@ namespace FantasyBasketball
             Hide();
             ShowGame showGame = new ShowGame(_game, player1, cpu1, cpu2, cpu3, _season);
             showGame.Show();
+            
         }
 
     }

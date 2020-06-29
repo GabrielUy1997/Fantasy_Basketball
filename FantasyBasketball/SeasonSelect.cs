@@ -31,5 +31,10 @@ namespace FantasyBasketball
             }
             
         }
+
+        private void QuitGameButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

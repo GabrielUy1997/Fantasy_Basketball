@@ -18,17 +18,25 @@ namespace FantasyBasketball
         bool FASelected = false;
         bool PlayerSelected = false;
         string Catagory;
+        string ForPicture;
         public ShowFreeAgents(Game g, ShowGame sg, LeaugeTeam p1)
         {
             InitializeComponent();
             _game = g;
             _showGame = sg;
             __player1 = p1;
+            //https://stackoverflow.com/questions/19300044/button-performclick-not-working-in-form-load/19300323 6/29/20
+            Load += ShowFreeAgents_Load;
             AddDropButton.Enabled = false;
             foreach(int player in __player1.team)
             {
                 PlayersTeamList.Items.Add(_game._PlayerName[player]);
             }
+        }
+
+        private void ShowFreeAgents_Load(object sender, EventArgs e)
+        {
+            AutoLoadAll();
         }
 
         private void BackFromFreeAgents_Click(object sender, EventArgs e)
@@ -129,6 +137,10 @@ namespace FantasyBasketball
 
         private void FreeAgentsList_ItemCheck(object sender, ItemCheckEventArgs e)
         {
+            FABox.Items.Clear();
+            ForPicture = _game._PlayerPhoto[_game.TopTenFree[FreeAgentsList.SelectedIndex] - 1];
+            pictureBox1.Load("https://d2cwpp38twqe55.cloudfront.net/req/202006192/images/players/" + ForPicture + ".jpg");
+            FABox.Items.Add(_game._PlayerName[_game.TopTenFree[FreeAgentsList.SelectedIndex]] +  " " + _game._Playerpos[_game.TopTenFree[FreeAgentsList.SelectedIndex]]);
             FASelected = true;
             if (FreeAgentsList.CheckedItems.Count != 0)
             {
@@ -143,9 +155,14 @@ namespace FantasyBasketball
 
         private void PlayersTeamList_ItemCheck(object sender, ItemCheckEventArgs e)
         {
+            PlayerBox.Items.Clear();
+            ForPicture = _game._PlayerPhoto[__player1.team[PlayersTeamList.SelectedIndex] - 1];
+            pictureBox2.Load("https://d2cwpp38twqe55.cloudfront.net/req/202006192/images/players/" + ForPicture + ".jpg");
+            PlayerBox.Items.Add(_game._PlayerName[__player1.team[PlayersTeamList.SelectedIndex]] + " " + _game._Playerpos[__player1.team[PlayersTeamList.SelectedIndex]]);
             PlayerSelected = true;
             if (PlayersTeamList.CheckedItems.Count != 0)
             {
+               
                 AddDropButton.Enabled = false;
                 PlayerSelected = false;
             }
@@ -165,6 +182,11 @@ namespace FantasyBasketball
             {
                 FreeAgentsList.SetItemChecked(checkedItem, false);
             }
+        }
+
+        private void AutoLoadAll()
+        {
+            AllPosButton.PerformClick();
         }
     }
 }

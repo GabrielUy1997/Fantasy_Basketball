@@ -171,6 +171,10 @@ namespace FantasyBasketball
             if (_game.CurrentWeek == 18)
             {
                 System.Windows.Forms.MessageBox.Show(_game._Champion + " is the " + __season + " season Champion!!");
+                SeasonSelect NewSeason = new SeasonSelect();
+                Hide();
+                NewSeason.Show();
+
             }
             else
             {
