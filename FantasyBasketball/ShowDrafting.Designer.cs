@@ -39,9 +39,11 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.PlayerPos = new System.Windows.Forms.ListBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // test
@@ -62,7 +64,7 @@
             this.DraftCheckList.FormattingEnabled = true;
             this.DraftCheckList.Location = new System.Drawing.Point(17, 19);
             this.DraftCheckList.Name = "DraftCheckList";
-            this.DraftCheckList.Size = new System.Drawing.Size(414, 403);
+            this.DraftCheckList.Size = new System.Drawing.Size(346, 403);
             this.DraftCheckList.TabIndex = 1;
             this.DraftCheckList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.DraftCheckList_ItemCheck);
             // 
@@ -138,6 +140,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.pictureBox1);
             this.groupBox3.Controls.Add(this.PlayerPos);
             this.groupBox3.Controls.Add(this.DraftCheckList);
             this.groupBox3.Location = new System.Drawing.Point(17, 37);
@@ -152,11 +155,19 @@
             this.PlayerPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PlayerPos.FormattingEnabled = true;
             this.PlayerPos.ItemHeight = 20;
-            this.PlayerPos.Location = new System.Drawing.Point(438, 19);
+            this.PlayerPos.Location = new System.Drawing.Point(417, 202);
             this.PlayerPos.Name = "PlayerPos";
             this.PlayerPos.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.PlayerPos.Size = new System.Drawing.Size(96, 404);
+            this.PlayerPos.Size = new System.Drawing.Size(82, 44);
             this.PlayerPos.TabIndex = 2;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(399, 19);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(117, 177);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
             // 
             // ShowDrafting
             // 
@@ -176,6 +187,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,5 +206,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ListBox PlayerPos;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

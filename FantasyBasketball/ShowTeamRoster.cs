@@ -38,6 +38,7 @@ namespace FantasyBasketball
         private void TeamList_Click(object sender, EventArgs e)
         {
             HistoricalStatsBox.Items.Clear();
+            PlayerInfo.Items.Clear();
             LoadHistoricalStats();
         }
 
@@ -68,12 +69,16 @@ namespace FantasyBasketball
             bool IsInSeason = false;
             int HistoricalSeason;
             string IndexSeason;
+            string s;
+            string ForPicture = " ";
             string[] seasons;
             string[] name;
             seasons = _showGame.__season.Split('-');
             HistoricalSeason = Int32.Parse(seasons[0]);
             IndexSeason = (HistoricalSeason - ActiveSeasons).ToString() + "-" + HistoricalSeason.ToString();
-            HistoricalStatsBox.Items.Add("Season" + " POS" + " Age" + " Team" + " GP" + " GS" + " FG" + " FGA" + " 3PT" + " 2PT" + " FT" + " FTA" + " ORB" + " DRB" + " AST" + " STL" + " BLK" + " TOV" + " PF" + " PTS");
+            HistoricalStatsBox.Items.Add("Season" + " POS" + " Age" + " TM" + " GP" + " GS" + " FG" + " FGA" + " 3PT" + " 2PT" + " FT" + " FTA" + " ORB" + " DRB" + " AST" + " STL" + " BLK" + " TOV" + " PF" + " PTS");
+            HistoricalStatsBox.Items.Add(" ");
+           
             do
             {
                 IsInSeason = false;
@@ -85,10 +90,23 @@ namespace FantasyBasketball
                     if (!String.IsNullOrWhiteSpace(line))
                     {
                         string[] values = line.Split(',');
-                        name = values[1].Split('\\');
-                        if (values.Length >= 4 && name[0] == __game._PlayerName[__player1.team[TeamList.SelectedIndex]])
+                        if(values[1].Contains("\\") && values[1].Contains(__game._PlayerName[__player1.team[TeamList.SelectedIndex]]))
                         {
-                            Name = name[0];
+                            name = values[1].Split('\\');
+                            s = name[0];
+                            ForPicture = name[1];
+                        }
+                        else
+                        {
+                            s = values[1];
+                            if (s == __game._PlayerName[__player1.team[TeamList.SelectedIndex]])
+                            {
+                                ForPicture = __game._PlayerPhoto[__player1.team[TeamList.SelectedIndex]];
+                            }           
+                        }
+                        if (values.Length >= 4 && s == __game._PlayerName[__player1.team[TeamList.SelectedIndex]])
+                        {
+                            Name = s;
                             Pos = values[2];
                             Age = values[3];
                             Team = values[4];
@@ -123,6 +141,10 @@ namespace FantasyBasketball
                     break;
                 }
             } while (IsInSeason == true);
+            pictureBox1.Load("https://d2cwpp38twqe55.cloudfront.net/req/202006192/images/players/" + ForPicture + ".jpg");
+            PlayerInfo.Items.Add("Name: " + __game._PlayerName[__player1.team[TeamList.SelectedIndex]]);
+            PlayerInfo.Items.Add("Age: " + __game.GetPlayerAge(__player1.team[TeamList.SelectedIndex]));
+            PlayerInfo.Items.Add("Current Team: " + __game.GetPlayerTeam(__player1.team[TeamList.SelectedIndex]));
         }
     }
 }

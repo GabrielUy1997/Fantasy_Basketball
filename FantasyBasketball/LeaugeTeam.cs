@@ -14,8 +14,8 @@ namespace FantasyBasketball
         protected Boolean IsHuman;
         protected String TeamName;
         public Double WeekScore;
-        public int Wins;
-        public int Losses;
+        private int Wins;
+        private int Losses;
         protected int Guards;
         protected int Forwards;
         protected int Center;
@@ -134,6 +134,18 @@ namespace FantasyBasketball
         public void RemoveCenter()
         {
             Center--;
+        }
+
+        public int _Wins
+        {
+            get { return Wins; }
+            set { Wins = value; }
+        }
+
+        public int _Losses
+        {
+            get { return Losses; }
+            set { Losses = value; }
         }
     }
     class Human : LeaugeTeam

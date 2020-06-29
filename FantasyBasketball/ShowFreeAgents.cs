@@ -79,34 +79,52 @@ namespace FantasyBasketball
 
         private void AddDropButton_Click(object sender, EventArgs e)
         {
-            string PlayerDropping = _game._PlayerName[__player1.team[PlayersTeamList.SelectedIndex]];
-            string PlayerAdding = _game._PlayerName[_game.TopTenFree[FreeAgentsList.SelectedIndex]];
+            string PlayerDropping;
+            string PlayerAdding;
             try
             {
-                if (_game.AddDropFreeAgents(__player1, PlayersTeamList.SelectedIndex, FreeAgentsList.SelectedIndex) == true)
+                if(PlayersTeamList.SelectedIndex == -1 || FreeAgentsList.SelectedIndex == -1)
                 {
-                    AddDropBox.Items.Clear();
-                    AddDropBox.Items.Add("Dropped " + PlayerDropping + " for " + PlayerAdding);
-                    FreeAgentsList.Items.Clear();
-                    PlayersTeamList.Items.Clear();
-                    foreach(int player in __player1.team)
-                    {
-                        PlayersTeamList.Items.Add(_game._PlayerName[player]);
-                    }
-                    foreach (int player in _game.ShowFreeAgentList(__player1, Catagory))
-                    {
-                        FreeAgentsList.Items.Add(_game._PlayerName[player]);
-                    }
+                    throw new Exception();
                 }
                 else
                 {
-                    throw new Exception();
+                    PlayerDropping = _game._PlayerName[__player1.team[PlayersTeamList.SelectedIndex]];
+                    PlayerAdding = _game._PlayerName[_game.TopTenFree[FreeAgentsList.SelectedIndex]];
+                    try
+                    {
+                        if (_game.AddDropFreeAgents(__player1, PlayersTeamList.SelectedIndex, FreeAgentsList.SelectedIndex) == true)
+                        {
+                            AddDropBox.Items.Clear();
+                            AddDropBox.Items.Add("Dropped " + PlayerDropping + " for " + PlayerAdding);
+                            FreeAgentsList.Items.Clear();
+                            PlayersTeamList.Items.Clear();
+                            foreach (int player in __player1.team)
+                            {
+                                PlayersTeamList.Items.Add(_game._PlayerName[player]);
+                            }
+                            foreach (int player in _game.ShowFreeAgentList(__player1, Catagory))
+                            {
+                                FreeAgentsList.Items.Add(_game._PlayerName[player]);
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception();
+                        }
+                    }
+                    catch
+                    {
+                        System.Windows.Forms.MessageBox.Show("Too many players of the same position on the team");
+                    }
                 }
             }
             catch
             {
-                System.Windows.Forms.MessageBox.Show("Too many players of the same position on the team");
+                System.Windows.Forms.MessageBox.Show("Please select one player from each list");
             }
+
+            AddDropButton.Enabled = false;
         }
 
         private void FreeAgentsList_ItemCheck(object sender, ItemCheckEventArgs e)

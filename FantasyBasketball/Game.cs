@@ -10,6 +10,7 @@ namespace FantasyBasketball
     public class Game
     {
         private string[] PlayerID;
+        private string[] PlayerPhoto;
         private string[] PlayerName;
         private string[] PlayerPos;
         private string[] PlayerAge;
@@ -308,20 +309,20 @@ namespace FantasyBasketball
             {
                 if (WinnerMatch1 == Teams.IndexOf(team) || WinnerMatch2 == Teams.IndexOf(team))
                 {
-                    team.Wins++;
+                    team._Wins++;
                 }
                 else
                 {
-                    team.Losses++;
+                    team._Losses++;
                 }
             }
             Console.WriteLine("{0}: {1} vs. {2}: {3}", Teams.ElementAt(0).GetName(), Teams.ElementAt(0).WeekScore, Teams.ElementAt(1).GetName(), Teams.ElementAt(1).WeekScore);
             Console.WriteLine("{0}: {1} vs. {2}: {3}", Teams.ElementAt(2).GetName(), Teams.ElementAt(2).WeekScore, Teams.ElementAt(3).GetName(), Teams.ElementAt(3).WeekScore);
-            Console.WriteLine("{0} wins with {1} points", Teams.ElementAt(WinnerMatch1).GetName(), Teams.ElementAt(WinnerMatch1).WeekScore);
-            Console.WriteLine("{0} wins with {1} points", Teams.ElementAt(WinnerMatch2).GetName(), Teams.ElementAt(WinnerMatch2).WeekScore);
+            Console.WriteLine("{0} _Wins with {1} points", Teams.ElementAt(WinnerMatch1).GetName(), Teams.ElementAt(WinnerMatch1).WeekScore);
+            Console.WriteLine("{0} _Wins with {1} points", Teams.ElementAt(WinnerMatch2).GetName(), Teams.ElementAt(WinnerMatch2).WeekScore);
             Console.WriteLine("week {0}", week);
 
-            ShowStandings(Teams);
+            //ShowStandings(Teams);
             return winners;
             //return Champion;
         }
@@ -547,14 +548,15 @@ namespace FantasyBasketball
             }
         }
 
-        public void ShowStandings(List<LeaugeTeam> a_Teams)
+        public List<LeaugeTeam> ShowStandings(List<LeaugeTeam> a_Teams)
         {
             int top1;
             int top2;
             int bottom1;
             int bottom2;
-
-            if (a_Teams[0].Wins > a_Teams[1].Wins)
+            List<LeaugeTeam> Standings;
+            Standings = new List<LeaugeTeam>(4);
+            if (a_Teams[0]._Wins > a_Teams[1]._Wins)
             {
                 top1 = 0;
                 bottom1 = 1;
@@ -564,7 +566,7 @@ namespace FantasyBasketball
                 top1 = 1;
                 bottom1 = 0;
             }
-            if (a_Teams[2].Wins > a_Teams[3].Wins)
+            if (a_Teams[2]._Wins > a_Teams[3]._Wins)
             {
                 top2 = 2;
                 bottom2 = 3;
@@ -574,29 +576,34 @@ namespace FantasyBasketball
                 top2 = 3;
                 bottom2 = 2;
             }
-            if (a_Teams[top1].Wins < a_Teams[top2].Wins)
+            if (a_Teams[top1]._Wins < a_Teams[top2]._Wins)
             {
                 top1 = top1 + top2;
                 top2 = top1 - top2;
                 top1 = top1 - top2;
             }
-            if (a_Teams[bottom1].Wins < a_Teams[bottom2].Wins)
+            if (a_Teams[bottom1]._Wins < a_Teams[bottom2]._Wins)
             {
                 bottom1 = bottom1 + bottom2;
                 bottom2 = bottom1 - bottom2;
                 bottom1 = bottom1 - bottom2;
             }
-            if (a_Teams[top2].Wins < a_Teams[bottom1].Wins)
+            if (a_Teams[top2]._Wins < a_Teams[bottom1]._Wins)
             {
                 top2 = top2 + bottom1;
                 bottom1 = top2 - bottom1;
                 top2 = top2 - bottom1;
             }
+            Standings.Add(a_Teams[top1]);
+            Standings.Add(a_Teams[top2]);
+            Standings.Add(a_Teams[bottom1]);
+            Standings.Add(a_Teams[bottom2]);
             Champion = a_Teams[top1].GetName();
-            Console.WriteLine("1. {0} {1} {2}", a_Teams[top1].GetName(), a_Teams[top1].Wins, a_Teams[top1].Losses);
-            Console.WriteLine("2. {0} {1} {2}", a_Teams[top2].GetName(), a_Teams[top2].Wins, a_Teams[top2].Losses);
-            Console.WriteLine("3. {0} {1} {2}", a_Teams[bottom1].GetName(), a_Teams[bottom1].Wins, a_Teams[bottom1].Losses);
-            Console.WriteLine("4. {0} {1} {2}", a_Teams[bottom2].GetName(), a_Teams[bottom2].Wins, a_Teams[bottom2].Losses);
+            Console.WriteLine("1. {0} {1} {2}", a_Teams[top1].GetName(), a_Teams[top1]._Wins, a_Teams[top1]._Losses);
+            Console.WriteLine("2. {0} {1} {2}", a_Teams[top2].GetName(), a_Teams[top2]._Wins, a_Teams[top2]._Losses);
+            Console.WriteLine("3. {0} {1} {2}", a_Teams[bottom1].GetName(), a_Teams[bottom1]._Wins, a_Teams[bottom1]._Losses);
+            Console.WriteLine("4. {0} {1} {2}", a_Teams[bottom2].GetName(), a_Teams[bottom2]._Wins, a_Teams[bottom2]._Losses);
+            return Standings;
         }
 
       
@@ -610,6 +617,10 @@ namespace FantasyBasketball
             get { return PlayerPos; }
         }
 
+        public string[] _PlayerPhoto
+        {
+            get { return PlayerPhoto; }
+        }
         public int _matchup
         {
             get { return matchup; }
@@ -621,10 +632,19 @@ namespace FantasyBasketball
             get { return Champion; }
         }
 
-
-        public string GetPlayerID(int a_player)
+        public int GetPlayerID(string a_player)
         {
-            return PlayerID[a_player];
+            int count = 0;
+            foreach(string player in PlayerName)
+            {
+                if(a_player == player)
+                {
+                    return count;
+                }
+                count++;
+            }
+            return 0;
+
         }
 
         public string GetPlayerName(int a_player)
@@ -741,6 +761,7 @@ namespace FantasyBasketball
                 {
                     StreamReader reader = new StreamReader(File.OpenRead(SeasonSelection));
                     List<string> pID = new List<String>();
+                    List<string> pPhoto = new List<string>();
                     List<string> pName = new List<String>();
                     List<string> pPos = new List<String>();
                     List<string> pAge = new List<String>();
@@ -770,6 +791,10 @@ namespace FantasyBasketball
                             string[] values = line.Split(',');
                             if (values.Length >= 4)
                             {
+                                if (values[1] != "Player")
+                                {
+                                    pPhoto.Add((values[1].Split('\\')[1]));
+                                }
                                 pID.Add(values[0]);
                                 pName.Add(values[1]);
                                 pPos.Add(values[2]);
@@ -796,6 +821,7 @@ namespace FantasyBasketball
                         }
                     }
                     PlayerID = pID.ToArray();
+                    PlayerPhoto = pPhoto.ToArray();
                     PlayerName = pName.ToArray();
                     PlayerPos = pPos.ToArray();
                     PlayerAge = pAge.ToArray();

@@ -19,7 +19,7 @@ namespace FantasyBasketball
         CPU cpu2 = new CPU("CPU2");
         CPU cpu3 = new CPU("CPU3");
         string _season;
-        
+        string ForPicture = " ";
         int playerindex;
         bool hasFlipped = false;
         bool stop = false;
@@ -52,7 +52,6 @@ namespace FantasyBasketball
             {
                 pID = _game.AddPlayersToDraftList();
                 DraftCheckList.Items.Add(_game.GetPlayerName(pID));
-                PlayerPos.Items.Add(_game.GetPlayerPos(pID));
             }
           
         }
@@ -66,7 +65,6 @@ namespace FantasyBasketball
                 if(_game.Teams.IndexOf(team) < playerindex && team.team.Count <= 5)
                 {
                     pID = _game.ComputerTeamDraft(team, team.GetName());
-                    PlayerPos.Items.RemoveAt(DraftCheckList.FindStringExact(_game.GetPlayerName(pID)));
                     DraftCheckList.Items.Remove(_game.GetPlayerName(pID));
                     DraftedList.Items.Add(_game.GetPlayerName(pID) + " Drafted by " + team.GetName() + " with the #" + SelectionNumber + " over all pick");
                     SelectionNumber++;
@@ -112,8 +110,7 @@ namespace FantasyBasketball
                         else if (_game._Playerpos[pID].Contains("C") == true)
                         {
                             player1.AddCenters();
-                        }
-                        PlayerPos.Items.RemoveAt(DraftCheckList.FindStringExact(_game.GetPlayerName(pID)));
+                        }                       
                         DraftCheckList.Items.RemoveAt(checkd);
                         DraftedList.Items.Add(_game.GetPlayerName(pID) + " Drafted by " + player1.GetName() + " with the #" + SelectionNumber + " over all pick");
                         SelectionNumber++;
@@ -138,7 +135,6 @@ namespace FantasyBasketball
                         if (_game.Teams.IndexOf(team) > playerindex && team.team.Count < 6)
                         {
                             pID = _game.ComputerTeamDraft(team, team.GetName());
-                            PlayerPos.Items.RemoveAt(DraftCheckList.FindStringExact(_game.GetPlayerName(pID)));
                             DraftCheckList.Items.Remove(_game.GetPlayerName(pID));
                             DraftedList.Items.Add(_game.GetPlayerName(pID) + " Drafted by " + team.GetName() + " with the #" + SelectionNumber + " over all pick");
                             SelectionNumber++;
@@ -171,7 +167,6 @@ namespace FantasyBasketball
                         if (_game.Teams.IndexOf(team) > playerindex && team.team.Count < 6)
                         {
                             pID = _game.ComputerTeamDraft(team, team.GetName());
-                            PlayerPos.Items.RemoveAt(DraftCheckList.FindStringExact(_game.GetPlayerName(pID)));
                             DraftCheckList.Items.Remove(_game.GetPlayerName(pID));
                             DraftedList.Items.Add(_game.GetPlayerName(pID) + " Drafted by " + team.GetName() + " with the #" + SelectionNumber + " over all pick");
                             SelectionNumber++;
@@ -191,9 +186,20 @@ namespace FantasyBasketball
 
         private void DraftCheckList_ItemCheck(object sender, ItemCheckEventArgs e)
         {
+            PlayerPos.Items.Clear();
             if (DraftCheckList.CheckedItems.Count == 0 && stop == false)
             {
+                string player;
+                string ss;
+                int pID;
                 DraftButton.Enabled = true;
+                player = DraftCheckList.SelectedItem.ToString();
+                ss = Array.Find(_game._PlayerName,
+                 element => element.StartsWith(player, StringComparison.Ordinal));
+                pID = Array.FindIndex(_game._PlayerName, item => item == ss);
+                ForPicture = _game._PlayerPhoto[pID - 1];
+                pictureBox1.Load("https://d2cwpp38twqe55.cloudfront.net/req/202006192/images/players/" + ForPicture + ".jpg");
+                PlayerPos.Items.Add(_game.GetPlayerPos(pID));
             }
             else
             {

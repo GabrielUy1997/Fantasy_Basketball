@@ -31,7 +31,7 @@ namespace FantasyBasketball
             
 
             ShowSchedule();
-            cWeek.Text = "Week 0";
+            _game.ShowStandings(_game.Teams);
 
         }
 
@@ -96,6 +96,7 @@ namespace FantasyBasketball
             _winners = _game.SetUpWeekMatchup(_player1, _cpu1, _cpu2, _cpu3);
             MatchUpBox.Items.Clear();
             ThisWeeksStats.Items.Clear();
+            ThisWeeksStats.Items.Add("Week " + (_game.CurrentWeek + 1) + ":");
             ThisWeeksStats.Items.Add(_game.Teams[0].GetName() + " vs. " + _game.Teams[1].GetName() + " || " + _game.Teams[2].GetName() + " vs. " + _game.Teams[3].GetName());
             ThisWeeksStats.Items.Add(_game.Teams[0].GetName() + ": " + _game.Teams[0].WeekScore + " vs. " + _game.Teams[1].GetName() + ": " + _game.Teams[1].WeekScore);
             ThisWeeksStats.Items.Add(_game.Teams[2].GetName() + ": " + _game.Teams[2].WeekScore + " vs. " + _game.Teams[3].GetName() + ": " + _game.Teams[3].WeekScore);
@@ -138,7 +139,6 @@ namespace FantasyBasketball
                     break;
             }
             _game.ResetPlayerScores();
-            cWeek.Text = "Week " + (_game.CurrentWeek + 1).ToString() + " results";
             if (_game._matchup == 0)
             {
                 _game._matchup = 1;
@@ -153,6 +153,11 @@ namespace FantasyBasketball
                 _game.Teams = _game.MatchupType3.Select(i => _game.Teams[i]).ToList();
                 _game.Teams = _game.MatchupType4.Select(i => _game.Teams[i]).ToList();
                 _game._matchup = 0;
+            }
+            StandingsBox.Items.Clear();
+            foreach(LeaugeTeam team in _game.ShowStandings(_game.Teams))
+            {
+                StandingsBox.Items.Add(team.GetName() + " " + team._Wins + "-" + team._Losses);
             }
             if (_game.CurrentWeek == 18)
             {

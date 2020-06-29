@@ -33,8 +33,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.HistoricalStats = new System.Windows.Forms.GroupBox();
             this.HistoricalStatsBox = new System.Windows.Forms.ListBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.PlayerInfo = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             this.HistoricalStats.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // TeamList
@@ -61,7 +66,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.TeamList);
-            this.groupBox1.Location = new System.Drawing.Point(13, 53);
+            this.groupBox1.Location = new System.Drawing.Point(548, 42);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(395, 311);
             this.groupBox1.TabIndex = 2;
@@ -71,9 +76,9 @@
             // HistoricalStats
             // 
             this.HistoricalStats.Controls.Add(this.HistoricalStatsBox);
-            this.HistoricalStats.Location = new System.Drawing.Point(440, 53);
+            this.HistoricalStats.Location = new System.Drawing.Point(13, 257);
             this.HistoricalStats.Name = "HistoricalStats";
-            this.HistoricalStats.Size = new System.Drawing.Size(517, 376);
+            this.HistoricalStats.Size = new System.Drawing.Size(517, 281);
             this.HistoricalStats.TabIndex = 3;
             this.HistoricalStats.TabStop = false;
             this.HistoricalStats.Text = "Historical Stats";
@@ -81,17 +86,45 @@
             // HistoricalStatsBox
             // 
             this.HistoricalStatsBox.FormattingEnabled = true;
-            this.HistoricalStatsBox.Location = new System.Drawing.Point(16, 34);
+            this.HistoricalStatsBox.Location = new System.Drawing.Point(6, 32);
             this.HistoricalStatsBox.Name = "HistoricalStatsBox";
             this.HistoricalStatsBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.HistoricalStatsBox.Size = new System.Drawing.Size(481, 329);
+            this.HistoricalStatsBox.Size = new System.Drawing.Size(481, 225);
             this.HistoricalStatsBox.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(6, 26);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(117, 177);
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.PlayerInfo);
+            this.groupBox2.Controls.Add(this.pictureBox1);
+            this.groupBox2.Location = new System.Drawing.Point(13, 42);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(491, 209);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Player information";
+            // 
+            // PlayerInfo
+            // 
+            this.PlayerInfo.FormattingEnabled = true;
+            this.PlayerInfo.Location = new System.Drawing.Point(158, 26);
+            this.PlayerInfo.Name = "PlayerInfo";
+            this.PlayerInfo.Size = new System.Drawing.Size(213, 173);
+            this.PlayerInfo.TabIndex = 5;
             // 
             // ShowTeamRoster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.HistoricalStats);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.BackFromTeamRoster);
@@ -100,6 +133,8 @@
             this.Text = "TeamRoster";
             this.groupBox1.ResumeLayout(false);
             this.HistoricalStats.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -111,5 +146,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox HistoricalStats;
         private System.Windows.Forms.ListBox HistoricalStatsBox;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ListBox PlayerInfo;
     }
 }
