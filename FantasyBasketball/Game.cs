@@ -40,6 +40,7 @@ namespace FantasyBasketball
         public List<int> Week;
         public List<int> MatchupType1;
         public List<int> MatchupType2;
+        public List<int> MatchupType22;
         public List<int> MatchupType3;
         public List<int> MatchupType4;
         private int matchup = 0;
@@ -85,6 +86,7 @@ namespace FantasyBasketball
             Week.Add(20);
             MatchupType1 = new List<int> { 0, 1, 2, 3 };
             MatchupType2 = new List<int> { 0, 2, 1, 3 };
+            MatchupType22 = new List<int> { 0, 2, 1, 3 };
             MatchupType3 = new List<int> { 0, 3, 2, 1 };
             MatchupType4 = new List<int> { 0, 2, 3, 1 };
             Totalgames = 82;

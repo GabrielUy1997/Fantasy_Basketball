@@ -65,9 +65,14 @@ namespace FantasyBasketball
                 if(week < 20)
                 {
                     Console.WriteLine("{0}.", week);
-
+                    if (_game._matchup == 3)
+                    {
+                        _game.Teams = _game.MatchupType4.Select(i => _game.Teams[i]).ToList();
+                        _game._matchup = 0;
+                    }
                     if (_game._matchup == 0)
                     {
+                        _game.Teams = _game.MatchupType1.Select(i => _game.Teams[i]).ToList();
                         _game._matchup = 1;
                     }
                     else if (_game._matchup == 1)
@@ -78,21 +83,39 @@ namespace FantasyBasketball
                     else if (_game._matchup == 2)
                     {
                         _game.Teams = _game.MatchupType3.Select(i => _game.Teams[i]).ToList();
-                        
+                        _game._matchup = 3;
                     }
+                   
                     Console.WriteLine("{0} vs. {1}, {2} vs. {3}", _game.Teams[0].GetName(), _game.Teams[1].GetName(), _game.Teams[2].GetName(), _game.Teams[3].GetName());
                     ScheduleBox.Items.Add(week + ". " + _game.Teams[0].GetName() + " vs. " + _game.Teams[1].GetName() + " , " + _game.Teams[2].GetName() + " vs. " + _game.Teams[3].GetName());
-                    if(_game._matchup == 2)
-                    {
-                        _game.Teams = _game.MatchupType4.Select(i => _game.Teams[i]).ToList();
-                        _game._matchup = 0;
-                    }
+                   
                 }
             }
+            _game._matchup = 0;
         }
 
         private void AdvanceWeekButton_Click(object sender, EventArgs e)
         {
+            if (_game._matchup == 0)
+            {
+                _game.Teams = _game.MatchupType1.Select(i => _game.Teams[i]).ToList();
+                _game._matchup = 1;
+            }
+            else if (_game._matchup == 1)
+            {
+                _game.Teams = _game.MatchupType2.Select(i => _game.Teams[i]).ToList();
+                _game._matchup = 2;
+            }
+            else if (_game._matchup == 2)
+            {
+                _game.Teams = _game.MatchupType3.Select(i => _game.Teams[i]).ToList();
+                _game._matchup = 3;
+            }
+            else if (_game._matchup == 3)
+            {
+                _game.Teams = _game.MatchupType4.Select(i => _game.Teams[i]).ToList();
+                _game._matchup = 1;
+            }
             _winners = _game.SetUpWeekMatchup(_player1, _cpu1, _cpu2, _cpu3);
             MatchUpBox.Items.Clear();
             ThisWeeksStats.Items.Clear();
@@ -139,21 +162,7 @@ namespace FantasyBasketball
                     break;
             }
             _game.ResetPlayerScores();
-            if (_game._matchup == 0)
-            {
-                _game._matchup = 1;
-            }
-            else if (_game._matchup == 1)
-            {
-                _game.Teams = _game.MatchupType2.Select(i => _game.Teams[i]).ToList();
-                _game._matchup = 2;
-            }
-            else if (_game._matchup == 2)
-            {
-                _game.Teams = _game.MatchupType3.Select(i => _game.Teams[i]).ToList();
-                _game.Teams = _game.MatchupType4.Select(i => _game.Teams[i]).ToList();
-                _game._matchup = 0;
-            }
+           
             StandingsBox.Items.Clear();
             foreach(LeaugeTeam team in _game.ShowStandings(_game.Teams))
             {
