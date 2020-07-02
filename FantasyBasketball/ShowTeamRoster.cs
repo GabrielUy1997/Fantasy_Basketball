@@ -39,6 +39,7 @@ namespace FantasyBasketball
         {
             HistoricalStatsBox.Items.Clear();
             PlayerInfo.Items.Clear();
+            FantasyScore.Items.Clear();
             LoadHistoricalStats();
         }
 
@@ -145,6 +146,11 @@ namespace FantasyBasketball
             PlayerInfo.Items.Add("Name: " + __game._PlayerName[__player1.team[TeamList.SelectedIndex]]);
             PlayerInfo.Items.Add("Age: " + __game.GetPlayerAge(__player1.team[TeamList.SelectedIndex]));
             PlayerInfo.Items.Add("Current Team: " + __game.GetPlayerTeam(__player1.team[TeamList.SelectedIndex]));
+            for(int i = 0; i < __game.CurrentWeek; i++)
+            {
+                FantasyScore.Items.Add("Week " + (i+1) + " Stats:" +  __player1.WeeklyScores[TeamList.SelectedIndex][i].ToString());
+            }
+            
         }
     }
 }

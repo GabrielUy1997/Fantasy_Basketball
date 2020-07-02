@@ -36,20 +36,23 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.PlayerInfo = new System.Windows.Forms.ListBox();
+            this.FantasyScores = new System.Windows.Forms.GroupBox();
+            this.FantasyScore = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             this.HistoricalStats.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.FantasyScores.SuspendLayout();
             this.SuspendLayout();
             // 
             // TeamList
             // 
-            this.TeamList.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TeamList.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TeamList.FormattingEnabled = true;
-            this.TeamList.ItemHeight = 29;
+            this.TeamList.ItemHeight = 24;
             this.TeamList.Location = new System.Drawing.Point(33, 34);
             this.TeamList.Name = "TeamList";
-            this.TeamList.Size = new System.Drawing.Size(342, 236);
+            this.TeamList.Size = new System.Drawing.Size(342, 148);
             this.TeamList.TabIndex = 0;
             this.TeamList.Click += new System.EventHandler(this.TeamList_Click);
             // 
@@ -68,7 +71,7 @@
             this.groupBox1.Controls.Add(this.TeamList);
             this.groupBox1.Location = new System.Drawing.Point(548, 42);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(395, 311);
+            this.groupBox1.Size = new System.Drawing.Size(395, 209);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Your team roster";
@@ -119,11 +122,30 @@
             this.PlayerInfo.Size = new System.Drawing.Size(213, 173);
             this.PlayerInfo.TabIndex = 5;
             // 
+            // FantasyScores
+            // 
+            this.FantasyScores.Controls.Add(this.FantasyScore);
+            this.FantasyScores.Location = new System.Drawing.Point(548, 258);
+            this.FantasyScores.Name = "FantasyScores";
+            this.FantasyScores.Size = new System.Drawing.Size(395, 280);
+            this.FantasyScores.TabIndex = 6;
+            this.FantasyScores.TabStop = false;
+            this.FantasyScores.Text = "This seasons fantasy stats";
+            // 
+            // FantasyScore
+            // 
+            this.FantasyScore.FormattingEnabled = true;
+            this.FantasyScore.Location = new System.Drawing.Point(7, 31);
+            this.FantasyScore.Name = "FantasyScore";
+            this.FantasyScore.Size = new System.Drawing.Size(382, 225);
+            this.FantasyScore.TabIndex = 0;
+            // 
             // ShowTeamRoster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);
+            this.Controls.Add(this.FantasyScores);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.HistoricalStats);
             this.Controls.Add(this.groupBox1);
@@ -135,6 +157,7 @@
             this.HistoricalStats.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            this.FantasyScores.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -149,5 +172,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListBox PlayerInfo;
+        private System.Windows.Forms.GroupBox FantasyScores;
+        private System.Windows.Forms.ListBox FantasyScore;
     }
 }

@@ -52,7 +52,7 @@ namespace FantasyBasketball
         private double PlayerGameScore;
         public static Random RandomGen;
         public int CurrentWeek = 0;
-        public int indexX = 0;
+        public int PlayerIndex = 0;
         public List<int> TopTenFree;
 
         public Game()
@@ -213,9 +213,9 @@ namespace FantasyBasketball
             foreach (LeaugeTeam teams in Teams)
             {
                 //index = 0;
-                for (int indexY = 0; indexY < 7; indexY++)
+                for (int DayOfWeek = 0; DayOfWeek < 7; DayOfWeek++)
                 {
-                    indexX = 0;
+                    PlayerIndex = 0;
                     //https://stackoverflow.com/questions/37858551/implement-percent-chance-in-c-sharp 5/25/20
                     foreach (int player in teams.team)
                     {
@@ -296,13 +296,15 @@ namespace FantasyBasketball
                             PlayerGameScore += 0;
                         }
                         //Console.WriteLine("{0}: {1}", PlayerName[player], PlayerGameScore);
-                        teams.PlayersScores[indexX][indexY] = PlayerGameScore;
+                        teams.PlayersScores[PlayerIndex][DayOfWeek] = PlayerGameScore;
                         teams.WeekScore += PlayerGameScore;
+                        teams.WeeklyScores[PlayerIndex][week-1] += PlayerGameScore;
                         PlayerGameScore = 0;
-                        indexX++;
+                        PlayerIndex++;
                     }
+                   
                 }
-
+                
             }
             WinnerMatch1 = (Teams.ElementAt(0).WeekScore < Teams.ElementAt(1).WeekScore) ? 1 : 0;
             WinnerMatch2 = (Teams.ElementAt(2).WeekScore < Teams.ElementAt(3).WeekScore) ? 3 : 2;
@@ -335,13 +337,13 @@ namespace FantasyBasketball
             foreach (LeaugeTeam teams in Teams)
             {
                 teams.WeekScore = 0;
-                for (int indexY = 0; indexY < 7; indexY++)
+                for (int DayOfWeek = 0; DayOfWeek < 7; DayOfWeek++)
                 {
-                    indexX = 0;
+                    PlayerIndex = 0;
                     foreach (int player in teams.team)
                     {
-                        teams.PlayersScores[indexX][indexY] = 0;
-                        indexX++;
+                        teams.PlayersScores[PlayerIndex][DayOfWeek] = 0;
+                        PlayerIndex++;
                     }
                 }
             }

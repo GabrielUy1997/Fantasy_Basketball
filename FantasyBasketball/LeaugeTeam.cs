@@ -10,6 +10,8 @@ namespace FantasyBasketball
     {
         public List<int> team;
         public double[][] PlayersScores;
+        public double[][] WeeklyScores;
+        public List<string> WeeklyStatLines;
         int NumPlayers;
         protected Boolean IsHuman;
         protected String TeamName;
@@ -22,12 +24,19 @@ namespace FantasyBasketball
         public LeaugeTeam()
         {
             team = new List<int>(5);
+            WeeklyStatLines = new List<string>(19);
             PlayersScores = new double[5][];
             PlayersScores[0] = new double[7];
             PlayersScores[1] = new double[7];
             PlayersScores[2] = new double[7];
             PlayersScores[3] = new double[7];
             PlayersScores[4] = new double[7];
+            WeeklyScores = new double[5][];
+            WeeklyScores[0] = new double[19];
+            WeeklyScores[1] = new double[19];
+            WeeklyScores[2] = new double[19];
+            WeeklyScores[3] = new double[19];
+            WeeklyScores[4] = new double[19];
             NumPlayers = 0;
             WeekScore = 0;
             Wins = 0;
