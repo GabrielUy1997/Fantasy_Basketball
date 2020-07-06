@@ -28,8 +28,8 @@ namespace FantasyBasketball
             _cpu2 = c2;
             _cpu3 = c3;
             __season = seas;
-            
-
+            pictureBox1.Load("https://d2p3bygnnzw9w3.cloudfront.net/req/202006171/tlogo/bbr/NBA-2019.png");
+            SeasonLabel.Text = "The " + __season + " Season";
             ShowSchedule();
             _game.ShowStandings(_game.Teams);
 
@@ -39,6 +39,7 @@ namespace FantasyBasketball
         {
             MatchUpBox.Items.Add(_game.Teams.ElementAt(teamIndex).GetName() + "'s team: ");
             string scores = " ";
+            double totalscore = 0;
             int j = 0;
             foreach (int player in _game.Teams.ElementAt(teamIndex).team)
             {
@@ -48,9 +49,10 @@ namespace FantasyBasketball
                 {
                     Console.Write("{0} ", _game.Teams.ElementAt(teamIndex).PlayersScores[j][i]);
                     scores += " " + _game.Teams.ElementAt(teamIndex).PlayersScores[j][i];
+                    totalscore += _game.Teams.ElementAt(teamIndex).PlayersScores[j][i];
                 }
-                MatchUpBox.Items.Add((j + 1) + "." + _game._PlayerName[player] + scores);
-
+                MatchUpBox.Items.Add((j + 1) + "." + _game._PlayerName[player] + scores + " Total: " + totalscore.ToString());
+                totalscore = 0;
                 scores = " ";
                 j++;
                 Console.WriteLine("");
@@ -124,8 +126,8 @@ namespace FantasyBasketball
             ThisWeeksStats.Items.Add(_game.Teams[0].GetName() + ": " + _game.Teams[0].WeekScore + " vs. " + _game.Teams[1].GetName() + ": " + _game.Teams[1].WeekScore);
             ThisWeeksStats.Items.Add(_game.Teams[2].GetName() + ": " + _game.Teams[2].WeekScore + " vs. " + _game.Teams[3].GetName() + ": " + _game.Teams[3].WeekScore);
             string[] twoWinners = _winners.ElementAt(_game.CurrentWeek).Split(' ');
-            ThisWeeksStats.Items.Add(twoWinners[0] + " wins with " + _game.Teams.ElementAt(_game.Teams.FindIndex(x => x.GetName() == twoWinners[0])).WeekScore + " points");
-            ThisWeeksStats.Items.Add(twoWinners[1] + " wins with " + _game.Teams.ElementAt(_game.Teams.FindIndex(x => x.GetName() == twoWinners[1])).WeekScore + " points");
+            ThisWeeksStats.Items.Add(twoWinners[0] + " wins with " + _game.Teams.ElementAt(_game.Teams.FindIndex(x => x.GetName() == twoWinners[0])).WeekScore + " points and " 
+                + twoWinners[1] + " wins with " + _game.Teams.ElementAt(_game.Teams.FindIndex(x => x.GetName() == twoWinners[1])).WeekScore + " points");
             Winners.Items.Add("Winners of week " + (_game.CurrentWeek + 1) + ": " + _game.winners[_game.CurrentWeek]);
             string scores = " ";
             int j = 0;

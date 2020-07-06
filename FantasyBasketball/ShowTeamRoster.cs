@@ -148,7 +148,7 @@ namespace FantasyBasketball
             PlayerInfo.Items.Add("Current Team: " + __game.GetPlayerTeam(__player1.team[TeamList.SelectedIndex]));
             for(int i = 0; i < __game.CurrentWeek; i++)
             {
-                FantasyScore.Items.Add("Week " + (i+1) + " Stats:" +  __player1.WeeklyScores[TeamList.SelectedIndex][i].ToString());
+                FantasyScore.Items.Add("Week " + (i + 1) + " Stats:" + __player1.WeeklyStatLines[TeamList.SelectedIndex][i].ToString() + " Total:" + __player1.WeeklyScores[TeamList.SelectedIndex][i].ToString());
             }
             
         }

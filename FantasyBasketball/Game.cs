@@ -31,6 +31,17 @@ namespace FantasyBasketball
         private string[] PlayerTurnover;
         private string[] PlayerPersFoul;
         private string[] PlayerPoints;
+        private double Points;
+        private double Asists;
+        private double Block;
+        private double Steal;
+        private double DRebound;
+        private double ORebound;
+        private double FreeThrows;
+        private double FieldGoalsMissed;
+        private double FreeThrowsMissed;
+        private double Turnovers;
+        private double Fouls;
         private string Champion;
         private String Season;
         public List<string> winners;
@@ -54,6 +65,7 @@ namespace FantasyBasketball
         public int CurrentWeek = 0;
         public int PlayerIndex = 0;
         public List<int> TopTenFree;
+
 
         public Game()
         {
@@ -206,7 +218,8 @@ namespace FantasyBasketball
         public List<string> SetUpWeekMatchup(LeaugeTeam a_player, LeaugeTeam a_CPU1, LeaugeTeam a_CPU2, LeaugeTeam a_CPU3)
         {
             
-            
+
+
             int week = Week[CurrentWeek];
             RandomGen = new Random();
             
@@ -221,7 +234,7 @@ namespace FantasyBasketball
                     {
                         PlayerGamesPlayed = Int32.Parse(GetPlayerGamesPlayed(player));
                         ChanceMissing = (Math.Round((PlayerGamesPlayed / Totalgames) * 100, MidpointRounding.AwayFromZero));
-                        int RandomVal = RandomGen.Next(100);
+                        int RandomVal = RandomGen.Next(125);
                         //chance of missing a game
                         if (RandomVal < ChanceMissing)
                         {
@@ -232,18 +245,30 @@ namespace FantasyBasketball
                                 RandomVal = RandomGen.Next(-10, 10);
                                 PlayerGameScore += RandomVal;
                                 RandomVal = RandomGen.Next(-2, 3);
-                                PlayerGameScore += Math.Round(Double.Parse(GetPlayerPoints(player)) / Double.Parse(GetPlayerGamesPlayed(player)), MidpointRounding.ToEven);
-                                PlayerGameScore += Math.Round(Double.Parse(GetPlayerAssist(player)) / Double.Parse(GetPlayerGamesPlayed(player)), MidpointRounding.ToEven);
-                                PlayerGameScore += Math.Round(Double.Parse(GetPlayerBlock(player)) / Double.Parse(GetPlayerGamesPlayed(player)), MidpointRounding.ToEven);
-                                PlayerGameScore += Math.Round(Double.Parse(GetPlayerSteal(player)) / Double.Parse(GetPlayerGamesPlayed(player)), MidpointRounding.ToEven);
-                                PlayerGameScore += Math.Round(Double.Parse(GetPlayerDefenceReb(player)) / Double.Parse(GetPlayerGamesPlayed(player)), MidpointRounding.ToEven);
-                                PlayerGameScore += Math.Round(Double.Parse(GetPlayerOffensiveReb(player)) / Double.Parse(GetPlayerGamesPlayed(player)), MidpointRounding.ToEven);
-                                PlayerGameScore += Math.Round(Double.Parse(GetPlayerFt(player)) / Double.Parse(GetPlayerGamesPlayed(player)), MidpointRounding.ToEven);
-                                PlayerGameScore -= Math.Round((Double.Parse(GetPlayerFieldGoalAtt(player)) - Double.Parse(GetPlayerFieldGoal(player))) / Double.Parse(GetPlayerGamesPlayed(player)), MidpointRounding.ToEven);
-                                PlayerGameScore -= Math.Round((Double.Parse(GetPlayerFtAtt(player)) - Double.Parse(GetPlayerFt(player))) / Double.Parse(GetPlayerGamesPlayed(player)), MidpointRounding.ToEven);
-                                PlayerGameScore -= Math.Round(Double.Parse(GetPlayerTurnover(player)) / Double.Parse(GetPlayerGamesPlayed(player)), MidpointRounding.ToEven);
+                                Points = Math.Round(Double.Parse(GetPlayerPoints(player)) / Double.Parse(GetPlayerGamesPlayed(player)), MidpointRounding.ToEven);
+                                PlayerGameScore += Points;
+                                Asists = Math.Round(Double.Parse(GetPlayerAssist(player)) / Double.Parse(GetPlayerGamesPlayed(player)), MidpointRounding.ToEven);
+                                PlayerGameScore += Asists;
+                                Block = Math.Round(Double.Parse(GetPlayerBlock(player)) / Double.Parse(GetPlayerGamesPlayed(player)), MidpointRounding.ToEven);
+                                PlayerGameScore += Block;
+                                Steal = Math.Round(Double.Parse(GetPlayerSteal(player)) / Double.Parse(GetPlayerGamesPlayed(player)), MidpointRounding.ToEven);
+                                PlayerGameScore += Steal;
+                                DRebound = Math.Round(Double.Parse(GetPlayerDefenceReb(player)) / Double.Parse(GetPlayerGamesPlayed(player)), MidpointRounding.ToEven);
+                                PlayerGameScore += DRebound;
+                                ORebound = Math.Round(Double.Parse(GetPlayerOffensiveReb(player)) / Double.Parse(GetPlayerGamesPlayed(player)), MidpointRounding.ToEven);
+                                PlayerGameScore += ORebound;
+                                FreeThrows = Math.Round(Double.Parse(GetPlayerFt(player)) / Double.Parse(GetPlayerGamesPlayed(player)), MidpointRounding.ToEven);
+                                PlayerGameScore += FreeThrows;
+                                FieldGoalsMissed = Math.Round((Double.Parse(GetPlayerFieldGoalAtt(player)) - Double.Parse(GetPlayerFieldGoal(player))) / Double.Parse(GetPlayerGamesPlayed(player)),
+                                    MidpointRounding.ToEven);
+                                PlayerGameScore -= FieldGoalsMissed;
+                                FreeThrowsMissed = Math.Round((Double.Parse(GetPlayerFtAtt(player)) - Double.Parse(GetPlayerFt(player))) / Double.Parse(GetPlayerGamesPlayed(player)), MidpointRounding.ToEven);
+                                PlayerGameScore -= FreeThrowsMissed;
+                                Turnovers = Math.Round(Double.Parse(GetPlayerTurnover(player)) / Double.Parse(GetPlayerGamesPlayed(player)), MidpointRounding.ToEven);
+                                PlayerGameScore -= Turnovers;
+                                Fouls = Math.Round((Double.Parse(GetPlayerPersFoul(player)) / Double.Parse(GetPlayerGamesPlayed(player))) + RandomVal, MidpointRounding.ToEven);
                                 //foul out
-                                if (Math.Round((Double.Parse(GetPlayerPersFoul(player)) / Double.Parse(GetPlayerGamesPlayed(player))) + RandomVal, MidpointRounding.ToEven) >= 5)
+                                if (Fouls >= 5)
                                 {
                                     PlayerGameScore -= 4;
                                 }
@@ -254,16 +279,30 @@ namespace FantasyBasketball
                                 RandomVal = RandomGen.Next(-10, 5);
                                 PlayerGameScore += RandomVal;
                                 RandomVal = RandomGen.Next(-2, 3);
-                                PlayerGameScore += Math.Round((Double.Parse(GetPlayerPoints(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 0.75), MidpointRounding.ToEven);
-                                PlayerGameScore += Math.Round((Double.Parse(GetPlayerAssist(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 0.75), MidpointRounding.ToEven);
-                                PlayerGameScore += Math.Round((Double.Parse(GetPlayerBlock(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 0.75), MidpointRounding.ToEven);
-                                PlayerGameScore += Math.Round((Double.Parse(GetPlayerSteal(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 0.75), MidpointRounding.ToEven);
-                                PlayerGameScore += Math.Round((Double.Parse(GetPlayerDefenceReb(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 0.75), MidpointRounding.ToEven);
-                                PlayerGameScore += Math.Round((Double.Parse(GetPlayerOffensiveReb(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 0.75), MidpointRounding.ToEven);
-                                PlayerGameScore += Math.Round((Double.Parse(GetPlayerFt(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 0.75), MidpointRounding.ToEven);
-                                PlayerGameScore -= Math.Round(((Double.Parse(GetPlayerFieldGoalAtt(player)) - Double.Parse(GetPlayerFieldGoal(player))) / Double.Parse(GetPlayerGamesPlayed(player)) * 1.15), MidpointRounding.ToEven);
-                                PlayerGameScore -= Math.Round((Double.Parse(GetPlayerTurnover(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 1.15), MidpointRounding.ToEven);
-                                if (Math.Round((Double.Parse(GetPlayerPersFoul(player)) / Double.Parse(GetPlayerGamesPlayed(player))) + RandomVal, MidpointRounding.ToEven) >= 5)
+                                Points = Math.Round((Double.Parse(GetPlayerPoints(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 0.75), MidpointRounding.ToEven);
+                                PlayerGameScore += Points;
+                                Asists = Math.Round((Double.Parse(GetPlayerAssist(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 0.75), MidpointRounding.ToEven);
+                                PlayerGameScore += Asists;
+                                Block = Math.Round((Double.Parse(GetPlayerBlock(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 0.75), MidpointRounding.ToEven);
+                                PlayerGameScore += Block;
+                                Steal = Math.Round((Double.Parse(GetPlayerSteal(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 0.75), MidpointRounding.ToEven);
+                                PlayerGameScore += Steal;
+                                DRebound = Math.Round((Double.Parse(GetPlayerDefenceReb(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 0.75), MidpointRounding.ToEven);
+                                PlayerGameScore += DRebound;
+                                ORebound = Math.Round((Double.Parse(GetPlayerOffensiveReb(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 0.75), MidpointRounding.ToEven);
+                                PlayerGameScore += ORebound;
+                                FreeThrows = Math.Round((Double.Parse(GetPlayerFt(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 0.75), MidpointRounding.ToEven);
+                                PlayerGameScore += FreeThrows;
+                                FieldGoalsMissed = Math.Round(((Double.Parse(GetPlayerFieldGoalAtt(player)) - Double.Parse(GetPlayerFieldGoal(player))) / Double.Parse(GetPlayerGamesPlayed(player)) * 1.15),
+                                    MidpointRounding.ToEven);
+                                PlayerGameScore -= FieldGoalsMissed;
+                                FreeThrowsMissed = Math.Round(((Double.Parse(GetPlayerFtAtt(player)) - Double.Parse(GetPlayerFt(player))) / Double.Parse(GetPlayerGamesPlayed(player)) * 1.15),
+                                    MidpointRounding.ToEven);
+                                PlayerGameScore -= FreeThrowsMissed;
+                                Turnovers = Math.Round((Double.Parse(GetPlayerTurnover(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 1.15), MidpointRounding.ToEven);
+                                PlayerGameScore -= Turnovers;
+                                Fouls = Math.Round((Double.Parse(GetPlayerPersFoul(player)) / Double.Parse(GetPlayerGamesPlayed(player))) + RandomVal, MidpointRounding.ToEven);
+                                if (Fouls >= 5)
                                 {
                                     PlayerGameScore -= 4;
                                 }
@@ -274,15 +313,28 @@ namespace FantasyBasketball
                                 RandomVal = RandomGen.Next(-5, 15);
                                 PlayerGameScore += RandomVal;
                                 RandomVal = RandomGen.Next(-2, 3);
-                                PlayerGameScore += Math.Round((Double.Parse(GetPlayerPoints(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 1.75), MidpointRounding.ToEven);
-                                PlayerGameScore += Math.Round((Double.Parse(GetPlayerAssist(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 1.75), MidpointRounding.ToEven);
-                                PlayerGameScore += Math.Round((Double.Parse(GetPlayerBlock(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 1.75), MidpointRounding.ToEven);
-                                PlayerGameScore += Math.Round((Double.Parse(GetPlayerSteal(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 1.75), MidpointRounding.ToEven);
-                                PlayerGameScore += Math.Round((Double.Parse(GetPlayerDefenceReb(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 1.75), MidpointRounding.ToEven);
-                                PlayerGameScore += Math.Round((Double.Parse(GetPlayerOffensiveReb(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 1.75), MidpointRounding.ToEven);
-                                PlayerGameScore += Math.Round((Double.Parse(GetPlayerFt(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 1.75), MidpointRounding.ToEven);
-                                PlayerGameScore -= Math.Round(((Double.Parse(GetPlayerFieldGoalAtt(player)) - Double.Parse(GetPlayerFieldGoal(player))) / Double.Parse(GetPlayerGamesPlayed(player)) * 0.75), MidpointRounding.ToEven);
-                                PlayerGameScore -= Math.Round((Double.Parse(GetPlayerTurnover(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 0.75), MidpointRounding.ToEven);
+                                Points = Math.Round((Double.Parse(GetPlayerPoints(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 1.75), MidpointRounding.ToEven);
+                                PlayerGameScore += Points;
+                                Asists = Math.Round((Double.Parse(GetPlayerAssist(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 1.75), MidpointRounding.ToEven);
+                                PlayerGameScore += Asists;
+                                Block = Math.Round((Double.Parse(GetPlayerBlock(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 1.75), MidpointRounding.ToEven);
+                                PlayerGameScore += Block;
+                                Steal = Math.Round((Double.Parse(GetPlayerSteal(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 1.75), MidpointRounding.ToEven);
+                                PlayerGameScore += Steal;
+                                DRebound = Math.Round((Double.Parse(GetPlayerDefenceReb(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 1.75), MidpointRounding.ToEven);
+                                PlayerGameScore += DRebound;
+                                ORebound = Math.Round((Double.Parse(GetPlayerOffensiveReb(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 1.75), MidpointRounding.ToEven);
+                                PlayerGameScore += ORebound;
+                                FreeThrows = Math.Round((Double.Parse(GetPlayerFt(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 1.75), MidpointRounding.ToEven);
+                                PlayerGameScore += FreeThrows;
+                                FieldGoalsMissed = Math.Round(((Double.Parse(GetPlayerFieldGoalAtt(player)) - Double.Parse(GetPlayerFieldGoal(player))) / Double.Parse(GetPlayerGamesPlayed(player)) * 0.75),
+                                    MidpointRounding.ToEven);
+                                PlayerGameScore -= FieldGoalsMissed;
+                                FreeThrowsMissed = Math.Round(((Double.Parse(GetPlayerFtAtt(player)) - Double.Parse(GetPlayerFt(player))) / Double.Parse(GetPlayerGamesPlayed(player)) * 0.75), MidpointRounding.ToEven);
+                                PlayerGameScore -= FreeThrowsMissed;
+                                Turnovers = Math.Round((Double.Parse(GetPlayerTurnover(player)) / Double.Parse(GetPlayerGamesPlayed(player)) * 0.75), MidpointRounding.ToEven);
+                                PlayerGameScore -= Turnovers;
+                                Fouls = Math.Round((Double.Parse(GetPlayerPersFoul(player)) / Double.Parse(GetPlayerGamesPlayed(player))) + RandomVal, MidpointRounding.ToEven);
                                 if (Math.Round((Double.Parse(GetPlayerPersFoul(player)) / Double.Parse(GetPlayerGamesPlayed(player))) + RandomVal, MidpointRounding.ToEven) >= 5)
                                 {
                                     PlayerGameScore -= 4;
@@ -297,12 +349,12 @@ namespace FantasyBasketball
                         }
                         //Console.WriteLine("{0}: {1}", PlayerName[player], PlayerGameScore);
                         teams.PlayersScores[PlayerIndex][DayOfWeek] = PlayerGameScore;
+                        teams.WeeklyStatLines[PlayerIndex][week - 1] += PlayerGameScore.ToString() + " ";
                         teams.WeekScore += PlayerGameScore;
                         teams.WeeklyScores[PlayerIndex][week-1] += PlayerGameScore;
                         PlayerGameScore = 0;
                         PlayerIndex++;
                     }
-                   
                 }
                 
             }
@@ -331,6 +383,10 @@ namespace FantasyBasketball
             //return Champion;
         }
 
+        public void StatReset()
+        {
+
+        }
 
         public void ResetPlayerScores()
         {
