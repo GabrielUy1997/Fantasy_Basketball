@@ -38,8 +38,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.PlayerPos = new System.Windows.Forms.ListBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.PlayerPos = new System.Windows.Forms.ListBox();
+            this.AllButton = new System.Windows.Forms.Button();
+            this.GuardButton = new System.Windows.Forms.Button();
+            this.ForwardButton = new System.Windows.Forms.Button();
+            this.CenterButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -140,6 +144,10 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.CenterButton);
+            this.groupBox3.Controls.Add(this.ForwardButton);
+            this.groupBox3.Controls.Add(this.GuardButton);
+            this.groupBox3.Controls.Add(this.AllButton);
             this.groupBox3.Controls.Add(this.pictureBox1);
             this.groupBox3.Controls.Add(this.PlayerPos);
             this.groupBox3.Controls.Add(this.DraftCheckList);
@@ -149,6 +157,14 @@
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Available players";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(399, 19);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(117, 177);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
             // 
             // PlayerPos
             // 
@@ -161,13 +177,45 @@
             this.PlayerPos.Size = new System.Drawing.Size(82, 44);
             this.PlayerPos.TabIndex = 2;
             // 
-            // pictureBox1
+            // AllButton
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(399, 19);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(117, 177);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
+            this.AllButton.Location = new System.Drawing.Point(399, 252);
+            this.AllButton.Name = "AllButton";
+            this.AllButton.Size = new System.Drawing.Size(117, 37);
+            this.AllButton.TabIndex = 4;
+            this.AllButton.Text = "All";
+            this.AllButton.UseVisualStyleBackColor = true;
+            this.AllButton.Click += new System.EventHandler(this.AllButton_Click);
+            // 
+            // GuardButton
+            // 
+            this.GuardButton.Location = new System.Drawing.Point(399, 295);
+            this.GuardButton.Name = "GuardButton";
+            this.GuardButton.Size = new System.Drawing.Size(117, 37);
+            this.GuardButton.TabIndex = 5;
+            this.GuardButton.Text = "Guards";
+            this.GuardButton.UseVisualStyleBackColor = true;
+            this.GuardButton.Click += new System.EventHandler(this.GuardButton_Click);
+            // 
+            // ForwardButton
+            // 
+            this.ForwardButton.Location = new System.Drawing.Point(399, 338);
+            this.ForwardButton.Name = "ForwardButton";
+            this.ForwardButton.Size = new System.Drawing.Size(117, 37);
+            this.ForwardButton.TabIndex = 6;
+            this.ForwardButton.Text = "Forwards";
+            this.ForwardButton.UseVisualStyleBackColor = true;
+            this.ForwardButton.Click += new System.EventHandler(this.ForwardButton_Click);
+            // 
+            // CenterButton
+            // 
+            this.CenterButton.Location = new System.Drawing.Point(399, 381);
+            this.CenterButton.Name = "CenterButton";
+            this.CenterButton.Size = new System.Drawing.Size(117, 37);
+            this.CenterButton.TabIndex = 7;
+            this.CenterButton.Text = "Centers";
+            this.CenterButton.UseVisualStyleBackColor = true;
+            this.CenterButton.Click += new System.EventHandler(this.CenterButton_Click);
             // 
             // ShowDrafting
             // 
@@ -207,5 +255,9 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ListBox PlayerPos;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button CenterButton;
+        private System.Windows.Forms.Button ForwardButton;
+        private System.Windows.Forms.Button GuardButton;
+        private System.Windows.Forms.Button AllButton;
     }
 }

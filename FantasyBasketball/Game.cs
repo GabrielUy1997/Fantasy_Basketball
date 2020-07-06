@@ -177,25 +177,79 @@ namespace FantasyBasketball
             return BestPick;
         }
 
-        public int AddPlayersToDraftList()
+        public int AddPlayersToDraftList(string Position)
         {
             int BestPick = 0;
             int MostPoints = 0;
             int index = 0;
             int totalPoints;
-            foreach (string player in PlayerPoints.Skip(1))
+            if(Position == "all")
             {
-                index++;
-                totalPoints = Int32.Parse(player);
-                if (totalPoints > MostPoints && CheckIfPrinted(index) == false)
+                foreach (string player in PlayerPoints.Skip(1))
                 {
-                    MostPoints = totalPoints;
-                    BestPick = index;
+                    index++;
+                    totalPoints = Int32.Parse(player);
+                    if (totalPoints > MostPoints && CheckIfPrinted(index) == false && CheckIfPlayerTaken(index) == false)
+                    {
+                        MostPoints = totalPoints;
+                        BestPick = index;
+                    }
                 }
+                String[] aPick = PlayerName[BestPick].Split('\\');
+                PlayerName[BestPick] = aPick[0];
+                printed.Add(BestPick);
             }
-            String[] aPick = PlayerName[BestPick].Split('\\');
-            PlayerName[BestPick] = aPick[0];
-            printed.Add(BestPick);
+            else if (Position == "Guard")
+            {
+                foreach (string player in PlayerPoints.Skip(1))
+                {
+                    index++;
+                    totalPoints = Int32.Parse(player);
+                    if (totalPoints > MostPoints && CheckIfPrinted(index) == false && GetPlayerPos(index).Contains("G")
+                        && CheckIfPlayerTaken(index) == false)
+                    {
+                        MostPoints = totalPoints;
+                        BestPick = index;
+                    }
+                }
+                String[] aPick = PlayerName[BestPick].Split('\\');
+                PlayerName[BestPick] = aPick[0];
+                printed.Add(BestPick);
+            }
+            else if (Position == "Forward")
+            {
+                foreach (string player in PlayerPoints.Skip(1))
+                {
+                    index++;
+                    totalPoints = Int32.Parse(player);
+                    if (totalPoints > MostPoints && CheckIfPrinted(index) == false && GetPlayerPos(index).Contains("F")
+                        && CheckIfPlayerTaken(index) == false)
+                    {
+                        MostPoints = totalPoints;
+                        BestPick = index;
+                    }
+                }
+                String[] aPick = PlayerName[BestPick].Split('\\');
+                PlayerName[BestPick] = aPick[0];
+                printed.Add(BestPick);
+            }
+            else if (Position == "Center")
+            {
+                foreach (string player in PlayerPoints.Skip(1))
+                {
+                    index++;
+                    totalPoints = Int32.Parse(player);
+                    if (totalPoints > MostPoints && CheckIfPrinted(index) == false && GetPlayerPos(index).Contains("C")
+                        && CheckIfPlayerTaken(index) == false)
+                    {
+                        MostPoints = totalPoints;
+                        BestPick = index;
+                    }
+                }
+                String[] aPick = PlayerName[BestPick].Split('\\');
+                PlayerName[BestPick] = aPick[0];
+                printed.Add(BestPick);
+            }
             return BestPick;
         }
         

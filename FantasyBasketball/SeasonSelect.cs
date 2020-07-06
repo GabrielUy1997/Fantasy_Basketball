@@ -13,19 +13,19 @@ namespace FantasyBasketball
     public partial class SeasonSelect : Form
     {
         Game game = new Game();
-        public static string UserInput = "";
+        public static string Season = "";
         public SeasonSelect()
         {
             InitializeComponent();
         }
         private void SubmitButton_Click(object sender, EventArgs e)
         {
-            UserInput = SeasonEntry.Text;
-            ShowDrafting showDrafting = new ShowDrafting(UserInput);
-            if(game.LoadSeasonStats(game, UserInput) == true)
+            Season = SeasonEntry.Text;
+            ShowDrafting showDrafting = new ShowDrafting(Season);
+            if(game.LoadSeasonStats(game, Season) == true)
             {
                 Hide();
-                showDrafting.StartGame(game, UserInput);
+                showDrafting.StartGame(game, Season);
                 showDrafting.Show();
                 showDrafting.PlayerSelect();
             }

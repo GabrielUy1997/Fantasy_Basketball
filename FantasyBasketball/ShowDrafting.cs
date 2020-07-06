@@ -18,6 +18,7 @@ namespace FantasyBasketball
         CPU cpu1 = new CPU("CPU1");
         CPU cpu2 = new CPU("CPU2");
         CPU cpu3 = new CPU("CPU3");
+        private int pID;
         string _season;
         string ForPicture = " ";
         int playerindex;
@@ -31,9 +32,9 @@ namespace FantasyBasketball
             _season = season;
         }
 
-        public void StartGame(Game game, string a_season)
+        public void StartGame(Game game, string _season)
         {
-            int pID;
+            
             _game = game;
             _game.Teams.Add(player1);
             _game.Teams.Add(cpu1);
@@ -50,7 +51,7 @@ namespace FantasyBasketball
             Console.WriteLine(DraftingOrder.Text);
             foreach (string player in _game._PlayerName)
             {
-                pID = _game.AddPlayersToDraftList();
+                pID = _game.AddPlayersToDraftList("all");
                 DraftCheckList.Items.Add(_game.GetPlayerName(pID));
             }
           
@@ -215,5 +216,48 @@ namespace FantasyBasketball
             
         }
 
+        private void AllButton_Click(object sender, EventArgs e)
+        {
+            DraftCheckList.Items.Clear();
+            _game.printed.Clear();
+            foreach (string player in _game._PlayerName)
+            {
+                pID = _game.AddPlayersToDraftList("all");
+                DraftCheckList.Items.Add(_game.GetPlayerName(pID));
+            }
+        }
+
+        private void GuardButton_Click(object sender, EventArgs e)
+        {
+            DraftCheckList.Items.Clear();
+            _game.printed.Clear();
+            foreach (string player in _game._PlayerName)
+            {
+                pID = _game.AddPlayersToDraftList("Guard");
+                DraftCheckList.Items.Add(_game.GetPlayerName(pID));
+            }
+        }
+
+        private void ForwardButton_Click(object sender, EventArgs e)
+        {
+            DraftCheckList.Items.Clear();
+            _game.printed.Clear();
+            foreach (string player in _game._PlayerName)
+            {
+                pID = _game.AddPlayersToDraftList("Forward");
+                DraftCheckList.Items.Add(_game.GetPlayerName(pID));
+            }
+        }
+
+        private void CenterButton_Click(object sender, EventArgs e)
+        {
+            DraftCheckList.Items.Clear();
+            _game.printed.Clear();
+            foreach (string player in _game._PlayerName)
+            {
+                pID = _game.AddPlayersToDraftList("Center");
+                DraftCheckList.Items.Add(_game.GetPlayerName(pID));
+            }
+        }
     }
 }
