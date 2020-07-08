@@ -128,8 +128,9 @@ namespace FantasyBasketball
                             PF = values[28];
                             PTS = values[29];
                             IsInSeason = true;
-                            HistoricalStatsBox.Items.Add(IndexSeason + ":" + Pos + " " + Age + " " + Team + " " + GamesPlayed + " " + GamesStarted + " " + FG + " " + FGA + " " + ThreePointers + " " + TwoPointers + " " + FT + " " + FTA 
-                                + " " + ORB + " " + DRB + " " + AST + " " + STL + " " + BLK + " " + TOV + " " + PF + " " + PTS);
+                            HistoricalStatsBox.Items.Add(IndexSeason + ":" + Pos + " " + Age + " " + Team + " " + GamesPlayed + " " + GamesStarted + " " + FG + " " + FGA 
+                                + " " + ThreePointers + " " + TwoPointers + " " + FT + " " + FTA + " " + ORB + " " + DRB + " " + AST + " " + STL + " " + BLK + " " + TOV 
+                                + " " + PF + " " + PTS);
                             break;
                         }
                     }
