@@ -130,6 +130,7 @@ namespace FantasyBasketball
                 + twoWinners[1] + " wins with " + _game.Teams.ElementAt(_game.Teams.FindIndex(x => x.GetName() == twoWinners[1])).WeekScore + " points");
             Winners.Items.Add("Winners of week " + (_game.CurrentWeek + 1) + ": " + _game.winners[_game.CurrentWeek]);
             string scores = " ";
+            double total = 0;
             int j = 0;
             MatchUpBox.Items.Add("Player's team: ");
             foreach (int player in _player1.team)
@@ -139,11 +140,13 @@ namespace FantasyBasketball
                 for (int i = 0; i < 7; i++)
                 {
                     Console.Write("{0} ", _player1.PlayersScores[j][i]);
+                    total += _player1.PlayersScores[j][i];
                     scores += " " + _player1.PlayersScores[j][i];
                 }
-                MatchUpBox.Items.Add((j + 1) + "." + _game._PlayerName[player] + scores);
+                MatchUpBox.Items.Add((j + 1) + "." + _game._PlayerName[player] + scores + " Total: " + total);
 
                 scores = " ";
+                total = 0;
                 j++;
                 Console.WriteLine("");
             }
