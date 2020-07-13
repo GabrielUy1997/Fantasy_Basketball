@@ -21,6 +21,26 @@ namespace FantasyBasketball
         protected int Guards;
         protected int Forwards;
         protected int Center;
+
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public LeaugeTeam()
         {
             team = new List<int>(5);
@@ -51,21 +71,100 @@ namespace FantasyBasketball
             Forwards = 0;
             Center = 0;
         }
+
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public void AddingPlayer(int a_player)
         {
             team.Add(a_player);
             NumPlayers++;
         }
+
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public void DroppingPlayer(int a_player)
         {
             team.RemoveAt(a_player);
             NumPlayers--;
         }
+
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public String GetName()
         {
             return TeamName;
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public void ShowTeam(string[] a_playerList)
         {
             
@@ -83,6 +182,25 @@ namespace FantasyBasketball
             }
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public virtual bool CanDraftPosition(String[] a_PlayerPos, int a_pID)
         {
             string Position = a_PlayerPos[a_pID];
@@ -107,49 +225,223 @@ namespace FantasyBasketball
             }
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public virtual bool AssessTrade(int a_recieve, int a_send, string[] a_Points, string[] a_OReb, string[] a_DReb, string[] a_Ast,
             string[] a_Block, string[] a_Steal, string[] a_Tov)
         {
             return true;
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public virtual bool CanDraft()
         {
             return false;
         }
+
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public virtual int Menu(string[] a_playerList, List<LeaugeTeam> a_teams)
         {
             return 1;
         }
+
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public void AddGuard()
         {
             Guards++;
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public void AddForward()
         {
             Forwards++;
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public void AddCenters()
         {
             Center++;
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public void RemoveGuard()
         {
             Guards--;
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public void RemoveForward()
         {
             Forwards--;
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public void RemoveCenter()
         {
             Center--;
         }
+
 
         public int _Wins
         {
@@ -165,17 +457,74 @@ namespace FantasyBasketball
     }
     class Human : LeaugeTeam
     {
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
 
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public Human(String Name)
         {
             TeamName = Name;
             IsHuman = true;
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public override bool CanDraft()
         {
             return IsHuman;
         }
+
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public override int Menu(string[] a_playerList, List<LeaugeTeam> a_teams)
         {
             string input;
@@ -248,17 +597,74 @@ namespace FantasyBasketball
 
     class CPU : LeaugeTeam
     {
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public CPU(String Name)
         {
             TeamName = Name;
             IsHuman = false;
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
 
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public override bool CanDraft()
         {
             return IsHuman;
         }
+
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public override bool CanDraftPosition(String[] a_PlayerPos, int a_pID)
         {
             string Position = a_PlayerPos[a_pID];
@@ -280,6 +686,25 @@ namespace FantasyBasketball
             }
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public override bool AssessTrade(int a_recieve, int a_send, string[] a_Points, string[] a_OReb, string[] a_DReb, string[] a_Ast,
             string[] a_Block, string[] a_Steal, string[] a_Tov)
         {

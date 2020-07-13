@@ -16,6 +16,33 @@ namespace FantasyBasketball
         Game __game;
         LeaugeTeam __player1;
         ShowGame _showGame;
+        /*
+        public ShowTeamRoster(Game g, LeaugeTeam p1, ShowGame sg)
+        
+        NAME: ShowTeamRoster - constructor for the ShowTeamRoster class
+
+        SYNOPSIS:
+            
+            public ShowTeamRoster(Game g, LeaugeTeam p1, ShowGame sg);
+            g --> The current game object to be able to use its public functions
+            p1 --> the human players LeaugeTeam object to used to access the 
+            team roster.
+            sg--> The form object used to display the information on the GUI
+
+        DESCRIPTION:
+            
+            This is the constructor for the ShowTeamRoster form class, it takes in the 
+            current game's object, human player's LeaugeTeam object, and the ShowGame object.
+            it creates a local object for all the parameters so that no unwanted changes are made to the 
+            original objects since they are just used to get information.
+
+        RETURNS:
+            None
+        AUTHOR:
+            Gabriel Uy
+        DATE:  
+            07/08/2020
+        */
         public ShowTeamRoster(Game g, LeaugeTeam p1, ShowGame sg)
         {
             InitializeComponent();
@@ -29,12 +56,61 @@ namespace FantasyBasketball
            
         }
 
+        /*
+        private void BackFromTeamRoster_Click(object sender, EventArgs e)
+        
+        NAME: 
+            BackFromTeamRoster_Click
+        SYNOPSIS:
+            
+            private void BackFromTeamRoster_Click(object sender, EventArgs e);
+            sender --> reference to object that raised event.
+            e --> event data
+
+        DESCRIPTION:
+            
+            Button event handler to return from the Team Roster page back to 
+            the seasons home page.
+        
+        RETURNS:
+            None
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void BackFromTeamRoster_Click(object sender, EventArgs e)
         {
             Hide();
             _showGame.Show();
         }
 
+        /*
+       private void TeamList_Click(object sender, EventArgs e)
+        
+        NAME: 
+            TeamList_Click
+        SYNOPSIS:
+            
+            private void TeamList_Click(object sender, EventArgs e);
+            sender --> reference to object that raised event.
+            e --> event data
+
+        DESCRIPTION:
+            
+            Button event handler when one of the players on the team list 
+            is selected, when selected the HistoricalStatBox, PlayerInfo,
+            Fantasyscore text boxes are cleared and the LocalHistoricalStats()
+            is called to populate the text boxes with the selected players 
+            information.
+        
+        RETURNS:
+            None
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void TeamList_Click(object sender, EventArgs e)
         {
             HistoricalStatsBox.Items.Clear();
@@ -43,6 +119,27 @@ namespace FantasyBasketball
             LoadHistoricalStats();
         }
 
+        /*
+        private void LoadHistoricalStats()
+        
+        NAME: 
+            LoadHistoricalStats
+        SYNOPSIS:
+            
+            private void LoadHistoricalStats();
+
+        DESCRIPTION:
+            
+            Used to load the selected players historical stats
+            and the players photo
+        
+        RETURNS:
+            None
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void LoadHistoricalStats()
         {
             string Name;

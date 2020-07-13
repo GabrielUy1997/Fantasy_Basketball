@@ -19,6 +19,31 @@ namespace FantasyBasketball
         bool PlayerSelected = false;
         string Catagory;
         string ForPicture;
+
+        /*
+       public ShowFreeAgents(Game g, ShowGame sg, LeaugeTeam p1)
+        
+        NAME: 
+            ShowFreeAgents
+        SYNOPSIS:
+            
+            public ShowFreeAgents(Game g, ShowGame sg, LeaugeTeam p1);
+             g --> The current game object to be able to use its public functions
+            p1 --> the human players LeaugeTeam object to used to access the 
+            team roster.
+            sg--> The form object used to display the information on the GUI
+
+        DESCRIPTION:
+            
+            Contstructor for the ShowFreeAgents class
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public ShowFreeAgents(Game g, ShowGame sg, LeaugeTeam p1)
         {
             InitializeComponent();
@@ -34,17 +59,74 @@ namespace FantasyBasketball
             }
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void ShowFreeAgents_Load(object sender, EventArgs e)
         {
             AutoLoadAll();
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void BackFromFreeAgents_Click(object sender, EventArgs e)
         {
             Hide();
             _showGame.Show();
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void AllPosButton_Click(object sender, EventArgs e)
         {
             FreeAgentsList.Items.Clear();
@@ -55,6 +137,25 @@ namespace FantasyBasketball
             }
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void GuardPosButton_Click(object sender, EventArgs e)
         {
             FreeAgentsList.Items.Clear();
@@ -65,6 +166,25 @@ namespace FantasyBasketball
             }
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void ForwardPosButton_Click(object sender, EventArgs e)
         {
             FreeAgentsList.Items.Clear();
@@ -75,6 +195,25 @@ namespace FantasyBasketball
             }
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void CentersPosButton_Click(object sender, EventArgs e)
         {
             FreeAgentsList.Items.Clear();
@@ -85,56 +224,108 @@ namespace FantasyBasketball
             }
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void AddDropButton_Click(object sender, EventArgs e)
         {
             string PlayerDropping;
             string PlayerAdding;
             try
             {
-                if(PlayersTeamList.SelectedIndex == -1 || FreeAgentsList.SelectedIndex == -1)
+                if(_showGame.AddDropped == true)
                 {
                     throw new Exception();
                 }
                 else
                 {
-                    PlayerDropping = _game._PlayerName[__player1.team[PlayersTeamList.SelectedIndex]];
-                    PlayerAdding = _game._PlayerName[_game.TopTenFree[FreeAgentsList.SelectedIndex]];
                     try
                     {
-                        if (_game.AddDropFreeAgents(__player1, PlayersTeamList.SelectedIndex, FreeAgentsList.SelectedIndex) == true)
+                        if (PlayersTeamList.SelectedIndex == -1 || FreeAgentsList.SelectedIndex == -1)
                         {
-                            AddDropBox.Items.Clear();
-                            AddDropBox.Items.Add("Dropped " + PlayerDropping + " for " + PlayerAdding);
-                            FreeAgentsList.Items.Clear();
-                            PlayersTeamList.Items.Clear();
-                            foreach (int player in __player1.team)
-                            {
-                                PlayersTeamList.Items.Add(_game._PlayerName[player]);
-                            }
-                            foreach (int player in _game.ShowFreeAgentList(__player1, Catagory))
-                            {
-                                FreeAgentsList.Items.Add(_game._PlayerName[player]);
-                            }
+                            throw new Exception();
                         }
                         else
                         {
-                            throw new Exception();
+                            PlayerDropping = _game._PlayerName[__player1.team[PlayersTeamList.SelectedIndex]];
+                            PlayerAdding = _game._PlayerName[_game.TopTenFree[FreeAgentsList.SelectedIndex]];
+                            try
+                            {
+                                if (_game.AddDropFreeAgents(__player1, PlayersTeamList.SelectedIndex, FreeAgentsList.SelectedIndex) == true)
+                                {
+                                    _showGame.AddDropped = true;
+                                    AddDropBox.Items.Clear();
+                                    AddDropBox.Items.Add("Dropped " + PlayerDropping + " for " + PlayerAdding);
+                                    FreeAgentsList.Items.Clear();
+                                    PlayersTeamList.Items.Clear();
+                                    foreach (int player in __player1.team)
+                                    {
+                                        PlayersTeamList.Items.Add(_game._PlayerName[player]);
+                                    }
+                                    foreach (int player in _game.ShowFreeAgentList(__player1, Catagory))
+                                    {
+                                        FreeAgentsList.Items.Add(_game._PlayerName[player]);
+                                    }
+                                }
+                                else
+                                {
+                                    throw new Exception();
+                                }
+                            }
+                            catch
+                            {
+                                System.Windows.Forms.MessageBox.Show("Too many players of the same position on the team");
+                            }
                         }
                     }
                     catch
                     {
-                        System.Windows.Forms.MessageBox.Show("Too many players of the same position on the team");
+                        System.Windows.Forms.MessageBox.Show("Please select one player from each list");
                     }
                 }
             }
             catch
             {
-                System.Windows.Forms.MessageBox.Show("Please select one player from each list");
+                System.Windows.Forms.MessageBox.Show("You have reached the limit of available Add/Drops this week");
             }
-
             AddDropButton.Enabled = false;
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void FreeAgentsList_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             FABox.Items.Clear();
@@ -153,6 +344,25 @@ namespace FantasyBasketball
             }
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void PlayersTeamList_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             PlayerBox.Items.Clear();
@@ -172,6 +382,25 @@ namespace FantasyBasketball
             }
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void ResetButton_Click(object sender, EventArgs e)
         {
             foreach (int checkedItem in PlayersTeamList.CheckedIndices)
@@ -184,6 +413,25 @@ namespace FantasyBasketball
             }
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void AutoLoadAll()
         {
             AllPosButton.PerformClick();

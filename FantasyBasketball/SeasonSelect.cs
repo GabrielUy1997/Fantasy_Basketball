@@ -15,11 +15,50 @@ namespace FantasyBasketball
     {
         Game game = new Game();
         public static string Season = "";
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public SeasonSelect()
         {
             InitializeComponent();
             ShowAvailableSeasons();
         }
+
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void SubmitButton_Click(object sender, EventArgs e)
         {
             Season = SeasonEntry.Text;
@@ -34,6 +73,25 @@ namespace FantasyBasketball
             
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void ShowAvailableSeasons()
         {
             string IndexSeason = "2018-2019";
@@ -58,8 +116,27 @@ namespace FantasyBasketball
                 }
 
             } while (AvailableSeason == true);
-        } 
+        }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void QuitGameButton_Click(object sender, EventArgs e)
         {
             Application.Exit();

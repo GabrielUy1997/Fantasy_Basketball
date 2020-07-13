@@ -22,6 +22,25 @@ namespace FantasyBasketball
         bool playerSelected = false;
         bool computerSelected = false;
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public ShowTrading(Game g, LeaugeTeam p1, LeaugeTeam c1, LeaugeTeam c2, LeaugeTeam c3, ShowGame sg)
         {
             InitializeComponent();
@@ -41,6 +60,25 @@ namespace FantasyBasketball
             }
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void BackFromTrading_Click(object sender, EventArgs e)
         {
             Hide();
@@ -49,6 +87,25 @@ namespace FantasyBasketball
             TradeResultBox.Items.Clear();
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void Team1Button_Click(object sender, EventArgs e)
         {
             CPUPlayerBox.Items.Clear();
@@ -61,6 +118,25 @@ namespace FantasyBasketball
             TradeButton.Enabled = false;
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void Team2Button_Click(object sender, EventArgs e)
         {
             CPUPlayerBox.Items.Clear();
@@ -73,6 +149,25 @@ namespace FantasyBasketball
             TradeButton.Enabled = false;
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void Team3Button_Click(object sender, EventArgs e)
         {
             CPUPlayerBox.Items.Clear();
@@ -85,38 +180,90 @@ namespace FantasyBasketball
             TradeButton.Enabled = false;
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void TradeButton_Click(object sender, EventArgs e)
         {
             int pPlayer = PlayersPlayerBox.SelectedIndex;
             int cPlayer = CPUPlayerBox.SelectedIndex;
             string pTradedName = __game._PlayerName[__player1.team[pPlayer]];
             string cTradedName = __game._PlayerName[__game.Teams[(__game.Teams.FindIndex(x => x.GetName() == tradingTeam))].team[cPlayer]];
-            if (__game.Trade(__player1, __game.Teams[(__game.Teams.FindIndex(x => x.GetName() == tradingTeam))], pPlayer, cPlayer) == false)
+            try
             {
-                TradeResultBox.Items.Clear();
-                TradeResultBox.Items.Add("The trade was Denied");
-            }
-            else
-            {
-                TradeResultBox.Items.Clear();
-                TradeResultBox.Items.Add("The trade was accepted:");
-                TradeResultBox.Items.Add("You traded " + pTradedName + " for " + cTradedName);
-                PlayersPlayerBox.Items.Clear();
-                CPUPlayerBox.Items.Clear();
-                foreach (int player in __player1.team)
+                if(_showGame.Traded == true)
                 {
-                    PlayersPlayerBox.Items.Add(__game._PlayerName[player]);
+                    throw new Exception();
                 }
-                foreach(int player in __game.Teams[(__game.Teams.FindIndex(x => x.GetName() == tradingTeam))].team)
+                else
                 {
-                    CPUPlayerBox.Items.Add(__game._PlayerName[player]);
-                }
+                    if (__game.Trade(__player1, __game.Teams[(__game.Teams.FindIndex(x => x.GetName() == tradingTeam))], pPlayer, cPlayer) == false)
+                    {
+                        TradeResultBox.Items.Clear();
+                        TradeResultBox.Items.Add("The trade was Denied");
+                    }
+                    else
+                    {
+                        TradeResultBox.Items.Clear();
+                        TradeResultBox.Items.Add("The trade was accepted:");
+                        TradeResultBox.Items.Add("You traded " + pTradedName + " for " + cTradedName);
+                        PlayersPlayerBox.Items.Clear();
+                        CPUPlayerBox.Items.Clear();
+                        foreach (int player in __player1.team)
+                        {
+                            PlayersPlayerBox.Items.Add(__game._PlayerName[player]);
+                        }
+                        foreach (int player in __game.Teams[(__game.Teams.FindIndex(x => x.GetName() == tradingTeam))].team)
+                        {
+                            CPUPlayerBox.Items.Add(__game._PlayerName[player]);
+                        }
 
+                    }
+                }
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("You have reached the limit of available Add/Drops this week");
             }
             computerSelected = false;
             playerSelected = false;
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void PlayersPlayerBox_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             playerSelected = true;
@@ -145,6 +292,25 @@ namespace FantasyBasketball
             }
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void resetTradeBox_Click(object sender, EventArgs e)
         {
             foreach(int checkedItem in PlayersPlayerBox.CheckedIndices)

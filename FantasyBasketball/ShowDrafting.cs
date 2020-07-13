@@ -25,6 +25,25 @@ namespace FantasyBasketball
         bool hasFlipped = false;
         bool stop = false;
         int SelectionNumber = 1;
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public ShowDrafting(string season)
         {
             InitializeComponent();
@@ -32,6 +51,25 @@ namespace FantasyBasketball
             _season = season;
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public void StartGame(Game game, string _season)
         {
             
@@ -57,6 +95,25 @@ namespace FantasyBasketball
           
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public void PlayerSelect()
         {
             int pID;
@@ -75,6 +132,25 @@ namespace FantasyBasketball
             hasFlipped = true;
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void DraftButton_Click(object sender, EventArgs e)
         {
             int pID;
@@ -185,6 +261,25 @@ namespace FantasyBasketball
             }   
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void DraftCheckList_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             PlayerPos.Items.Clear();
@@ -208,6 +303,25 @@ namespace FantasyBasketball
             }
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void EndDraftButton_Click(object sender, EventArgs e)
         {
             Hide();
@@ -216,6 +330,25 @@ namespace FantasyBasketball
             
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void AllButton_Click(object sender, EventArgs e)
         {
             DraftCheckList.Items.Clear();
@@ -227,6 +360,25 @@ namespace FantasyBasketball
             }
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void GuardButton_Click(object sender, EventArgs e)
         {
             DraftCheckList.Items.Clear();
@@ -238,6 +390,25 @@ namespace FantasyBasketball
             }
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void ForwardButton_Click(object sender, EventArgs e)
         {
             DraftCheckList.Items.Clear();
@@ -249,6 +420,25 @@ namespace FantasyBasketball
             }
         }
 
+        /*
+       
+        
+        NAME: 
+        SYNOPSIS:
+            
+            
+
+        DESCRIPTION:
+            
+            
+        
+        RETURNS:
+            
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void CenterButton_Click(object sender, EventArgs e)
         {
             DraftCheckList.Items.Clear();

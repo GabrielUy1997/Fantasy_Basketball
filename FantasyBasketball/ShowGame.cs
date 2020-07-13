@@ -18,7 +18,35 @@ namespace FantasyBasketball
         LeaugeTeam _cpu2;
         LeaugeTeam _cpu3;
         public string __season;
+        public bool AddDropped = false;
+        public bool Traded = false;
         List<string> _winners;
+        /*
+        public ShowGame(Game g, LeaugeTeam p1, LeaugeTeam c1, LeaugeTeam c2, LeaugeTeam c3, string seas)
+        
+        NAME: 
+            ShowGame
+        SYNOPSIS:
+            
+             public ShowGame(Game g, LeaugeTeam p1, LeaugeTeam c1, LeaugeTeam c2, LeaugeTeam c3, string seas);
+             g --> current Game object being used
+             p1 --> The human players LeaugeTeam object
+             c1 --> CPU1's LeaugeTeam object
+             c2 --> CPU2's LeaugeTeam object
+             c3 --> CPU3's LeaugeTeam object
+             seas --> The season that the user selected to be simulated
+
+        DESCRIPTION:
+            
+            Constructor for the ShowGame class
+        
+        RETURNS:
+            None
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public ShowGame(Game g, LeaugeTeam p1, LeaugeTeam c1, LeaugeTeam c2, LeaugeTeam c3, string seas)
         {
             InitializeComponent();
@@ -35,6 +63,29 @@ namespace FantasyBasketball
 
         }
 
+        /*
+        public void ShowOpp(int teamIndex)
+        
+        NAME: 
+            public void ShowOpp
+        SYNOPSIS:
+            
+            public void ShowOpp(int teamIndex)
+            teamIndex --> the index of the team that the player is matched
+            up against in the list of teams.
+
+        DESCRIPTION:
+            
+            Used to display the opponents team and the players fantasy scores
+            for the current week
+        
+        RETURNS:
+            None
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public void ShowOpp(int teamIndex)
         {
             MatchUpBox.Items.Add(_game.Teams.ElementAt(teamIndex).GetName() + "'s team: ");
@@ -58,6 +109,27 @@ namespace FantasyBasketball
                 Console.WriteLine("");
             }
         }
+
+        /*
+        public void ShowSchedule()
+        
+        NAME: 
+            ShowSchedule
+        SYNOPSIS:
+            
+            public void ShowSchedule();
+
+        DESCRIPTION:
+            
+            Used to display all the matchups for the whole season
+        
+        RETURNS:
+            None
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         public void ShowSchedule()
         {
             ScheduleBox.Items.Clear();
@@ -96,6 +168,30 @@ namespace FantasyBasketball
             _game._matchup = 0;
         }
 
+        /*
+        private void AdvanceWeekButton_Click(object sender, EventArgs e)
+        
+        NAME: 
+            private void AdvanceWeekButton_Click
+        SYNOPSIS:
+            
+             private void AdvanceWeekButton_Click(object sender, EventArgs e);
+             sender --> reference to object that raised event.
+             e --> event data
+
+        DESCRIPTION:
+            
+            Button event handler when the user clicks the Advance week button,
+            its sets the matchup for the new week and displays all the stats
+            for the new week and past weeks.
+        
+        RETURNS:
+            None
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void AdvanceWeekButton_Click(object sender, EventArgs e)
         {
             if (_game._matchup == 0)
@@ -186,11 +282,30 @@ namespace FantasyBasketball
                 _game.CurrentWeek++;
             }
 
-            //ShowSchedule();
-
-
         }
 
+        /*
+        private void ShowPlayerTeam_Click(object sender, EventArgs e)
+        
+        NAME: 
+            ShowPlayerTeam_Click
+        SYNOPSIS:
+            
+            private void ShowPlayerTeam_Click(object sender, EventArgs e);
+             sender --> reference to object that raised event.
+             e --> event data
+
+        DESCRIPTION:
+            
+            ShowPlayerTeam button event handler
+        
+        RETURNS:
+            None
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void ShowPlayerTeam_Click(object sender, EventArgs e)
         {
             Hide();
@@ -198,6 +313,28 @@ namespace FantasyBasketball
             team.Show();
         }
 
+        /*
+       private void FreeAgentButton_Click(object sender, EventArgs e)
+        
+        NAME: 
+            FreeAgentButton_Click
+        SYNOPSIS:
+            
+             private void FreeAgentButton_Click(object sender, EventArgs e);
+              sender --> reference to object that raised event.
+              e --> event data
+
+        DESCRIPTION:
+            
+            FreeAgentButton event handler
+        
+        RETURNS:
+            None
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void FreeAgentButton_Click(object sender, EventArgs e)
         {
             Hide();
@@ -205,6 +342,28 @@ namespace FantasyBasketball
             ShowFA.Show();
         }
 
+        /*
+        private void TradingButton_Click(object sender, EventArgs e)
+        
+        NAME: 
+            TradingButton_Click
+        SYNOPSIS:
+            
+            private void TradingButton_Click(object sender, EventArgs e);
+             sender --> reference to object that raised event.
+              e --> event data
+
+        DESCRIPTION:
+            
+            TradingButton event handler
+        
+        RETURNS:
+            None
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/08/2020
+        */
         private void TradingButton_Click(object sender, EventArgs e)
         {
             Hide();
