@@ -38,7 +38,7 @@ namespace FantasyBasketball
             Contstructor for the ShowFreeAgents class
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
@@ -60,19 +60,24 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void ShowFreeAgents_Load(object sender, EventArgs e)
         
         NAME: 
+            ShowFreeAgents_Load
         SYNOPSIS:
             
-            
+             private void ShowFreeAgents_Load(object sender, EventArgs e);
+             sender --> reference to object that raised event.
+             e --> event data
+
 
         DESCRIPTION:
             
-            
+            This calls the AutoLoadAll() function so when the free agents page
+            is loaded all players are showed automatically in the free agents box
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
@@ -84,19 +89,22 @@ namespace FantasyBasketball
         }
 
         /*
-       
+         private void BackFromFreeAgents_Click(object sender, EventArgs e)
         
         NAME: 
+            BackFromFreeAgents_Click
         SYNOPSIS:
             
-            
+              private void BackFromFreeAgents_Click(object sender, EventArgs e);
+              sender --> reference to object that raised event.
+              e --> event data
 
         DESCRIPTION:
             
-            
+            Hides the free agent page and shows the home page
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
@@ -109,19 +117,24 @@ namespace FantasyBasketball
         }
 
         /*
-       
+       private void AllPosButton_Click(object sender, EventArgs e)
         
         NAME: 
+            AllPosButton_Click
         SYNOPSIS:
             
-            
+            private void AllPosButton_Click(object sender, EventArgs e);
+              sender --> reference to object that raised event.
+              e --> event data
+
 
         DESCRIPTION:
             
-            
+            Clears the FreeAgentList and repopulates it to show the user
+            all the avaialable players regardless of their position
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
@@ -138,19 +151,24 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void GuardPosButton_Click(object sender, EventArgs e)
         
         NAME: 
+            GuardPosButton_Click
         SYNOPSIS:
             
-            
+             private void GuardPosButton_Click(object sender, EventArgs e);
+              sender --> reference to object that raised event.
+              e --> event data
 
         DESCRIPTION:
             
-            
+            Clears the FreeAgentList and repopulates it to show the user
+            all the avaialable players that are either point guards or 
+            shooting guards
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
@@ -167,19 +185,23 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void ForwardPosButton_Click(object sender, EventArgs e)
         
         NAME: 
+            ForwardPosButton_Click
         SYNOPSIS:
             
-            
-
+            private void ForwardPosButton_Click(object sender, EventArgs e);
+              sender --> reference to object that raised event.
+              e --> event data
         DESCRIPTION:
             
-            
+            Clears the FreeAgentList and repopulates it to show the user
+            all the avaialable players that are either power forwards or
+            small forwards
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
@@ -196,19 +218,22 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void CentersPosButton_Click(object sender, EventArgs e)
         
         NAME: 
+            CentersPosButton_Click
         SYNOPSIS:
             
-            
-
+             private void CentersPosButton_Click(object sender, EventArgs e)
+              sender --> reference to object that raised event.
+              e --> event data
         DESCRIPTION:
             
-            
+            Clears the FreeAgentList and repopulates it to show the user
+            all the avaialable players that are centers
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
@@ -225,19 +250,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+       private void AddDropButton_Click(object sender, EventArgs e)
         
         NAME: 
+            AddDropButton_Click
         SYNOPSIS:
             
-            
+            private void AddDropButton_Click(object sender, EventArgs e);
+              sender --> reference to object that raised event.
+              e --> event data
 
         DESCRIPTION:
             
-            
+            The event handler for the AddDropButton. After the user has selected 
+            who they would like to add to their team from the free agents list and 
+            who they would like to drop from their team list the event handler makes sure
+            they have one selected from each list. Then it checks if their team is at the 
+            maximum number of players at that positon.
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
@@ -308,19 +340,23 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void FreeAgentsList_ItemCheck(object sender, ItemCheckEventArgs e)
         
         NAME: 
+            FreeAgentsList_ItemCheck
         SYNOPSIS:
             
-            
+             private void FreeAgentsList_ItemCheck(object sender, ItemCheckEventArgs e);
+              sender --> reference to object that raised event.
+              e --> event data
 
         DESCRIPTION:
             
-            
-        
+           When the user selects a player from the FreeAgentsList that players image
+           is loaded and shown in a pictureBox
+
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
@@ -345,19 +381,23 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void PlayersTeamList_ItemCheck(object sender, ItemCheckEventArgs e)
         
         NAME: 
+            PlayersTeamList_ItemCheck
         SYNOPSIS:
             
-            
+            private void PlayersTeamList_ItemCheck(object sender, ItemCheckEventArgs e);
+              sender --> reference to object that raised event.
+              e --> event data
 
         DESCRIPTION:
             
-            
+           When the user selects a player from the PlayersTeamList that players image
+           is loaded and shown in a pictureBox
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
@@ -383,19 +423,23 @@ namespace FantasyBasketball
         }
 
         /*
-       
+       private void ResetButton_Click(object sender, EventArgs e)
         
         NAME: 
+            ResetButton_Click
         SYNOPSIS:
             
-            
+          private void ResetButton_Click(object sender, EventArgs e); 
+              sender --> reference to object that raised event.
+              e --> event data
 
         DESCRIPTION:
             
-            
+           Resets the PlayerTeamList and FreeAgentsList indexes that
+           are checked
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
@@ -414,19 +458,21 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void AutoLoadAll()
         
         NAME: 
+            AutoLoadAll
         SYNOPSIS:
             
-            
+           private void AutoLoadAll(); 
 
         DESCRIPTION:
             
-            
+            Automatically clicks the AllPosButton button to 
+            show all free agents when the page loads
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
@@ -434,6 +480,7 @@ namespace FantasyBasketball
         */
         private void AutoLoadAll()
         {
+            //https://stackoverflow.com/questions/19300044/button-performclick-not-working-in-form-load/19300323 6/29/20
             AllPosButton.PerformClick();
         }
     }
