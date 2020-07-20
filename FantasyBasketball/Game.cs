@@ -67,19 +67,24 @@ namespace FantasyBasketball
         public List<int> TopTenFree;
 
         /*
-       
+        public Game()
         
         NAME: 
+            Game
         SYNOPSIS:
             
-            
+          public Game();  
 
         DESCRIPTION:
             
-            
+            Constructor for the Game class, it creates a the lists that
+            hold the drafted players, players that have already been printed 
+            on the draft list, the weekly winners, the teams, and a the list of top
+            free agents available. It also populates the weeks and creates the matchup
+            orders.
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
@@ -119,54 +124,30 @@ namespace FantasyBasketball
             MatchupType22 = new List<int> { 0, 2, 1, 3 };
             MatchupType3 = new List<int> { 0, 3, 2, 1 };
             MatchupType4 = new List<int> { 0, 2, 3, 1 };
-            Totalgames = 82;
         }
 
+
         /*
-       
+        public void AddTakenPlayer(int a_player)
         
         NAME: 
+            AddTakenPlayer
         SYNOPSIS:
             
-            
+            public void AddTakenPlayer(int a_player)
+            a_player --> The ID of the player that was just drafted
 
         DESCRIPTION:
             
-            
+            Adding the name of the player that was drafted to a 
+            list to make sure they are not drafted again
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
-        */
-        public void PrintPlayer(int pID)
-        {
-            Console.WriteLine("{0}: {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12} {13} {14} {15} {16} {17} {18} {19} {20}",
-                        GetPlayerName(pID), GetPlayerPos(pID), GetPlayerAge(pID), GetPlayerTeam(pID), GetPlayerGamesPlayed(pID), GetPlayerGamesStart(pID), GetPlayerFieldGoal(pID), GetPlayerFieldGoalAtt(pID),
-                        GetPlayer3Point(pID), GetPlayer2Point(pID), GetPlayerFt(pID), GetPlayerFtAtt(pID), GetPlayerOffensiveReb(pID), GetPlayerDefenceReb(pID), GetPlayerAssist(pID),
-                        GetPlayerSteal(pID), GetPlayerBlock(pID), GetPlayerTurnover(pID), GetPlayerPersFoul(pID), GetPlayerPoints(pID), pID);
-        }
-
-        /*
-       
-        
-        NAME: 
-        SYNOPSIS:
-            
-            
-
-        DESCRIPTION:
-            
-            
-        
-        RETURNS:
-            
-        AUTHOR:
-            Gabriel Uy
-        DATE:
-            07/08/2020
+            07/20/2020
         */
         public void AddTakenPlayer(int a_player)
         {
@@ -174,23 +155,27 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public bool CheckIfPlayerTaken(int a_player)
         
         NAME: 
+            CheckIfPlayerTaken
         SYNOPSIS:
             
-            
-
+            public bool CheckIfPlayerTaken(int a_player);
+            a_player --> the ID of the player that the current team is trying to 
+            pick
         DESCRIPTION:
             
-            
+            This checks if the player that was selected to be drafted has 
+            already been drafted earlier by comparing the player to the 
+            list of drafted players
         
         RETURNS:
-            
+            A bool whether that player has already been drafted
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/20/2020
         */
         public bool CheckIfPlayerTaken(int a_player)
         {
@@ -205,23 +190,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public bool CheckIfPrinted(int a_player)
         
         NAME: 
+            CheckIfPrinted
         SYNOPSIS:
             
-            
+            public bool CheckIfPrinted(int a_player);
+            a_player --> a players ID
 
         DESCRIPTION:
             
-            
+            This checks if the player has already been shown on
+            the list of available players.
         
         RETURNS:
-            
+            A bool of whether they have already appeared on the list
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/20/2020
         */
         public bool CheckIfPrinted(int a_player)
         {
@@ -236,25 +224,29 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public int ComputerTeamDraft(LeaugeTeam a_team, String a_name)
         
         NAME: 
+            ComputerTeamDraft
         SYNOPSIS:
             
-            
-
+             public int ComputerTeamDraft(LeaugeTeam a_team, String a_name);
+             a_team --> the computer team that is drafting
         DESCRIPTION:
             
-            
+            This is used for when it is a computer teams turn to pick,
+            it takes in the team that is currently picking and goes through
+            the list of available players and selects the best player that
+            they can put on their team
         
         RETURNS:
-            
+            int, the index of the player
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/20/2020
         */
-        public int ComputerTeamDraft(LeaugeTeam a_team, String a_name)
+        public int ComputerTeamDraft(LeaugeTeam a_team)
         {
             int BestPick = 0;
             int MostPoints = 0;
@@ -272,7 +264,7 @@ namespace FantasyBasketball
             }
             String[] aPick = PlayerName[BestPick].Split('\\');
             PlayerName[BestPick] = aPick[0];
-            Console.WriteLine("{0} Drafted: {1}", a_name, PlayerName[BestPick]);
+           
             if (PlayerPos[BestPick].Contains('G'))
             {
                 a_team.AddGuard();
@@ -291,31 +283,35 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public int AddPlayersToDraftList(string a_Position)
         
         NAME: 
+            AddPlayersToDraftList
         SYNOPSIS:
             
-            
+          public int AddPlayersToDraftList(string a_Position);   
+          a_Position--> the position the user wants the draftlist 
+          to be displayed in
 
         DESCRIPTION:
             
-            
+            This changes the draft list to show either all the available
+            players or only available players in a certain position
         
         RETURNS:
-            
+            int, index of player
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/20/2020
         */
-        public int AddPlayersToDraftList(string Position)
+        public int AddPlayersToDraftList(string a_Position)
         {
             int BestPick = 0;
             int MostPoints = 0;
             int index = 0;
             int totalPoints;
-            if(Position == "all")
+            if(a_Position == "all")
             {
                 foreach (string player in PlayerPoints.Skip(1))
                 {
@@ -331,7 +327,7 @@ namespace FantasyBasketball
                 PlayerName[BestPick] = aPick[0];
                 printed.Add(BestPick);
             }
-            else if (Position == "Guard")
+            else if (a_Position == "Guard")
             {
                 foreach (string player in PlayerPoints.Skip(1))
                 {
@@ -348,7 +344,7 @@ namespace FantasyBasketball
                 PlayerName[BestPick] = aPick[0];
                 printed.Add(BestPick);
             }
-            else if (Position == "Forward")
+            else if (a_Position == "Forward")
             {
                 foreach (string player in PlayerPoints.Skip(1))
                 {
@@ -365,7 +361,7 @@ namespace FantasyBasketball
                 PlayerName[BestPick] = aPick[0];
                 printed.Add(BestPick);
             }
-            else if (Position == "Center")
+            else if (a_Position == "Center")
             {
                 foreach (string player in PlayerPoints.Skip(1))
                 {
@@ -386,23 +382,25 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public void RandomizingDraftOrder()
         
         NAME: 
+            RandomizingDraftOrder
         SYNOPSIS:
             
-            
+           public void RandomizingDraftOrder(); 
 
         DESCRIPTION:
             
-            
+            Randomizes the order of the teams to simulate
+            the drafting order
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/20/2020
         */
         public void RandomizingDraftOrder()
         {
@@ -419,35 +417,40 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public List<string> SetUpWeekMatchup(LeaugeTeam a_player, LeaugeTeam a_CPU1, LeaugeTeam a_CPU2, LeaugeTeam a_CPU3)
         
         NAME: 
+            SetUpWeekMatchup
         SYNOPSIS:
             
-            
+            public List<string> SetUpWeekMatchup(LeaugeTeam a_player, LeaugeTeam a_CPU1, LeaugeTeam a_CPU2, LeaugeTeam a_CPU3);
+            a_player -->
+            a_CPU1 -->
+            a_CPU2 -->
+            a_CPU3 --> 
 
         DESCRIPTION:
             
-            
+            This does all the calculations for each team during the week, it gives each player
+            their daily scores based on a random chance of having an average game, good game, bad
+            game, or missing the game. It also compares the teams matched up and returns the winner
+            of both match ups
         
         RETURNS:
-            
+            List of strings, the name of the winners of both matchups in the current week
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/20/2020
         */
         public List<string> SetUpWeekMatchup(LeaugeTeam a_player, LeaugeTeam a_CPU1, LeaugeTeam a_CPU2, LeaugeTeam a_CPU3)
         {
-            
-
 
             int week = Week[CurrentWeek];
             RandomGen = new Random();
             
             foreach (LeaugeTeam teams in Teams)
             {
-                //index = 0;
                 for (int DayOfWeek = 0; DayOfWeek < 7; DayOfWeek++)
                 {
                     PlayerIndex = 0;
@@ -600,9 +603,7 @@ namespace FantasyBasketball
             Console.WriteLine("{0} _Wins with {1} points", Teams.ElementAt(WinnerMatch2).GetName(), Teams.ElementAt(WinnerMatch2).WeekScore);
             Console.WriteLine("week {0}", week);
 
-            //ShowStandings(Teams);
             return winners;
-            //return Champion;
         }
 
         /*
@@ -706,7 +707,6 @@ namespace FantasyBasketball
             foreach (int player in TopTenFree)
             {
                 Console.Write("{0}.", index);
-                PrintPlayer(player);
                 index++;
             }
             return TopTenFree;

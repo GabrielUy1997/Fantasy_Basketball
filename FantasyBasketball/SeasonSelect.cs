@@ -16,23 +16,24 @@ namespace FantasyBasketball
         Game game = new Game();
         public static string Season = "";
         /*
-       
+        public SeasonSelect()
         
         NAME: 
+            SeasonSelect
         SYNOPSIS:
             
-            
+            public SeasonSelect();
 
         DESCRIPTION:
             
-            
+          Constructor for the SeasonSelect class  
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/15/2020
         */
         public SeasonSelect()
         {
@@ -41,23 +42,24 @@ namespace FantasyBasketball
         }
 
         /*
-       
+       private void SubmitButton_Click(object sender, EventArgs e)
         
         NAME: 
+            SubmitButton_Click
         SYNOPSIS:
             
-            
+            private void SubmitButton_Click(object sender, EventArgs e);
 
         DESCRIPTION:
             
-            
+            Event handler for the SubmitButton, shows the drafting phase
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/15/2020
         */
         private void SubmitButton_Click(object sender, EventArgs e)
         {
@@ -74,23 +76,24 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void ShowAvailableSeasons()
         
         NAME: 
+            ShowAvailableSeasons
         SYNOPSIS:
             
-            
+            private void ShowAvailableSeasons();
 
         DESCRIPTION:
             
-            
+            Displays all the seasons available to simulate
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/15/2020
         */
         private void ShowAvailableSeasons()
         {
@@ -119,23 +122,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void QuitGameButton_Click(object sender, EventArgs e)
         
         NAME: 
+            QuitGameButton_Click
         SYNOPSIS:
             
-            
+            private void QuitGameButton_Click(object sender, EventArgs e)
+              sender --> reference to object that raised event.
+              e --> event data
 
         DESCRIPTION:
             
-            
+            Exits the application
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/15/2020
         */
         private void QuitGameButton_Click(object sender, EventArgs e)
         {

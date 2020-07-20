@@ -205,7 +205,7 @@ namespace FantasyBasketball
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/10/2020
         */
         private void ForwardPosButton_Click(object sender, EventArgs e)
         {
@@ -237,7 +237,7 @@ namespace FantasyBasketball
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/10/2020
         */
         private void CentersPosButton_Click(object sender, EventArgs e)
         {
@@ -273,7 +273,7 @@ namespace FantasyBasketball
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/10/2020
         */
         private void AddDropButton_Click(object sender, EventArgs e)
         {
@@ -360,7 +360,7 @@ namespace FantasyBasketball
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/11/2020
         */
         private void FreeAgentsList_ItemCheck(object sender, ItemCheckEventArgs e)
         {
@@ -401,7 +401,7 @@ namespace FantasyBasketball
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/11/2020
         */
         private void PlayersTeamList_ItemCheck(object sender, ItemCheckEventArgs e)
         {
@@ -443,7 +443,7 @@ namespace FantasyBasketball
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/11/2020
         */
         private void ResetButton_Click(object sender, EventArgs e)
         {
@@ -476,7 +476,7 @@ namespace FantasyBasketball
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/11/2020
         */
         private void AutoLoadAll()
         {

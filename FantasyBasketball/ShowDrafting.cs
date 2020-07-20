@@ -19,30 +19,32 @@ namespace FantasyBasketball
         CPU cpu2 = new CPU("CPU2");
         CPU cpu3 = new CPU("CPU3");
         private int pID;
-        string _season;
-        string ForPicture = " ";
-        int playerindex;
-        bool hasFlipped = false;
-        bool stop = false;
-        int SelectionNumber = 1;
+        private string _season;
+        private string ForPicture = " ";
+        private int playerindex;
+        private bool hasFlipped = false;
+        private bool stop = false;
+        private int SelectionNumber = 1;
         /*
-       
+        public ShowDrafting(string season)
         
         NAME: 
+            ShowDrafting
         SYNOPSIS:
-            
+            public ShowDrafting(string season);
+            season --> Season the user selected in the SeasonSelect class
             
 
         DESCRIPTION:
             
-            
+            The constructor for the ShowDrafting class
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/11/2020
         */
         public ShowDrafting(string season)
         {
@@ -52,23 +54,28 @@ namespace FantasyBasketball
         }
 
         /*
-       
+       public void StartGame(Game game, string _season)
         
         NAME: 
+            StartGame
         SYNOPSIS:
             
-            
+            public void StartGame(Game game, string _season);
+            game --> 
+            _season -->
 
         DESCRIPTION:
             
-            
+            Creates the team objects for all the teams in the simulation,
+            randomizes the draft order of the teams, and starts the drafting 
+            for the teams.
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/11/2020
         */
         public void StartGame(Game game, string _season)
         {
@@ -96,23 +103,25 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public void PlayerSelect()
         
         NAME: 
+            PlayerSelect
         SYNOPSIS:
             
-            
+            public void PlayerSelect();
 
         DESCRIPTION:
             
-            
+            Gets the index of the users team, if the cpu team has a pick before
+            the user then it drafts a player for them
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/12/2020
         */
         public void PlayerSelect()
         {
@@ -122,7 +131,7 @@ namespace FantasyBasketball
             {
                 if(_game.Teams.IndexOf(team) < playerindex && team.team.Count <= 5)
                 {
-                    pID = _game.ComputerTeamDraft(team, team.GetName());
+                    pID = _game.ComputerTeamDraft(team);
                     DraftCheckList.Items.Remove(_game.GetPlayerName(pID));
                     DraftedList.Items.Add(_game.GetPlayerName(pID) + " Drafted by " + team.GetName() + " with the #" + SelectionNumber + " over all pick");
                     SelectionNumber++;
@@ -133,23 +142,30 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void DraftButton_Click(object sender, EventArgs e)
         
         NAME: 
+            DraftButton_Click
         SYNOPSIS:
             
-            
+            private void DraftButton_Click(object sender, EventArgs e);
+              sender --> reference to object that raised event.
+              e --> event data
 
         DESCRIPTION:
             
-            
+            Event handler for the DraftButton, it gets the selection the
+            user made on the checklist and if it is a valid choice then 
+            it adds the player to the users team and removes them from the 
+            list. Depending on the draft order it drafts for the cpu teams
+            and makes sure the order is correct after reversing the order.
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/12/2020
         */
         private void DraftButton_Click(object sender, EventArgs e)
         {
@@ -211,7 +227,7 @@ namespace FantasyBasketball
                     {
                         if (_game.Teams.IndexOf(team) > playerindex && team.team.Count < 6)
                         {
-                            pID = _game.ComputerTeamDraft(team, team.GetName());
+                            pID = _game.ComputerTeamDraft(team);
                             DraftCheckList.Items.Remove(_game.GetPlayerName(pID));
                             DraftedList.Items.Add(_game.GetPlayerName(pID) + " Drafted by " + team.GetName() + " with the #" + SelectionNumber + " over all pick");
                             SelectionNumber++;
@@ -243,7 +259,7 @@ namespace FantasyBasketball
                     {
                         if (_game.Teams.IndexOf(team) > playerindex && team.team.Count < 6)
                         {
-                            pID = _game.ComputerTeamDraft(team, team.GetName());
+                            pID = _game.ComputerTeamDraft(team);
                             DraftCheckList.Items.Remove(_game.GetPlayerName(pID));
                             DraftedList.Items.Add(_game.GetPlayerName(pID) + " Drafted by " + team.GetName() + " with the #" + SelectionNumber + " over all pick");
                             SelectionNumber++;
@@ -262,23 +278,27 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void DraftCheckList_ItemCheck(object sender, ItemCheckEventArgs e)
         
         NAME: 
+            DraftCheckList_ItemCheck
         SYNOPSIS:
             
-            
+            private void DraftCheckList_ItemCheck(object sender, ItemCheckEventArgs e);
+              sender --> reference to object that raised event.
+              e --> event data
 
         DESCRIPTION:
             
-            
+            When the user selects a player from the DraftCheckList
+            it displays that player's photo on the page
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/12/2020
         */
         private void DraftCheckList_ItemCheck(object sender, ItemCheckEventArgs e)
         {
@@ -304,23 +324,27 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void EndDraftButton_Click(object sender, EventArgs e)
         
         NAME: 
+            EndDraftButton_Click
         SYNOPSIS:
             
-            
+            private void EndDraftButton_Click(object sender, EventArgs e);
+              sender --> reference to object that raised event.
+              e --> event data
 
         DESCRIPTION:
             
-            
+            Event Handler for the EndDraftButton, ends the drafting
+            phase and shows the home page
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/12/2020
         */
         private void EndDraftButton_Click(object sender, EventArgs e)
         {
@@ -331,23 +355,27 @@ namespace FantasyBasketball
         }
 
         /*
-       
+       private void AllButton_Click(object sender, EventArgs e)
         
         NAME: 
+            AllButton_Click
         SYNOPSIS:
             
-            
+            private void AllButton_Click(object sender, EventArgs e);
+              sender --> reference to object that raised event.
+              e --> event data
 
         DESCRIPTION:
             
-            
+            Event handler for the AllButton, Clears the draft list
+            and shows all the players regardless of their position
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/12/2020
         */
         private void AllButton_Click(object sender, EventArgs e)
         {
@@ -361,23 +389,27 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void GuardButton_Click(object sender, EventArgs e)
         
         NAME: 
+            GuardButton_Click
         SYNOPSIS:
             
-            
+            private void GuardButton_Click(object sender, EventArgs e)
+              sender --> reference to object that raised event.
+              e --> event data
 
         DESCRIPTION:
             
-            
+            Event handler for the GuardButton, Clears the draft list
+            and shows all the players that are either PG or SG
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/12/2020
         */
         private void GuardButton_Click(object sender, EventArgs e)
         {
@@ -391,23 +423,27 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void ForwardButton_Click(object sender, EventArgs e)
         
         NAME: 
+            ForwardButton_Click
         SYNOPSIS:
             
-            
+            private void ForwardButton_Click(object sender, EventArgs e);
+              sender --> reference to object that raised event.
+              e --> event data
 
         DESCRIPTION:
             
-            
+             Event handler for the GuardButton, Clears the draft list
+            and shows all the players that are either PF or SF
         
         RETURNS:
-            
+            NOne
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/12/2020
         */
         private void ForwardButton_Click(object sender, EventArgs e)
         {
@@ -421,23 +457,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void CenterButton_Click(object sender, EventArgs e)
         
         NAME: 
         SYNOPSIS:
             
-            
+            private void CenterButton_Click(object sender, EventArgs e);
+              sender --> reference to object that raised event.
+              e --> event data
 
         DESCRIPTION:
             
-            
+             Event handler for the GuardButton, Clears the draft list
+            and shows all the players that are C
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/12/2020
         */
         private void CenterButton_Click(object sender, EventArgs e)
         {
