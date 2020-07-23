@@ -281,7 +281,7 @@ namespace FantasyBasketball
             {
                 _game.CurrentWeek++;
             }
-
+            AddDropped = false;
         }
 
         /*

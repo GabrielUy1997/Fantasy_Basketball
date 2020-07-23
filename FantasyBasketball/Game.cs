@@ -58,7 +58,7 @@ namespace FantasyBasketball
         public int WinnerMatch1;
         public int WinnerMatch2;
         public decimal PlayerGamesPlayed;
-        public decimal Totalgames;
+        public decimal Totalgames = 82;
         public decimal ChanceMissing;
         private double PlayerGameScore;
         public static Random RandomGen;
@@ -240,7 +240,7 @@ namespace FantasyBasketball
             they can put on their team
         
         RETURNS:
-            int, the index of the player
+            int, the ID of the player
         AUTHOR:
             Gabriel Uy
         DATE:
@@ -299,7 +299,7 @@ namespace FantasyBasketball
             players or only available players in a certain position
         
         RETURNS:
-            int, index of player
+            int, id of the player
         AUTHOR:
             Gabriel Uy
         DATE:
@@ -424,10 +424,10 @@ namespace FantasyBasketball
         SYNOPSIS:
             
             public List<string> SetUpWeekMatchup(LeaugeTeam a_player, LeaugeTeam a_CPU1, LeaugeTeam a_CPU2, LeaugeTeam a_CPU3);
-            a_player -->
-            a_CPU1 -->
-            a_CPU2 -->
-            a_CPU3 --> 
+            a_player --> The user's team
+            a_CPU1 --> cpu1's team
+            a_CPU2 --> cpu2's team
+            a_CPU3 --> cpu3's team
 
         DESCRIPTION:
             
@@ -607,23 +607,25 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public void ResetPlayerScores()
         
-        NAME: 
+        NAME:
+            ResetPlayerScores
         SYNOPSIS:
             
-            
+            public void ResetPlayerScores()
 
         DESCRIPTION:
             
-            
+            Resets all the scores each player has for 
+            the current week
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/20/2020
         */
         public void ResetPlayerScores()
         {
@@ -643,25 +645,29 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public List<int> ShowFreeAgentList(LeaugeTeam a_player, string _position)
         
         NAME: 
+            ShowFreeAgentList
         SYNOPSIS:
             
-            
+            public List<int> ShowFreeAgentList(string _position)
+            _position --> The Position the user would like to filter
+            the list into
 
         DESCRIPTION:
             
-            
+            Displays the free agents available based on the catagory
+            the user selects
         
         RETURNS:
-            
+            List of int, the id's of the best available free agents
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/20/2020
         */
-        public List<int> ShowFreeAgentList(LeaugeTeam a_player, string _position)
+        public List<int> ShowFreeAgentList(string _position)
         {
             int BestPick = 0;
             int MostPoints = 0;
@@ -669,7 +675,6 @@ namespace FantasyBasketball
             int totalPoints;
             string input;
             TopTenFree.Clear();
-            Console.WriteLine("What Positon? (all,G,F,C)");
             input = _position;
             for (int i = 0; i < 15; i++)
             {
@@ -713,23 +718,29 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public bool AddDropFreeAgents(LeaugeTeam a_player, int _PlayerIndex, int _FAIndex)
         
         NAME: 
+            AddDropFreeAgents
         SYNOPSIS:
             
-            
+            public bool AddDropFreeAgents(LeaugeTeam a_player, int _PlayerIndex, int _FAIndex);
+            a_player --> the user's LeaugeTeam
+            _PlayerIndex --> The id of the player they are dropping in their team list
+            _FAIndex --> The id of the player they are adding in the free agents list
 
         DESCRIPTION:
             
-            
+            This is used for adding and dropping players, it recieves the player the user
+            wants to add and the player the user wants to drop then it checks if the move
+            is legal
         
         RETURNS:
-            
+            bool, whether the move is legal
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/20/2020
         */
         public bool AddDropFreeAgents(LeaugeTeam a_player, int _PlayerIndex, int _FAIndex)
         {
@@ -768,55 +779,30 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public bool Trade(LeaugeTeam a_player, LeaugeTeam a_CPU, int a_pPlayer, int a_cPlayer)
         
         NAME: 
+            Trade
         SYNOPSIS:
             
-            
+            public bool Trade(LeaugeTeam a_player, LeaugeTeam a_CPU, int a_pPlayer, int a_cPlayer);
+            a_player --> The User's team
+            a_CPU --> the team that the user is trading with
+            a_pPlayer --> the player that the user is trading
+            a_cPlayer --> the player the Cpu is trading
 
         DESCRIPTION:
             
-            
+            This is used for the user to trade with the CPU teams, they select the 
+            player they would like to trade and recieve on the display and this checks 
+            whether the trade is possible or if it would make sense for the CPU team
         
         RETURNS:
-            
+            bool, if the trade was approved or not
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
-        */
-        public void AskForTrade(LeaugeTeam a_player, LeaugeTeam a_CPU, LeaugeTeam a_CPU2, LeaugeTeam a_CPU3)
-        {
-            foreach (LeaugeTeam team in Teams)
-            {
-                Console.WriteLine(team.GetName());
-                team.ShowTeam(PlayerName);
-            }
-            Console.WriteLine("Who would you like to trade with?");
-            string input = Console.ReadLine();
-           
-
-        }
-
-        /*
-       
-        
-        NAME: 
-        SYNOPSIS:
-            
-            
-
-        DESCRIPTION:
-            
-            
-        
-        RETURNS:
-            
-        AUTHOR:
-            Gabriel Uy
-        DATE:
-            07/08/2020
+            07/20/2020
         */
         public bool Trade(LeaugeTeam a_player, LeaugeTeam a_CPU, int a_pPlayer, int a_cPlayer)
         {
@@ -868,23 +854,29 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public void UpdatePosCount(LeaugeTeam a_player, LeaugeTeam a_CPU, int a_pPlayer, int a_cPlayer)
         
         NAME: 
+            UpdatePosCount
         SYNOPSIS:
             
-            
+            public void UpdatePosCount(LeaugeTeam a_player, LeaugeTeam a_CPU, int a_pPlayer, int a_cPlayer); 
+            a_player --> The User's team
+            a_CPU --> the team that the user is trading with
+            a_pPlayer --> the player that the user is trading
+            a_cPlayer --> the player the Cpu is trading
 
         DESCRIPTION:
             
-            
+            This function updates the user and cpu teams count for the postions to make sure 
+            they have 2 or less in each postion
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/21/2020
         */
         public void UpdatePosCount(LeaugeTeam a_player, LeaugeTeam a_CPU, int a_pPlayer, int a_cPlayer)
         {
@@ -941,23 +933,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public List<LeaugeTeam> ShowStandings(List<LeaugeTeam> a_Teams)
         
         NAME: 
+            ShowStandings
         SYNOPSIS:
             
-            
+            public List<LeaugeTeam> ShowStandings(List<LeaugeTeam> a_Teams);
+            a_Teams --> the list of all teams 
 
         DESCRIPTION:
             
-            
+            This is used to display the wins and losses for all the teams on
+            the display
         
         RETURNS:
-            
+            List of LeaugeTeams, the teams in order of who has the best record
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/21/2020
         */
         public List<LeaugeTeam> ShowStandings(List<LeaugeTeam> a_Teams)
         {
@@ -1044,23 +1039,25 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public int GetPlayerID(string a_player)
         
         NAME: 
+            GetPlayerID
         SYNOPSIS:
             
-            
+            public int GetPlayerID(string a_player);
+            a_player --> the player whos id is being fetched
 
         DESCRIPTION:
             
-            
+            Used to find a players ID using their name
         
         RETURNS:
-            
+            int, the id of the player 
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/21/2020
         */
         public int GetPlayerID(string a_player)
         {
@@ -1077,23 +1074,25 @@ namespace FantasyBasketball
 
         }
         /*
-       
+        public string GetPlayerName(int a_player)
         
         NAME: 
+            GetPlayerName
         SYNOPSIS:
             
-            
+            public string GetPlayerName(int a_player);
+            a_player --> the id of the player
 
         DESCRIPTION:
             
-            
+            Used to get the name of a player using an id
         
         RETURNS:
-            
+            string, the name of the player
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/21/2020
         */
         public string GetPlayerName(int a_player)
         {
@@ -1101,23 +1100,25 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public string GetPlayerPos(int a_player)
         
         NAME: 
+            GetPlayerPos
         SYNOPSIS:
             
-            
+            public string GetPlayerPos(int a_player);
+            a_player --> player's id
 
         DESCRIPTION:
             
-            
+            Used to get a players position using their id
         
         RETURNS:
-            
+            string, the players postion on the court
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/21/2020
         */
         public string GetPlayerPos(int a_player)
         {
@@ -1125,23 +1126,24 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public string GetPlayerAge(int a_player)
         
         NAME: 
+            GetPlayerAge
         SYNOPSIS:
             
-            
-
+            public string GetPlayerAge(int a_player);
+            a_player --> player's id
         DESCRIPTION:
             
-            
+            Used to get a players age using their id
         
         RETURNS:
             
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/21/2020
         */
         public string GetPlayerAge(int a_player)
         {
@@ -1149,23 +1151,25 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public string GetPlayerTeam(int a_player)
         
         NAME: 
+            GetPlayerTeam
         SYNOPSIS:
             
-            
+            public string GetPlayerTeam(int a_player);
+            a_player --> player's id
 
         DESCRIPTION:
             
-            
+            Used to get a players team using their id
         
         RETURNS:
             
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/21/2020
         */
         public string GetPlayerTeam(int a_player)
         {
@@ -1173,23 +1177,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public string GetPlayerGamesPlayed(int a_player)
         
         NAME: 
+            GetPlayerGamesPlayed
         SYNOPSIS:
             
-            
+            public string GetPlayerGamesPlayed(int a_player);
+            a_player --> player's id
 
         DESCRIPTION:
             
-            
+            Used to get the total games the real player actually played in
+            the current season being simulated
         
         RETURNS:
-            
+            string, the number of games they played
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/21/2020
         */
         public string GetPlayerGamesPlayed(int a_player)
         {
@@ -1197,23 +1204,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public string GetPlayerGamesStart(int a_player)
         
         NAME: 
+            GetPlayerGamesStart
         SYNOPSIS:
             
-            
+            public string GetPlayerGamesStart(int a_player);
+            a_player --> player's id
 
         DESCRIPTION:
             
-            
+            Used to get the ammount of games a player has started
+            using their id
         
         RETURNS:
-            
+            String, number of games started
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/22/2020
         */
         public string GetPlayerGamesStart(int a_player)
         {
@@ -1221,23 +1231,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public string GetPlayerFieldGoal(int a_player)
         
         NAME: 
+            GetPlayerFieldGoal
         SYNOPSIS:
             
-            
+            public string GetPlayerFieldGoal(int a_player);
+            a_player --> player's id
 
         DESCRIPTION:
             
-            
+            Used to get the ammount of field goals a player made during the
+            real season using their id
         
         RETURNS:
-            
+            String, number of field goals made
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/22/2020
         */
         public string GetPlayerFieldGoal(int a_player)
         {
@@ -1245,23 +1258,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public string GetPlayerFieldGoalAtt(int a_player)
         
         NAME: 
+            GetPlayerFieldGoalAtt
         SYNOPSIS:
             
-            
+            public string GetPlayerFieldGoalAtt(int a_player);
+            a_player --> player's id
 
         DESCRIPTION:
             
-            
+          Used to get the ammount of field goals a player attempted during the
+          real season using their id   
         
         RETURNS:
-            
+            string, number of field goals a player has attempted
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/22/2020
         */
         public string GetPlayerFieldGoalAtt(int a_player)
         {
@@ -1269,23 +1285,25 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public string GetPlayer3Point(int a_player)
         
         NAME: 
         SYNOPSIS:
             
-            
+            public string GetPlayer3Point(int a_player);
+            a_player --> player's id
 
         DESCRIPTION:
             
-            
+          Used to get the ammount of 3 point shots a player made during the
+          real season using their id           
         
         RETURNS:
-            
+          string, the number of 3 pointers the player has made
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/22/2020
         */
         public string GetPlayer3Point(int a_player)
         {
@@ -1293,23 +1311,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public string GetPlayer2Point(int a_player)
         
         NAME: 
+            GetPlayer2Point
         SYNOPSIS:
             
-            
+            public string GetPlayer2Point(int a_player);
+            a_player --> player's id
 
         DESCRIPTION:
             
-            
+          Used to get the ammount of 2 point shots a player made during the
+          real season using their id 
         
         RETURNS:
-            
+            string, the number of 2 pointers the player has made
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/22/2020
         */
         public string GetPlayer2Point(int a_player)
         {
@@ -1317,23 +1338,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public string GetPlayerFt(int a_player)
         
         NAME: 
+            GetPlayerFt
         SYNOPSIS:
             
-            
+            public string GetPlayerFt(int a_player)
+            a_player --> player's id
 
         DESCRIPTION:
             
-            
+          Used to get the ammount of free throw shots a player made during the
+          real season using their id             
         
         RETURNS:
-            
+            string, the number of free throws the player has made
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/22/2020
         */
         public string GetPlayerFt(int a_player)
         {
@@ -1341,23 +1365,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public string GetPlayerFtAtt(int a_player)
         
         NAME: 
+            GetPlayerFtAtt
         SYNOPSIS:
             
-            
+            public string GetPlayerFtAtt(int a_player);
+            a_player --> player's id
 
         DESCRIPTION:
             
-            
+          Used to get the ammount of free throw shots a player attempted during the
+          real season using their id
         
         RETURNS:
-            
+            string, the number of free throws the player has attempted
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/22/2020
         */
         public string GetPlayerFtAtt(int a_player)
         {
@@ -1365,23 +1392,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public string GetPlayerOffensiveReb(int a_player)
         
         NAME: 
+            GetPlayerOffensiveReb
         SYNOPSIS:
             
-            
+            public string GetPlayerOffensiveReb(int a_player);
+            a_player --> player's id
 
         DESCRIPTION:
             
-            
+          Used to get the ammount of offensive rebounds a player got during the
+          real season using their id
         
         RETURNS:
-            
+            string, the number of offensive rebounds the player got
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/22/2020
         */
         public string GetPlayerOffensiveReb(int a_player)
         {
@@ -1389,23 +1419,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public string GetPlayerDefenceReb(int a_player)
         
         NAME: 
+            GetPlayerDefenceReb
         SYNOPSIS:
             
-            
+            public string GetPlayerDefenceReb(int a_player);
+            a_player --> player's id
 
         DESCRIPTION:
             
-            
+          Used to get the ammount of defensive rebounds a player got during the
+          real season using their id            
         
         RETURNS:
-            
+            string, the number of defensive rebounds the player got
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/22/2020
         */
         public string GetPlayerDefenceReb(int a_player)
         {
@@ -1413,23 +1446,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public string GetPlayerAssist(int a_player)
         
         NAME: 
+            GetPlayerAssist
         SYNOPSIS:
             
-            
+            public string GetPlayerAssist(int a_player);
+            a_player --> player's id
 
         DESCRIPTION:
             
-            
+          Used to get the number of assists a player got during the
+          real season using their id           
         
         RETURNS:
-            
+            string, number of assists
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/22/2020
         */
         public string GetPlayerAssist(int a_player)
         {
@@ -1437,23 +1473,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public string GetPlayerSteal(int a_player)
         
         NAME: 
+            GetPlayerSteal
         SYNOPSIS:
             
-            
+            public string GetPlayerSteal(int a_player);
+            a_player --> player's id
 
         DESCRIPTION:
             
-            
+          Used to get the number of steals a player got during the
+          real season using their id            
         
         RETURNS:
-            
+            string, number of steals
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/22/2020
         */
         public string GetPlayerSteal(int a_player)
         {
@@ -1461,12 +1500,14 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public string GetPlayerBlock(int a_player)
         
         NAME: 
+            GetPlayerBlock
         SYNOPSIS:
             
-            
+            public string GetPlayerBlock(int a_player);
+            a_player --> player's id
 
         DESCRIPTION:
             
@@ -1490,7 +1531,7 @@ namespace FantasyBasketball
         NAME: 
         SYNOPSIS:
             
-            
+            a_player --> player's id
 
         DESCRIPTION:
             
@@ -1514,7 +1555,7 @@ namespace FantasyBasketball
         NAME: 
         SYNOPSIS:
             
-            
+            a_player --> player's id
 
         DESCRIPTION:
             
@@ -1538,7 +1579,7 @@ namespace FantasyBasketball
         NAME: 
         SYNOPSIS:
             
-            
+            a_player --> player's id
 
         DESCRIPTION:
             

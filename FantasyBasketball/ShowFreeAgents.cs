@@ -144,7 +144,7 @@ namespace FantasyBasketball
         {
             FreeAgentsList.Items.Clear();
             Catagory = "all";
-            foreach (int players in _game.ShowFreeAgentList(__player1, "all"))
+            foreach (int players in _game.ShowFreeAgentList("all"))
             {
                 FreeAgentsList.Items.Add(_game._PlayerName[players]);
             }
@@ -178,7 +178,7 @@ namespace FantasyBasketball
         {
             FreeAgentsList.Items.Clear();
             Catagory = "G";
-            foreach (int players in _game.ShowFreeAgentList(__player1, "G"))
+            foreach (int players in _game.ShowFreeAgentList( "G"))
             {
                 FreeAgentsList.Items.Add(_game._PlayerName[players]);
             }
@@ -211,7 +211,7 @@ namespace FantasyBasketball
         {
             FreeAgentsList.Items.Clear();
             Catagory = "F";
-            foreach (int players in _game.ShowFreeAgentList(__player1, "F"))
+            foreach (int players in _game.ShowFreeAgentList( "F"))
             {
                 FreeAgentsList.Items.Add(_game._PlayerName[players]);
             }
@@ -243,7 +243,7 @@ namespace FantasyBasketball
         {
             FreeAgentsList.Items.Clear();
             Catagory = "C";
-            foreach (int players in _game.ShowFreeAgentList(__player1, "C"))
+            foreach (int players in _game.ShowFreeAgentList("C"))
             {
                 FreeAgentsList.Items.Add(_game._PlayerName[players]);
             }
@@ -310,7 +310,7 @@ namespace FantasyBasketball
                                     {
                                         PlayersTeamList.Items.Add(_game._PlayerName[player]);
                                     }
-                                    foreach (int player in _game.ShowFreeAgentList(__player1, Catagory))
+                                    foreach (int player in _game.ShowFreeAgentList(Catagory))
                                     {
                                         FreeAgentsList.Items.Add(_game._PlayerName[player]);
                                     }
