@@ -200,25 +200,6 @@ namespace FantasyBasketball
             }
         }
 
-        /*
-       
-        
-        NAME: 
-        SYNOPSIS:
-            
-            
-
-        DESCRIPTION:
-            
-            
-        
-        RETURNS:
-            
-        AUTHOR:
-            Gabriel Uy
-        DATE:
-            07/08/2020
-        */
         public virtual bool AssessTrade(int a_recieve, int a_send, string[] a_Points, string[] a_OReb, string[] a_DReb, string[] a_Ast,
             string[] a_Block, string[] a_Steal, string[] a_Tov)
         {
@@ -232,47 +213,25 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public void AddGuard()
         
-        NAME: 
+        NAME:
+            AddGuard
         SYNOPSIS:
             
-            
+            public void AddGuard();
 
         DESCRIPTION:
             
-            
+            This is used when a team is adding a player that is a
+            guard to the team   
         
         RETURNS:
-            
+            None 
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
-        */
-        public virtual int Menu(string[] a_playerList, List<LeaugeTeam> a_teams)
-        {
-            return 1;
-        }
-
-        /*
-       
-        
-        NAME: 
-        SYNOPSIS:
-            
-            
-
-        DESCRIPTION:
-            
-            
-        
-        RETURNS:
-            
-        AUTHOR:
-            Gabriel Uy
-        DATE:
-            07/08/2020
+            07/27/2020
         */
         public void AddGuard()
         {
@@ -280,23 +239,25 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public void AddForward()
         
         NAME: 
+            AddForward
         SYNOPSIS:
             
-            
+            public void AddForward();
 
         DESCRIPTION:
             
-            
+            This is used when a team is adding a player that is a
+            guard to the team           
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/27/2020
         */
         public void AddForward()
         {
@@ -304,23 +265,25 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public void AddCenters()
         
         NAME: 
+            AddCenters
         SYNOPSIS:
             
-            
+            public void AddCenters();
 
         DESCRIPTION:
             
-            
+            This is used when a team is adding a player that is a
+            centers to the team           
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/27/2020
         */
         public void AddCenters()
         {
@@ -328,23 +291,24 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public void RemoveGuard()
         
         NAME: 
         SYNOPSIS:
             
-            
+            public void RemoveGuard();
 
         DESCRIPTION:
             
-            
+            This is used for when a guard is being dropped from a
+            team
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/27/2020
         */
         public void RemoveGuard()
         {
@@ -352,23 +316,25 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public void RemoveForward()
         
         NAME: 
+            RemoveForward
         SYNOPSIS:
             
-            
+            public void RemoveForward();
 
         DESCRIPTION:
             
-            
+            This is used for when a forward is being dropped from a
+            team            
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/27/2020
         */
         public void RemoveForward()
         {
@@ -376,19 +342,21 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public void RemoveCenter()
         
         NAME: 
+            RemoveCenter
         SYNOPSIS:
             
-            
+            public void RemoveCenter();
 
         DESCRIPTION:
             
-            
+            This is used for when a center is being dropped from a
+            team           
         
         RETURNS:
-            
+           None
         AUTHOR:
             Gabriel Uy
         DATE:
@@ -414,25 +382,7 @@ namespace FantasyBasketball
     }
     class Human : LeaugeTeam
     {
-        /*
-       
-        
-        NAME: 
-        SYNOPSIS:
-            
-            
 
-        DESCRIPTION:
-            
-            
-        
-        RETURNS:
-            
-        AUTHOR:
-            Gabriel Uy
-        DATE:
-            07/08/2020
-        */
         public Human(String Name)
         {
             TeamName = Name;
@@ -440,23 +390,24 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public override bool CanDraft()
         
         NAME: 
+            CanDraft
         SYNOPSIS:
             
-            
+            public override bool CanDraft();
 
         DESCRIPTION:
             
-            
+            Used to tell if the team is the users team
         
         RETURNS:
-            
+            bool, whether if the team is a run by a computer
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/27/2020
         */
         public override bool CanDraft()
         {
@@ -465,23 +416,27 @@ namespace FantasyBasketball
 
 
         /*
-       
+        public override bool CanDraftPosition(String[] a_PlayerPos, int a_pID);
         
         NAME: 
+            CanDraftPosition
         SYNOPSIS:
             
-            
+            public override bool CanDraftPosition(String[] a_PlayerPos, int a_pID);
+            a_PlayPos --> the list of all player positions
+            a_pID --> a players ID
 
         DESCRIPTION:
             
-            
+            This is used to check if the player selected can be drafted
+            based on what position they are
         
         RETURNS:
-            
+            bool, if the player can be drafted or not
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/27/2020
         */
         public override bool CanDraftPosition(String[] a_PlayerPos, int a_pID)
         {
@@ -510,25 +465,7 @@ namespace FantasyBasketball
 
     class CPU : LeaugeTeam
     {
-        /*
-       
-        
-        NAME: 
-        SYNOPSIS:
-            
-            
 
-        DESCRIPTION:
-            
-            
-        
-        RETURNS:
-            
-        AUTHOR:
-            Gabriel Uy
-        DATE:
-            07/08/2020
-        */
         public CPU(String Name)
         {
             TeamName = Name;
@@ -536,23 +473,24 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public override bool CanDraft()
         
         NAME: 
+            CanDraft
         SYNOPSIS:
             
-            
+            public override bool CanDraft();
 
         DESCRIPTION:
             
-            
+            Used to tell if the team is the users team
         
         RETURNS:
-            
+            bool, whether if the team is a run by a computer
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/27/2020
         */
         public override bool CanDraft()
         {
@@ -560,23 +498,27 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public override bool CanDraftPosition(String[] a_PlayerPos, int a_pID);
         
         NAME: 
+            CanDraftPosition
         SYNOPSIS:
             
-            
+            public override bool CanDraftPosition(String[] a_PlayerPos, int a_pID);
+            a_PlayPos --> the list of all player positions
+            a_pID --> a players ID
 
         DESCRIPTION:
             
-            
+            This is used to check if the player selected can be drafted
+            based on what position they are
         
         RETURNS:
-            
+            bool, if the player can be drafted or not
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/27/2020
         */
         public override bool CanDraftPosition(String[] a_PlayerPos, int a_pID)
         {
@@ -600,23 +542,35 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public override bool AssessTrade(int a_recieve, int a_send, string[] a_Points, string[] a_OReb, string[] a_DReb, string[] a_Ast,
+            string[] a_Block, string[] a_Steal, string[] a_Tov)
         
         NAME: 
         SYNOPSIS:
             
-            
+            public override bool AssessTrade(int a_recieve, int a_send, string[] a_Points, string[] a_OReb, string[] a_DReb, string[] a_Ast,
+            string[] a_Block, string[] a_Steal, string[] a_Tov);
+
+            a_recieve --> the id of the player being recieved in the trade
+            a_send --> the id of the player being sent in the trade
+            a_Points --> list of all players points
+            a_OReb --> list of all players offensive rebounds
+            a_DReb --> list of all players defensive rebounds
+            a_Ast --> list of all players assists
+            a_Block -->  list of all players blocks
+            a_Steal --> list of all players steals
+            a_Tov -->  list of all players turnovers
 
         DESCRIPTION:
             
-            
+            This is is used for the computer to asess a trade when the user requests one 
         
         RETURNS:
-            
+            bool, whether the computer is going to take the trade or not
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/27/2020
         */
         public override bool AssessTrade(int a_recieve, int a_send, string[] a_Points, string[] a_OReb, string[] a_DReb, string[] a_Ast,
             string[] a_Block, string[] a_Steal, string[] a_Tov)
