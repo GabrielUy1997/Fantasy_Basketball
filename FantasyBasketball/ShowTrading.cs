@@ -23,23 +23,27 @@ namespace FantasyBasketball
         bool computerSelected = false;
 
         /*
-       
+        public ShowTrading(Game g, LeaugeTeam p1, LeaugeTeam c1, LeaugeTeam c2, LeaugeTeam c3, ShowGame sg)
         
         NAME: 
+            ShowTrading
         SYNOPSIS:
             
-            
-
+            public ShowTrading(Game g, LeaugeTeam p1, LeaugeTeam c1, LeaugeTeam c2, LeaugeTeam c3, ShowGame sg);
+                g --> the current game object
+                c1 --> cpu1's object
+                c2 --> cpu2's object
+                c3 --> cpu3's object
         DESCRIPTION:
             
-            
+            constructor for the ShowTrading class
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/27/2020
         */
         public ShowTrading(Game g, LeaugeTeam p1, LeaugeTeam c1, LeaugeTeam c2, LeaugeTeam c3, ShowGame sg)
         {
@@ -61,23 +65,27 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void BackFromTrading_Click(object sender, EventArgs e)
         
         NAME: 
+            BackFromTrading_Click
         SYNOPSIS:
             
-            
+            private void BackFromTrading_Click(object sender, EventArgs e);
+            sender --> reference to object that raised event.
+            e --> event data
 
         DESCRIPTION:
             
-            
+            Button event handler to return from the Trading page back to 
+            the seasons home page.
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/27/2020
         */
         private void BackFromTrading_Click(object sender, EventArgs e)
         {
@@ -88,23 +96,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void Team1Button_Click(object sender, EventArgs e)       
         
         NAME: 
+            Team1Button_Click
         SYNOPSIS:
             
-            
+           private void Team1Button_Click(object sender, EventArgs e);
+            sender --> reference to object that raised event.
+            e --> event data
 
         DESCRIPTION:
             
-            
+            Displays CPU1's team 
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/27/2020
         */
         private void Team1Button_Click(object sender, EventArgs e)
         {
@@ -119,23 +130,25 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void Team2Button_Click(object sender, EventArgs e)       
         
         NAME: 
+            Team2Button_Click
         SYNOPSIS:
             
-            
+           private void Team2Button_Click(object sender, EventArgs e);
+            sender --> reference to object that raised event.
+            e --> event data
 
         DESCRIPTION:
             
-            
+            Displays CPU2's team 
         
-        RETURNS:
-            
+
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/27/2020
         */
         private void Team2Button_Click(object sender, EventArgs e)
         {
@@ -150,23 +163,25 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void Team3Button_Click(object sender, EventArgs e)       
         
         NAME: 
+            Team3Button_Click
         SYNOPSIS:
             
-            
+           private void Team3Button_Click(object sender, EventArgs e);
+            sender --> reference to object that raised event.
+            e --> event data
 
         DESCRIPTION:
             
-            
+            Displays CPU3's team 
         
-        RETURNS:
-            
+
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/27/2020
         */
         private void Team3Button_Click(object sender, EventArgs e)
         {
@@ -181,23 +196,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void TradeButton_Click(object sender, EventArgs e)
         
-        NAME: 
+        NAME:
+            TradeButton_Click
         SYNOPSIS:
             
+            private void TradeButton_Click(object sender, EventArgs e);
+            sender --> reference to object that raised event.
+            e --> event data
             
-
         DESCRIPTION:
             
-            
+            Event handler used by the user to send the trade offer
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/27/2020
         */
         private void TradeButton_Click(object sender, EventArgs e)
         {
@@ -246,23 +264,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void PlayersPlayerBox_ItemCheck(object sender, ItemCheckEventArgs e)
         
         NAME: 
+            PlayersPlayerBox_ItemCheck
         SYNOPSIS:
             
-            
+            private void PlayersPlayerBox_ItemCheck(object sender, ItemCheckEventArgs e);
+            sender --> reference to object that raised event.
+            e --> event data            
 
         DESCRIPTION:
             
-            
+            Event handler for when the user checks an item on the users player list
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/27/2020
         */
         private void PlayersPlayerBox_ItemCheck(object sender, ItemCheckEventArgs e)
         {
@@ -278,6 +299,28 @@ namespace FantasyBasketball
             }
         }
 
+        /*
+        private void CPUPlayerBox_ItemCheck(object sender, ItemCheckEventArgs e)
+        
+        NAME: 
+            CPUPlayerBox_ItemCheck
+        SYNOPSIS:
+            
+            private void CPUPlayerBox_ItemCheck(object sender, ItemCheckEventArgs e);
+            sender --> reference to object that raised event.
+            e --> event data            
+
+        DESCRIPTION:
+            
+            Event handler for when the user checks an item on the CPU's player list
+        
+        RETURNS:
+            None
+        AUTHOR:
+            Gabriel Uy
+        DATE:
+            07/27/2020
+        */
         private void CPUPlayerBox_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             computerSelected = true;
@@ -293,23 +336,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        private void resetTradeBox_Click(object sender, EventArgs e)
         
-        NAME: 
+        NAME:
+            resetTradeBox_Click
         SYNOPSIS:
             
-            
+            private void resetTradeBox_Click(object sender, EventArgs e);
+            sender --> reference to object that raised event.
+            e --> event data            
 
         DESCRIPTION:
             
-            
+            Event handler for reseting the selections the user made on both lists of players
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/27/2020
         */
         private void resetTradeBox_Click(object sender, EventArgs e)
         {
