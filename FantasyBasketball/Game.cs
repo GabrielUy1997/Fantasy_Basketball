@@ -809,8 +809,7 @@ namespace FantasyBasketball
             int playerPlayer;
             int cpuPlayer;
             bool tradeApprove = false;
-            a_player.ShowTeam(PlayerName);
-            a_CPU.ShowTeam(PlayerName);
+           
             Console.WriteLine("Who would you like to offer?");
             string input = Console.ReadLine();
             playerPlayer = a_pPlayer;
@@ -1511,14 +1510,15 @@ namespace FantasyBasketball
 
         DESCRIPTION:
             
-            
+          Used to get the number of blocks a player got during the
+          real season using their id           
         
         RETURNS:
-            
+             string, number of blocks
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/23/2020
         */
         public string GetPlayerBlock(int a_player)
         {
@@ -1526,23 +1526,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public string GetPlayerTurnover(int a_player)
         
         NAME: 
+            GetPlayerTurnover
         SYNOPSIS:
             
+            public string GetPlayerTurnover(int a_player);
             a_player --> player's id
 
         DESCRIPTION:
             
-            
+          Used to get the number of turnovers a player had during the
+          real season using their id           
         
         RETURNS:
-            
+             string, number of turnovers
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/23/2020
         */
         public string GetPlayerTurnover(int a_player)
         {
@@ -1550,23 +1553,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public string GetPlayerPersFoul(int a_player)
         
         NAME: 
+            GetPlayerPersFoul
         SYNOPSIS:
             
+            public string GetPlayerPersFoul(int a_player);
             a_player --> player's id
 
         DESCRIPTION:
             
-            
+          Used to get the number of personal fouls a player had during the
+          real season using their id           
         
         RETURNS:
-            
+             string, number of personal fouls
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/23/2020
         */
         public string GetPlayerPersFoul(int a_player)
         {
@@ -1574,23 +1580,26 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public string GetPlayerPoints(int a_player)
         
-        NAME: 
+        NAME:
+            GetPlayerPoints
         SYNOPSIS:
             
+            public string GetPlayerPoints(int a_player);
             a_player --> player's id
 
         DESCRIPTION:
             
-            
+          Used to get the number of points a player had during the
+          real season using their id           
         
         RETURNS:
-            
+             string, number of points
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/23/2020
         */
         public string GetPlayerPoints(int a_player)
         {
@@ -1598,23 +1607,27 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public bool LoadSeasonStats(Game game, string a_entry)
         
         NAME: 
+            LoadSeasonStats
         SYNOPSIS:
             
-            
+            public bool LoadSeasonStats(Game game, string a_entry);
+            game --> the current game object
+            a_entry --> the season the user selected to simulate
 
         DESCRIPTION:
             
-            
+            This is used to get the statistics for all players in
+            the season the user selected.
         
         RETURNS:
-            
+            bool, whether if the season selected was valid
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/23/2020
         */
         public bool LoadSeasonStats(Game game, string a_entry)
         {
@@ -1623,6 +1636,10 @@ namespace FantasyBasketball
             Console.WriteLine("What season would you like to simulate? (ex. 2018-2019)");
             Season = a_entry;
             SeasonSelection = SeasonPath + Season + ".csv";
+            //If the season is valid it opens the file, reads it, and stores all the statistics
+            //in alphebetical order and the number they are in the list is the players id 
+            //(ex. 1st person in the list has an id of 1) this way all the stats are in the 
+            //same index as the players id and it makes it simple to find them.
             try
             {
                 if(!File.Exists(SeasonSelection))

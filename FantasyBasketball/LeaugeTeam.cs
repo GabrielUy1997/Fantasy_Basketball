@@ -23,23 +23,26 @@ namespace FantasyBasketball
         protected int Center;
 
         /*
-       
+        public LeaugeTeam()
         
         NAME: 
+            LeaugeTeam
         SYNOPSIS:
             
-            
+            public LeaugeTeam()
 
         DESCRIPTION:
             
-            
+            Constructor for the LeaugeTeam class, initializes the lists
+            that hold each individual player's scores for each week and
+            past weeks.
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/23/2020
         */
         public LeaugeTeam()
         {
@@ -73,23 +76,24 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public void AddingPlayer(int a_player)
         
         NAME: 
         SYNOPSIS:
             
-            
+            public void AddingPlayer(int a_player);
+            a_player --> the id of player being added to the team
 
         DESCRIPTION:
             
-            
+            This is used when a player is being added to the team
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/23/2020
         */
         public void AddingPlayer(int a_player)
         {
@@ -98,23 +102,25 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public void DroppingPlayer(int a_player)
         
         NAME: 
+            DroppingPlayer
         SYNOPSIS:
             
-            
+            public void DroppingPlayer(int a_player);
+            a_player --> the id of the player being removed from team
 
         DESCRIPTION:
             
-            
+            This is used to remove players from the team
         
         RETURNS:
-            
+            None
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/23/2020
         */
         public void DroppingPlayer(int a_player)
         {
@@ -123,23 +129,24 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public String GetName()
         
         NAME: 
+            GetName
         SYNOPSIS:
             
-            
+            public String GetName()
 
         DESCRIPTION:
             
-            
+            used to get the name of the team
         
         RETURNS:
-            
+            string, the teams name
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
+            07/23/2020
         */
         public String GetName()
         {
@@ -147,59 +154,27 @@ namespace FantasyBasketball
         }
 
         /*
-       
+        public virtual bool CanDraftPosition(String[] a_PlayerPos, int a_pID)
         
         NAME: 
+            CanDraftPosition
         SYNOPSIS:
             
-            
+            public virtual bool CanDraftPosition(String[] a_PlayerPos, int a_pID);
+            a_PlayerPos --> array of all the players postions
+            a_pID --> the id of the player whos postions being checked
 
         DESCRIPTION:
             
-            
+            This makes sure the player being chosen is a valid choice based
+            on the number of players the team has in a position
         
         RETURNS:
-            
+            bool, whether it was a valid selection or not
         AUTHOR:
             Gabriel Uy
         DATE:
-            07/08/2020
-        */
-        public void ShowTeam(string[] a_playerList)
-        {
-            
-            int j = 0;
-            foreach (int player in team)
-            {
-                Console.Write("{0}.{1}:", j, a_playerList[player]);
-                
-                for (int i = 0; i < 7; i++)
-                {
-                    Console.Write("{0} ", PlayersScores[j][i]);
-                }
-                j++;
-                Console.WriteLine("");
-            }
-        }
-
-        /*
-       
-        
-        NAME: 
-        SYNOPSIS:
-            
-            
-
-        DESCRIPTION:
-            
-            
-        
-        RETURNS:
-            
-        AUTHOR:
-            Gabriel Uy
-        DATE:
-            07/08/2020
+            07/23/2020
         */
         public virtual bool CanDraftPosition(String[] a_PlayerPos, int a_pID)
         {
@@ -250,25 +225,7 @@ namespace FantasyBasketball
             return true;
         }
 
-        /*
-       
         
-        NAME: 
-        SYNOPSIS:
-            
-            
-
-        DESCRIPTION:
-            
-            
-        
-        RETURNS:
-            
-        AUTHOR:
-            Gabriel Uy
-        DATE:
-            07/08/2020
-        */
         public virtual bool CanDraft()
         {
             return false;
@@ -506,6 +463,7 @@ namespace FantasyBasketball
             return IsHuman;
         }
 
+
         /*
        
         
@@ -525,51 +483,6 @@ namespace FantasyBasketball
         DATE:
             07/08/2020
         */
-        public override int Menu(string[] a_playerList, List<LeaugeTeam> a_teams)
-        {
-            string input;
-            do
-            {
-                Console.WriteLine("What would you like to do?");
-                Console.WriteLine("1. Advance to Next week");
-                Console.WriteLine("2. See your team");
-                Console.WriteLine("3. Check Standings");
-                Console.WriteLine("4. See the schedule");
-                Console.WriteLine("5. See available players");
-                Console.WriteLine("6. Inquire trade");
-                input = Console.ReadLine();
-                if (input == "1")
-                {
-                    return 1;
-                }
-                else if (input == "2")
-                {
-                    ShowTeam(a_playerList);
-                }
-                else if (input == "3")
-                {
-                    return 3;
-                }
-                else if (input == "4")
-                {
-                    return 4;
-                }
-                else if (input == "5")
-                {
-                    return 5;
-                }
-                else if (input == "6")
-                {
-                    return 6;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid option");
-                }
-            } while (input != "1");
-            return 0;
-        }
-
         public override bool CanDraftPosition(String[] a_PlayerPos, int a_pID)
         {
             string Position = a_PlayerPos[a_pID];
