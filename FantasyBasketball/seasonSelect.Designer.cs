@@ -40,7 +40,7 @@
             // 
             // SeasonEntry
             // 
-            this.SeasonEntry.Location = new System.Drawing.Point(16, 198);
+            this.SeasonEntry.Location = new System.Drawing.Point(56, 149);
             this.SeasonEntry.Name = "SeasonEntry";
             this.SeasonEntry.Size = new System.Drawing.Size(296, 20);
             this.SeasonEntry.TabIndex = 0;
@@ -48,7 +48,7 @@
             // SeasonLabel
             // 
             this.SeasonLabel.AutoSize = true;
-            this.SeasonLabel.Location = new System.Drawing.Point(13, 182);
+            this.SeasonLabel.Location = new System.Drawing.Point(53, 133);
             this.SeasonLabel.Name = "SeasonLabel";
             this.SeasonLabel.Size = new System.Drawing.Size(276, 13);
             this.SeasonLabel.TabIndex = 1;
@@ -56,7 +56,7 @@
             // 
             // SubmitButton
             // 
-            this.SubmitButton.Location = new System.Drawing.Point(76, 224);
+            this.SubmitButton.Location = new System.Drawing.Point(116, 175);
             this.SubmitButton.Name = "SubmitButton";
             this.SubmitButton.Size = new System.Drawing.Size(141, 51);
             this.SubmitButton.TabIndex = 2;
@@ -95,10 +95,12 @@
             // 
             // SeasonListBox
             // 
+            this.SeasonListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SeasonListBox.FormattingEnabled = true;
+            this.SeasonListBox.ItemHeight = 31;
             this.SeasonListBox.Location = new System.Drawing.Point(23, 15);
             this.SeasonListBox.Name = "SeasonListBox";
-            this.SeasonListBox.Size = new System.Drawing.Size(485, 498);
+            this.SeasonListBox.Size = new System.Drawing.Size(485, 469);
             this.SeasonListBox.TabIndex = 0;
             // 
             // SeasonSelect

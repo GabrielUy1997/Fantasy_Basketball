@@ -1675,7 +1675,8 @@ namespace FantasyBasketball
                     List<string> pTOV = new List<String>();
                     List<string> pPF = new List<String>();
                     List<string> pPTS = new List<String>();
-                    //string vara1, vara2, vara3, vara4;
+                    //removing a * that the stat website has attatched to player names
+                    
                     while (!reader.EndOfStream)
                     {
                         string line = reader.ReadLine();
@@ -1687,6 +1688,11 @@ namespace FantasyBasketball
                                 if (values[1] != "Player")
                                 {
                                     pPhoto.Add((values[1].Split('\\')[1]));
+                                }
+                                //removing a * that the stat website has attatched to player names
+                                if (values[1].Contains("*"))
+                                {
+                                    values[1] = values[1].Replace("*", string.Empty);
                                 }
                                 pID.Add(values[0]);
                                 pName.Add(values[1]);
