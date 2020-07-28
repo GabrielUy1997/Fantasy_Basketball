@@ -167,12 +167,18 @@ namespace FantasyBasketball
             int ActiveSeasons = 1;
             bool IsInSeason = false;
             bool FileFound = false;
+            bool NoMoreSeasons = false;
             int HistoricalSeason;
             string IndexSeason;
             string SelectedPlayer;
             string ForPicture = " ";
             string[] seasons;
             string[] name;
+            //this is the last season available
+            if (_showGame.__season == "1985-1986")
+            {
+                NoMoreSeasons = true;
+            }
             seasons = _showGame.__season.Split('-');
             HistoricalSeason = Int32.Parse(seasons[0]);
             IndexSeason = (HistoricalSeason - ActiveSeasons).ToString() + "-" + HistoricalSeason.ToString();
@@ -188,7 +194,16 @@ namespace FantasyBasketball
                 System.IO.DirectoryInfo path = System.IO.Directory.GetParent(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location));
                 path = System.IO.Directory.GetParent(path.FullName);
                 FullPath = path.FullName + @"\Seasons\" + IndexSeason + ".csv";
-              
+                //had to use this to see if a season file exists 7/28/20
+                //https://www.techiedelight.com/determine-file-exists-csharp/
+                DirectoryInfo directory = new DirectoryInfo(path.FullName + @"\Seasons\");
+                FileInfo[] files = directory.GetFiles();
+                //changing to the oldest season to just get player photo
+                if(NoMoreSeasons == true)
+                {
+                    IndexSeason = _showGame.__season;
+                    FullPath = path.FullName + @"\Seasons\" + IndexSeason + ".csv";
+                }
                 StreamReader reader = new StreamReader(File.OpenRead(FullPath));
                 while (!reader.EndOfStream)
                 {
@@ -212,49 +227,49 @@ namespace FantasyBasketball
                                 ForPicture = __game._PlayerPhoto[__player1.team[TeamList.SelectedIndex]];
                             }           
                         }
-                        //getting the players stats for current indexSeason
-                        //removing a * that the stat website has attatched to player names
-                        if (SelectedPlayer.Contains("*"))
+                        //break out because there are no past stats to show
+                        if (NoMoreSeasons != true)
                         {
-                            SelectedPlayer = SelectedPlayer.Replace("*", string.Empty);
+                            //getting the players stats for current indexSeason
+                            //removing a * that the stat website has attatched to player names
+                            if (SelectedPlayer.Contains("*"))
+                            {
+                                SelectedPlayer = SelectedPlayer.Replace("*", string.Empty);
+                            }
+                            if (values.Length >= 4 && SelectedPlayer == __game._PlayerName[__player1.team[TeamList.SelectedIndex]])
+                            {
+                                Name = SelectedPlayer;
+                                Pos = values[2];
+                                Age = values[3];
+                                Team = values[4];
+                                GamesPlayed = values[5];
+                                GamesStarted = values[6];
+                                FG = values[8];
+                                FGA = values[9];
+                                ThreePointers = values[11];
+                                TwoPointers = values[14];
+                                FT = values[18];
+                                FTA = values[19];
+                                ORB = values[21];
+                                DRB = values[22];
+                                AST = values[24];
+                                STL = values[25];
+                                BLK = values[26];
+                                TOV = values[27];
+                                PF = values[28];
+                                PTS = values[29];
+                                IsInSeason = true;
+                                HistoricalStatsBox.Items.Add(IndexSeason + ":" + Pos + " " + Age + " " + Team + " " + GamesPlayed + " " + GamesStarted + " " + FG + " " + FGA
+                                    + " " + ThreePointers + " " + TwoPointers + " " + FT + " " + FTA + " " + ORB + " " + DRB + " " + AST + " " + STL + " " + BLK + " " + TOV
+                                    + " " + PF + " " + PTS);
+                                break;
+                            }
                         }
-                        if (values.Length >= 4 && SelectedPlayer == __game._PlayerName[__player1.team[TeamList.SelectedIndex]])
-                        {
-                            Name = SelectedPlayer;
-                            Pos = values[2];
-                            Age = values[3];
-                            Team = values[4];
-                            GamesPlayed = values[5];
-                            GamesStarted = values[6];
-                            FG = values[8];
-                            FGA = values[9];
-                            ThreePointers = values[11];
-                            TwoPointers = values[14];
-                            FT = values[18];
-                            FTA = values[19];
-                            ORB = values[21];
-                            DRB = values[22];
-                            AST = values[24];
-                            STL = values[25];
-                            BLK = values[26];
-                            TOV = values[27];
-                            PF = values[28];
-                            PTS = values[29];
-                            IsInSeason = true;
-                            HistoricalStatsBox.Items.Add(IndexSeason + ":" + Pos + " " + Age + " " + Team + " " + GamesPlayed + " " + GamesStarted + " " + FG + " " + FGA 
-                                + " " + ThreePointers + " " + TwoPointers + " " + FT + " " + FTA + " " + ORB + " " + DRB + " " + AST + " " + STL + " " + BLK + " " + TOV 
-                                + " " + PF + " " + PTS);
-                            break;
-                        }
-                    }
-                   
+                    }  
                 }
                 ActiveSeasons++;
                 IndexSeason = (HistoricalSeason - ActiveSeasons).ToString() + "-" + (HistoricalSeason - (ActiveSeasons - 1)).ToString();
-                //had to use this to see if a season file exists 7/28/20
-                //https://www.techiedelight.com/determine-file-exists-csharp/
-                DirectoryInfo directory = new DirectoryInfo(path.FullName + @"\Seasons\");
-                FileInfo[] files = directory.GetFiles();
+               
                 foreach (FileInfo file in files)
                 {
                     if (string.Compare(file.Name, IndexSeason + ".csv") == 0)
