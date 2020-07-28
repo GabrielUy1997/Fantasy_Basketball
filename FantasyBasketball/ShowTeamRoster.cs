@@ -181,8 +181,9 @@ namespace FantasyBasketball
             do
             {
                 IsInSeason = false;
-
-                StreamReader reader = new StreamReader(File.OpenRead(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\Seasons\" + IndexSeason + ".csv"));
+                System.IO.DirectoryInfo path = System.IO.Directory.GetParent(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location));
+                path = System.IO.Directory.GetParent(path.FullName);
+                StreamReader reader = new StreamReader(File.OpenRead(path.FullName + @"\Seasons\" + IndexSeason + ".csv"));
                 while (!reader.EndOfStream)
                 {
                     string line = reader.ReadLine();
@@ -236,7 +237,7 @@ namespace FantasyBasketball
                 }
                 ActiveSeasons++;
                 IndexSeason = (HistoricalSeason - ActiveSeasons).ToString() + "-" + (HistoricalSeason - (ActiveSeasons - 1)).ToString();
-                if(!File.Exists(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\Seasons\" + IndexSeason + ".csv"))
+                if(!File.Exists(System.IO.Path.GetDirectoryName(path.FullName + @"\Seasons\" + IndexSeason + ".csv")))
                 {
                     break;
                 }

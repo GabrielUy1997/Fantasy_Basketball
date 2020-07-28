@@ -1634,7 +1634,9 @@ namespace FantasyBasketball
         {
             //found how to find the file location of the program using a method from this website 7/27/20
             //https://www.delftstack.com/howto/csharp/how-to-get-current-folder-path-in-csharp/
-            string SeasonPath = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            System.IO.DirectoryInfo path = System.IO.Directory.GetParent(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location));
+            path = System.IO.Directory.GetParent(path.FullName);
+            string SeasonPath = path.FullName;
             SeasonPath = SeasonPath + @"\Seasons\";
             String SeasonSelection;
             Console.WriteLine("What season would you like to simulate? (ex. 2018-2019)");
