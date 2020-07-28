@@ -105,6 +105,8 @@ namespace FantasyBasketball
             do
             {
                 AvailableSeason = false;
+                //found how to find the file location of the program using a method from this website 7/27/20
+                //https://www.delftstack.com/howto/csharp/how-to-get-current-folder-path-in-csharp/
                 System.IO.DirectoryInfo path = System.IO.Directory.GetParent(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location));
                 path =  System.IO.Directory.GetParent(path.FullName);
                 StreamReader reader = new StreamReader(File.OpenRead(path.FullName + @"\Seasons\" + IndexSeason + ".csv"));

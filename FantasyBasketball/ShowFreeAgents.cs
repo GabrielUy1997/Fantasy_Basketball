@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -366,7 +367,17 @@ namespace FantasyBasketball
         {
             FABox.Items.Clear();
             ForPicture = _game._PlayerPhoto[_game.TopTenFree[FreeAgentsList.SelectedIndex] - 1];
-            pictureBox1.Load("https://d2cwpp38twqe55.cloudfront.net/req/202006192/images/players/" + ForPicture + ".jpg");
+            try
+            {
+                pictureBox1.Load("https://d2cwpp38twqe55.cloudfront.net/req/202006192/images/players/" + ForPicture + ".jpg");
+            }
+            catch
+            {
+                System.IO.DirectoryInfo path = System.IO.Directory.GetParent(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location));
+                path = System.IO.Directory.GetParent(path.FullName);
+                //this is when the players photo cannot be found
+                pictureBox1.Load(path.FullName + @"\Photos\missing.jpg");
+            }
             FABox.Items.Add(_game._PlayerName[_game.TopTenFree[FreeAgentsList.SelectedIndex]] +  " " + _game._Playerpos[_game.TopTenFree[FreeAgentsList.SelectedIndex]]);
             FASelected = true;
             if (FreeAgentsList.CheckedItems.Count != 0)

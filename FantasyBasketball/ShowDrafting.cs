@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Timers;
@@ -314,7 +315,19 @@ namespace FantasyBasketball
                  element => element.StartsWith(player, StringComparison.Ordinal));
                 pID = Array.FindIndex(_game._PlayerName, item => item == ss);
                 ForPicture = _game._PlayerPhoto[pID - 1];
-                pictureBox1.Load("https://d2cwpp38twqe55.cloudfront.net/req/202006192/images/players/" + ForPicture + ".jpg");
+                try
+                {
+                    pictureBox1.Load("https://d2cwpp38twqe55.cloudfront.net/req/202006192/images/players/" + ForPicture + ".jpg");
+                }
+                catch
+                {
+                    //found how to find the file location of the program using a method from this website 7/27/20
+                    //https://www.delftstack.com/howto/csharp/how-to-get-current-folder-path-in-csharp/
+                    System.IO.DirectoryInfo path = System.IO.Directory.GetParent(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location));
+                    path = System.IO.Directory.GetParent(path.FullName);
+                    //this is when the players photo cannot be found
+                    pictureBox1.Load(path.FullName + @"\Photos\missing.jpg");
+                }
                 PlayerPos.Items.Add(_game.GetPlayerPos(pID));
             }
             else

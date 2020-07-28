@@ -163,12 +163,13 @@ namespace FantasyBasketball
             string TOV;
             string PF;
             string PTS;
-           
+            string FullPath;
             int ActiveSeasons = 1;
             bool IsInSeason = false;
+            bool FileFound = false;
             int HistoricalSeason;
             string IndexSeason;
-            string s;
+            string SelectedPlayer;
             string ForPicture = " ";
             string[] seasons;
             string[] name;
@@ -177,36 +178,49 @@ namespace FantasyBasketball
             IndexSeason = (HistoricalSeason - ActiveSeasons).ToString() + "-" + HistoricalSeason.ToString();
             HistoricalStatsBox.Items.Add("Season" + " POS" + " Age" + " TM" + " GP" + " GS" + " FG" + " FGA" + " 3PT" + " 2PT" + " FT" + " FTA" + " ORB" + " DRB" + " AST" + " STL" + " BLK" + " TOV" + " PF" + " PTS");
             HistoricalStatsBox.Items.Add(" ");
-           
+            //this is getting all the stats from past years
             do
             {
+                FileFound = false;
                 IsInSeason = false;
+                //found how to find the file location of the program using a method from this website 7/27/20
+                //https://www.delftstack.com/howto/csharp/how-to-get-current-folder-path-in-csharp/
                 System.IO.DirectoryInfo path = System.IO.Directory.GetParent(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location));
                 path = System.IO.Directory.GetParent(path.FullName);
-                StreamReader reader = new StreamReader(File.OpenRead(path.FullName + @"\Seasons\" + IndexSeason + ".csv"));
+                FullPath = path.FullName + @"\Seasons\" + IndexSeason + ".csv";
+              
+                StreamReader reader = new StreamReader(File.OpenRead(FullPath));
                 while (!reader.EndOfStream)
                 {
                     string line = reader.ReadLine();
                     if (!String.IsNullOrWhiteSpace(line))
                     {
+                        //splitting the csv
                         string[] values = line.Split(',');
-                        if(values[1].Contains("\\") && values[1].Contains(__game._PlayerName[__player1.team[TeamList.SelectedIndex]]))
+                        //splitting the player name and id
+                        if (values[1].Contains("\\") && values[1].Contains(__game._PlayerName[__player1.team[TeamList.SelectedIndex]]))
                         {
                             name = values[1].Split('\\');
-                            s = name[0];
+                            SelectedPlayer = name[0];
                             ForPicture = name[1];
                         }
                         else
                         {
-                            s = values[1];
-                            if (s == __game._PlayerName[__player1.team[TeamList.SelectedIndex]])
+                            SelectedPlayer = values[1];
+                            if (SelectedPlayer == __game._PlayerName[__player1.team[TeamList.SelectedIndex]])
                             {
                                 ForPicture = __game._PlayerPhoto[__player1.team[TeamList.SelectedIndex]];
                             }           
                         }
-                        if (values.Length >= 4 && s == __game._PlayerName[__player1.team[TeamList.SelectedIndex]])
+                        //getting the players stats for current indexSeason
+                        //removing a * that the stat website has attatched to player names
+                        if (SelectedPlayer.Contains("*"))
                         {
-                            Name = s;
+                            SelectedPlayer = SelectedPlayer.Replace("*", string.Empty);
+                        }
+                        if (values.Length >= 4 && SelectedPlayer == __game._PlayerName[__player1.team[TeamList.SelectedIndex]])
+                        {
+                            Name = SelectedPlayer;
                             Pos = values[2];
                             Age = values[3];
                             Team = values[4];
@@ -237,12 +251,35 @@ namespace FantasyBasketball
                 }
                 ActiveSeasons++;
                 IndexSeason = (HistoricalSeason - ActiveSeasons).ToString() + "-" + (HistoricalSeason - (ActiveSeasons - 1)).ToString();
-                if(!File.Exists(System.IO.Path.GetDirectoryName(path.FullName + @"\Seasons\" + IndexSeason + ".csv")))
+                //had to use this to see if a season file exists 7/28/20
+                //https://www.techiedelight.com/determine-file-exists-csharp/
+                DirectoryInfo directory = new DirectoryInfo(path.FullName + @"\Seasons\");
+                FileInfo[] files = directory.GetFiles();
+                foreach (FileInfo file in files)
+                {
+                    if (string.Compare(file.Name, IndexSeason + ".csv") == 0)
+                    {
+                        FileFound = true;
+                        IsInSeason = true;
+                        break;
+                    }
+                }
+                if (FileFound == false)
                 {
                     break;
                 }
             } while (IsInSeason == true);
-            pictureBox1.Load("https://d2cwpp38twqe55.cloudfront.net/req/202006192/images/players/" + ForPicture + ".jpg");
+            try
+            {
+                pictureBox1.Load("https://d2cwpp38twqe55.cloudfront.net/req/202006192/images/players/" + ForPicture + ".jpg");
+            }
+            catch
+            {
+                System.IO.DirectoryInfo path = System.IO.Directory.GetParent(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location));
+                path = System.IO.Directory.GetParent(path.FullName);
+                //this is when the players photo cannot be found
+                pictureBox1.Load(path.FullName + @"\Photos\missing.jpg");
+            }
             PlayerInfo.Items.Add("Name: " + __game._PlayerName[__player1.team[TeamList.SelectedIndex]]);
             PlayerInfo.Items.Add("Age: " + __game.GetPlayerAge(__player1.team[TeamList.SelectedIndex]));
             PlayerInfo.Items.Add("Current Team: " + __game.GetPlayerTeam(__player1.team[TeamList.SelectedIndex]));
