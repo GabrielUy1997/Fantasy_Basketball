@@ -105,16 +105,17 @@ namespace FantasyBasketball
             do
             {
                 AvailableSeason = false;
-
-                StreamReader reader = new StreamReader(File.OpenRead(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\Seasons\" + IndexSeason + ".csv"));
-                if(File.Exists(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\Seasons\" + IndexSeason + ".csv"))
+                System.IO.DirectoryInfo path = System.IO.Directory.GetParent(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location));
+                path =  System.IO.Directory.GetParent(path.FullName);
+                StreamReader reader = new StreamReader(File.OpenRead(path.FullName + @"\Seasons\" + IndexSeason + ".csv"));
+                if(File.Exists(path.FullName + @"\Seasons\" + IndexSeason + ".csv"))
                 {
                     AvailableSeason = true;
                     SeasonListBox.Items.Add(IndexSeason);
                 }
                 SeasonIndex++;
                 IndexSeason = (FirstPartSeason - SeasonIndex).ToString() + "-" + (FirstPartSeason - (SeasonIndex - 1)).ToString();
-                if (!File.Exists(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\Seasons\" + IndexSeason + ".csv"))
+                if (!File.Exists(path.FullName + @"\Seasons\" + IndexSeason + ".csv"))
                 {
                     break;
                 }
