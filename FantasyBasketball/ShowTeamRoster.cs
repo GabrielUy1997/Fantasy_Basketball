@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -162,7 +163,7 @@ namespace FantasyBasketball
             string TOV;
             string PF;
             string PTS;
-            string SeasonPath = @"C:\Users\Gabe\source\repos\ConsoleApp1\Seasons\";
+           
             int ActiveSeasons = 1;
             bool IsInSeason = false;
             int HistoricalSeason;
@@ -181,7 +182,7 @@ namespace FantasyBasketball
             {
                 IsInSeason = false;
 
-                StreamReader reader = new StreamReader(File.OpenRead(SeasonPath + IndexSeason + ".csv"));
+                StreamReader reader = new StreamReader(File.OpenRead(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\Seasons\" + IndexSeason + ".csv"));
                 while (!reader.EndOfStream)
                 {
                     string line = reader.ReadLine();
@@ -235,7 +236,7 @@ namespace FantasyBasketball
                 }
                 ActiveSeasons++;
                 IndexSeason = (HistoricalSeason - ActiveSeasons).ToString() + "-" + (HistoricalSeason - (ActiveSeasons - 1)).ToString();
-                if(!File.Exists(SeasonPath + IndexSeason + ".csv"))
+                if(!File.Exists(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\Seasons\" + IndexSeason + ".csv"))
                 {
                     break;
                 }

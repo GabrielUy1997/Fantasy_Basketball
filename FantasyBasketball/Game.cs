@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -1631,7 +1632,10 @@ namespace FantasyBasketball
         */
         public bool LoadSeasonStats(Game game, string a_entry)
         {
-            String SeasonPath = @"C:\Users\Gabe\source\repos\ConsoleApp1\Seasons\";
+            //found how to find the file location of the program using a method from this website 7/27/20
+            //https://www.delftstack.com/howto/csharp/how-to-get-current-folder-path-in-csharp/
+            string SeasonPath = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            SeasonPath = SeasonPath + @"\Seasons\";
             String SeasonSelection;
             Console.WriteLine("What season would you like to simulate? (ex. 2018-2019)");
             Season = a_entry;

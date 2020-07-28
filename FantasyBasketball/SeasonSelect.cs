@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace FantasyBasketball
 {
@@ -105,15 +106,15 @@ namespace FantasyBasketball
             {
                 AvailableSeason = false;
 
-                StreamReader reader = new StreamReader(File.OpenRead(@"C:\Users\Gabe\source\repos\ConsoleApp1\Seasons\" + IndexSeason + ".csv"));
-                if(File.Exists(@"C:\Users\Gabe\source\repos\ConsoleApp1\Seasons\" + IndexSeason + ".csv"))
+                StreamReader reader = new StreamReader(File.OpenRead(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\Seasons\" + IndexSeason + ".csv"));
+                if(File.Exists(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\Seasons\" + IndexSeason + ".csv"))
                 {
                     AvailableSeason = true;
                     SeasonListBox.Items.Add(IndexSeason);
                 }
                 SeasonIndex++;
                 IndexSeason = (FirstPartSeason - SeasonIndex).ToString() + "-" + (FirstPartSeason - (SeasonIndex - 1)).ToString();
-                if (!File.Exists(@"C:\Users\Gabe\source\repos\ConsoleApp1\Seasons\" + IndexSeason + ".csv"))
+                if (!File.Exists(System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + @"\Seasons\" + IndexSeason + ".csv"))
                 {
                     break;
                 }
