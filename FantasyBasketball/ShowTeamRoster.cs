@@ -227,7 +227,7 @@ namespace FantasyBasketball
                                 ForPicture = __game._PlayerPhoto[__player1.team[TeamList.SelectedIndex]];
                             }           
                         }
-                        //break out because there are no past stats to show
+                        //break out if no more seasons to show
                         if (NoMoreSeasons != true)
                         {
                             //getting the players stats for current indexSeason
